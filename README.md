@@ -1,2 +1,2 @@
 # ApeOPSArcade
-Gruppo di sviluppo del gioco "Sconfiggi il cattivo"
+Gruppo di sviluppo del gioco "APE OPS ARCADE"
