@@ -1,0 +1,284 @@
+@media only screen and (max-width: 2560px) {
+    * {
+        box-sizing: border-box;
+    }
+    
+    body{
+        background-image: url("https://images.alphacoders.com/939/939931.jpg");
+        background-size: cover;
+        background-repeat: repeat;
+    }
+    
+    #pp{
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: rgba(19, 18, 18, 0.575);
+        position: absolute;
+    }
+    
+    #ptt {
+        background-color:rgb(245, 239, 231);
+        width: fit-content;
+        position: absolute;
+        color:whitesmoke;
+        opacity: 1;
+    }
+    
+    #ptt2 {
+        background-color:rgb(245, 239, 231);
+        width: fit-content;
+        position: absolute;
+        opacity: 1;
+    }
+    
+    #ptt3 {
+        background-color:rgb(245, 239, 231);
+        width: fit-content;
+        position: absolute;
+        opacity: 1;
+    }
+    
+    #home{
+        color:whitesmoke;
+        padding-inline: 15px;
+        opacity: 100%;
+        text-decoration: none;
+    }
+    
+    #chrs{
+        color:whitesmoke;
+        padding-right: 15px;
+        opacity: 100%;
+        text-decoration: none;
+    }
+    
+    #ds {
+        color:whitesmoke;
+        opacity: 100%;
+        text-decoration: none;
+    }
+    
+    #in1{
+        display: inline;
+        margin-left: 82%;
+        box-sizing: border-box;
+        padding: 20px;
+        background-color: whitesmoke;
+    }
+    
+    #loginBTN{
+        font-weight: bold;
+    }
+    
+    .fade-in {
+        animation: fadeIn ease 5s;
+        -webkit-animation: fadeIn ease 5s;
+        -moz-animation: fadeIn ease 5s;
+        -o-animation: fadeIn ease 5s;
+        -ms-animation: fadeIn ease 5s;
+    }
+      @keyframes fadeIn {
+        0% {
+          opacity:0;
+        }
+        100% {
+          opacity:1;
+        }
+    }
+      
+      @-moz-keyframes fadeIn {
+        0% {
+          opacity:0;
+        }
+        100% {
+          opacity:1;
+        }
+    }
+      
+      @-webkit-keyframes fadeIn {
+        0% {
+          opacity:0;
+        }
+        100% {
+          opacity:1;
+        }
+    }
+      
+      @-o-keyframes fadeIn {
+        0% {
+          opacity:0;
+        }
+        100% {
+          opacity:1;
+        }
+    }
+      
+      @-ms-keyframes fadeIn {
+        0% {
+          opacity:0;
+        }
+        100% {
+          opacity:1;
+        }
+    }  
+    
+    #titleGm{
+        font-size: 150px;
+        color: rgb(251, 226, 144);
+        margin-left: 36%;
+        margin-top: 20%;
+        position: absolute;
+        -webkit-text-stroke-width: 2px;
+        -webkit-text-stroke-color: rgb(74, 159, 199);
+    }
+    
+    .button {
+        border: none;
+        padding-inline: 25px;
+        text-align: center;
+    }    
+
+}
+
+
+@media only screen and (max-width: 1920px) {
+    * {
+        box-sizing: border-box;
+    }
+    
+    body{
+        background-image: url("https://images.alphacoders.com/939/939931.jpg");
+        background-size: cover;
+        background-repeat: repeat;
+    }
+    
+    #pp{
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: rgba(19, 18, 18, 0.575);
+        position: absolute;
+    }
+    
+    #ptt {
+        background-color:rgb(245, 239, 231);
+        width: fit-content;
+        position: absolute;
+        color:whitesmoke;
+        opacity: 1;
+    }
+    
+    #ptt2 {
+        background-color:rgb(245, 239, 231);
+        width: fit-content;
+        position: absolute;
+        opacity: 1;
+    }
+    
+    #ptt3 {
+        background-color:rgb(245, 239, 231);
+        width: fit-content;
+        position: absolute;
+        opacity: 1;
+    }
+    
+    #home{
+        color:whitesmoke;
+        padding-inline: 15px;
+        opacity: 100%;
+        text-decoration: none;
+    }
+    
+    #chrs{
+        color:whitesmoke;
+        padding-right: 15px;
+        opacity: 100%;
+        text-decoration: none;
+    }
+    
+    #ds {
+        color:whitesmoke;
+        opacity: 100%;
+        text-decoration: none;
+    }
+    
+    #in1{
+        display: inline;
+        margin-left: 75%;
+        box-sizing: border-box;
+        padding: 20px;
+        background-color: whitesmoke;
+    }
+    
+    #loginBTN{
+        font-weight: bold;
+    }
+    
+    .fade-in {
+        animation: fadeIn ease 5s;
+        -webkit-animation: fadeIn ease 5s;
+        -moz-animation: fadeIn ease 5s;
+        -o-animation: fadeIn ease 5s;
+        -ms-animation: fadeIn ease 5s;
+    }
+      @keyframes fadeIn {
+        0% {
+          opacity:0;
+        }
+        100% {
+          opacity:1;
+        }
+    }
+      
+      @-moz-keyframes fadeIn {
+        0% {
+          opacity:0;
+        }
+        100% {
+          opacity:1;
+        }
+    }
+      
+      @-webkit-keyframes fadeIn {
+        0% {
+          opacity:0;
+        }
+        100% {
+          opacity:1;
+        }
+    }
+      
+      @-o-keyframes fadeIn {
+        0% {
+          opacity:0;
+        }
+        100% {
+          opacity:1;
+        }
+    }
+      
+      @-ms-keyframes fadeIn {
+        0% {
+          opacity:0;
+        }
+        100% {
+          opacity:1;
+        }
+    }  
+    
+    #titleGm{
+        font-size: 140px;
+        color: rgb(251, 226, 144);
+        position: absolute;
+        margin-left: 33%;
+        margin-top: 18%;
+        -webkit-text-stroke-width: 2px;
+        -webkit-text-stroke-color: rgb(74, 159, 199);
+    }
+    
+    .button {
+        border: none;
+        padding-inline: 25px;
+        text-align: center;
+    }
+}
+
