@@ -8,7 +8,7 @@ import math
 
 pygame.init()
 pygame.mixer.init()
- 
+
 class player(object):
     run = [pygame.image.load(os.path.join('images', str(x) + '.png')) for x in range(8,16)]
     jump = [pygame.image.load(os.path.join('images', str(x) + '.png')) for x in range(1,8)]
