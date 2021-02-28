@@ -1,0 +1,9 @@
+.container {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: auto;
+}
+
+.jumbotron {
+    padding: 0px;
+}

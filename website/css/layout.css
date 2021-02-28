@@ -39,9 +39,18 @@ h6 {
     }
 }
 
-@media (min-width: 1920px) {
+@media (min-width: 992px) {
+    .container {
+        max-width: 1200px;
+    }
+}
+
+@media (min-width: 1200px) {
     .display-4 {
         font-size: 2.7rem;
+    }
+    .container {
+        max-width: 1920px;
     }
 }
 
