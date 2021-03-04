@@ -1,9 +1,98 @@
+body {
+    background-color: whitesmoke;
+}
+
+@media (max-width: 610px) {
+    #webapp {
+        visibility: hidden;
+    }
+}
+
 .container {
     padding-left: 15px;
     padding-right: 15px;
     margin: auto;
 }
 
+#game-name {
+    padding-bottom: 3px;
+    border-bottom: 2px rgb(241, 241, 241);
+    border-bottom-style: groove;
+}
+
+.tags-label {
+    background: #09f;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 20px;
+    padding: 3px 12px;
+    display: inline-block;
+    margin: 2px 6px;
+    text-decoration: none;
+    width: auto;
+    text-align: center;
+}
+
+.container-main {
+    padding-top: 25px;
+    padding-right: 10%;
+}
+
+#heading {
+    padding-bottom: 10px;
+}
+
+#webgame {
+    background: #fff;
+    width: min-content;
+    padding: 15px;
+    border-radius: 15px;
+    min-width: 100%;
+    text-align: center;
+    margin: 0 0 15px 15px;
+}
+
+#webgame-col {
+    padding: 0px;
+}
+
 .jumbotron {
     padding: 0px;
+    margin-bottom: 0.5rem;
+}
+
+#pulsanti {
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: -webkit-fill-available;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.circle-icon {
+    background: #d8e1d7;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 30px;
+    vertical-align: middle;
+    padding: 4px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#istructions {
+    padding: 22px 12px 12px 12px;
+    text-align: left;
+    margin: 6px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#game-img-little {
+    border-radius: 10px;
+    float: left;
+    margin: 0px 15px 0px 0px;
 }

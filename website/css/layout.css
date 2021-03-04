@@ -6,6 +6,22 @@ body {
     background-color: antiquewhite;
 }
 
+.login {
+    margin-right: 2%;
+    color: #ffffff;
+    border-radius: 20px;
+    background: grey;
+    font-size: 1em;
+}
+
+.login a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: 8px 10px;
+    border-radius: 20px;
+}
+
 .main-header {
     line-height: 1;
     border-bottom: 1px solid #e5e5e5;
@@ -52,6 +68,13 @@ h6 {
     .container {
         max-width: 1920px;
     }
+}
+
+.current {
+    border: 2px solid #199b1e;
+    border-color: #199b1e;
+    background-color: #4CAF50;
+    color: #ffffff;
 }
 
 .nav-scroller {
