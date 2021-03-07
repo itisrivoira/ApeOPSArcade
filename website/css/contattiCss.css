@@ -1,0 +1,49 @@
+.col-4 {
+    font-weight: bold;
+}
+
+.intestazione {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-right: 1000px;
+}
+
+.container-fluid {
+    background-color: whitesmoke;
+    text-align: center;
+    height: 480px;
+    width: 1140px;
+}
+
+.contattiGitHub {
+    height: 480px;
+    width: 370px;
+    float: left;
+}
+
+.contattiTelefono {
+    height: 480px;
+    width: 370px;
+    float: left;
+}
+
+.contattiEmail {
+    height: 480px;
+    width: 370px;
+    float: left;
+}
+
+.contatti {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#game-img-little {
+    height: 40px;
+    display: 40px;
+}
+
+.testo {
+    color: black;
+}

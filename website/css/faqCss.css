@@ -1,0 +1,44 @@
+/* CSS per il titolo */
+
+#Titolo {
+    text-align: center;
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+    font-size: 4.25rem;
+    font-weight: bold;
+}
+
+
+/* CSS per la pagina */
+
+body {
+    background-color: antiquewhite;
+}
+
+.col-4 {
+    font-weight: bold;
+}
+
+.paginaPrincipale {
+    display: block;
+    background-color: whitesmoke;
+    height: 960px;
+}
+
+#game-img-little {
+    border-radius: 10px;
+    float: left;
+    margin: 0px 15px 0px 0px;
+}
+
+
+/* CSS per domande */
+
+.DomandeContainer {
+    margin-bottom: 100px;
+}
+
+.domande {
+    margin: 0px;
+    font-size: 2rem;
+    font-weight: bold;
+}
