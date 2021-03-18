@@ -3,14 +3,16 @@
 }
 
 .intestazione {
-    font-size: 20px;
+    font-size: 30px;
     font-weight: bold;
     text-align: center;
-    margin-right: 1000px;
+    margin: auto;
+    background-color: rgba(42, 177, 255, 0.993);
+    /*color: white;*/
 }
 
 .container-fluid {
-    background-color: whitesmoke;
+    background-color: white;
     text-align: center;
     height: 480px;
     width: 1140px;
