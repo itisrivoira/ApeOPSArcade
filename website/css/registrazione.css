@@ -1,0 +1,35 @@
+.containerIntestazione {
+    /* Container */
+    display: block;
+    background-color: rgb(194, 193, 191);
+    width: 940pt;
+    height: 420pt;
+    border-radius: 1%;
+    padding: 10px;
+}
+
+.img-fluid {
+    /* Immagine */
+    margin-left: 325pt;
+    height: 360pt;
+    width: 350pt;
+    float: left;
+}
+
+#testo {
+    /* Accedi */
+    color: whitesmoke;
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+    font-size: 230%;
+    font-weight: bold;
+    margin-left: 125pt;
+}
+
+.col-md-1 {
+    /* Login */
+    margin-left: 10px;
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+    font-size: 120%;
+    margin-top: 20px;
+    font-weight: bold;
+}
