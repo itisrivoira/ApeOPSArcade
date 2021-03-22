@@ -29,6 +29,7 @@ export class MenuScene extends Phaser.Scene {
 
         playButton.on("pointerup", () => {
             console.log("LET ME IN");
+            this.scene.start(CST.SCENES.STARTER, "MenuScene HELLO");
         });
 
         optionsButton.on("pointerup", () => {

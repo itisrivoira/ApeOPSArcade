@@ -2,6 +2,8 @@ export const CST = {
     SCENES: {
         LOAD: "LOAD",
         MENU: "MENU",
-        OPTIONS: "OPTIONS"
+        STARTER: "STARTER_LVL",
+        OPTIONS: "OPTIONS",
+        OPTIONS_COMMANDS: "OPTIONS_CMD"
     }
 }

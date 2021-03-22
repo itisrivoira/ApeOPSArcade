@@ -15,14 +15,18 @@ export class OptionsScene extends Phaser.Scene {
         this.add.image(0, 0, "background").setOrigin(0).setDepth(0);
 
 
-        let musicButton = this.add.sprite(this.game.renderer.width / 1.5, this.game.renderer.height / 1.7, "OptionsScene-toggleOn").setDepth(1);
-        let musicLabel = this.add.image(this.game.renderer.width / 2.4, this.game.renderer.height / 1.7, "OptionsScene-musicLabel").setDepth(1);
-        let otherButton = this.add.image(this.game.renderer.width / 1.5, this.game.renderer.height / 2 + 150, "OptionsScene-toggleOff").setDepth(1);
-        let otherLabel = this.add.image(this.game.renderer.width / 3.3, this.game.renderer.height / 2 + 150, "OptionsScene-effectsLabel").setDepth(1);
+        let musicButton = this.add.sprite(this.game.renderer.width / 1.5, this.game.renderer.height / 2.3, "OptionsScene-toggleOn").setDepth(1);
+        let musicLabel = this.add.image(this.game.renderer.width / 2.4, this.game.renderer.height / 2.3, "OptionsScene-musicLabel").setDepth(1);
+        let otherButton = this.add.image(this.game.renderer.width / 1.5, this.game.renderer.height / 1.6, "OptionsScene-toggleOff").setDepth(1);
+        let otherLabel = this.add.image(this.game.renderer.width / 3.3, this.game.renderer.height / 1.6, "OptionsScene-effectsLabel").setDepth(1);
+
+        let commandsButton = this.add.image(this.game.renderer.width / 3.3, this.game.renderer.height / 2 + 150, "OptionsScene-commands").setDepth(1);
+        let backButton = this.add.image(this.game.renderer.width / 1.4, this.game.renderer.height / 2 + 150, "OptionsScene-back").setDepth(1);
 
         //interactive buttons
         musicButton.setInteractive();
-        otherButton.setInteractive();
+        commandsButton.setInteractive();
+        backButton.setInteractive();
 
         musicButton.on("pointerup", () => {
             if (this.flagSound == 1) {
@@ -40,7 +44,12 @@ export class OptionsScene extends Phaser.Scene {
             }
         });
 
-        otherButton.on("pointerup", () => {
+        commandsButton.on("pointerup", () => {
+            console.log("GOING TO COMMANDS...");
+            this.scene.start(CST.SCENES.OPTIONS_COMMANDS, "OptionsScene HELLO");
+        })
+
+        backButton.on("pointerup", () => {
             console.log("FUNGE");
             this.scene.start(CST.SCENES.MENU, "OptionsScene HELLO");
         });

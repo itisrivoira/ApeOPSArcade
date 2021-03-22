@@ -18,10 +18,41 @@ export class LoadScene extends Phaser.Scene {
         this.load.image("OptionsScene-toggleOn", "src/assets/buttons/toggle_on.png");
         this.load.image("OptionsScene-toggleOff", "src/assets/buttons/toggle_off.png");
 
+        this.load.image("OptionsScene-commands", "src/assets/buttons/button_commands_black.png");
+        this.load.image("OptionsScene-back", "src/assets/buttons/button_back_black.png");
+
         //OptionsScene Labels
         this.load.image("OptionsScene-musicLabel", "src/assets/option_music_toggle.png");
         this.load.image("OptionsScene-effectsLabel", "src/assets/option_effects_toggle.png");
 
+        //CommandsScene Labels
+        this.load.image("CommandsScene-leftLabel", "src/assets/commands_sub/left.png");
+        this.load.image("CommandsScene-rightLabel", "src/assets/commands_sub/right.png");
+        this.load.image("CommandsScene-upLabel", "src/assets/commands_sub/up.png");
+        this.load.image("CommandsScene-downLabel", "src/assets/commands_sub/down.png");
+        this.load.image("CommandsScene-returnLabel", "src/assets/commands_sub/return.png");
+        this.load.image("CommandsScene-closeLabel", "src/assets/commands_sub/close.png");
+
+        //CommandsScene keys
+        this.load.image("CommandsScene-leftarrowkey", "src/assets/commands_sub/cmds/leftarrowkey.png");
+        this.load.image("CommandsScene-rightarrowkey", "src/assets/commands_sub/cmds/rightarrowkey.png");
+        this.load.image("CommandsScene-uparrowkey", "src/assets/commands_sub/cmds/uparrowkey.png");
+        this.load.image("CommandsScene-downarrowkey", "src/assets/commands_sub/cmds/downarrowkey.png");
+        this.load.image("CommandsScene-esc_key", "src/assets/commands_sub/cmds/esckey.png");
+        this.load.image("CommandsScene-alt_f4_key", "src/assets/commands_sub/cmds/alt_f4key.png");
+
+        //LVLScene assets
+        //map made with Tiled (JSON)
+        this.load.tilemapTiledJSON("map", "src/assets/lvlAssets/map.json");
+        //spritesheet (tiles)
+        this.load.spritesheet("tiles", "src/assets/lvlAssets/tiles.png", { frameWidth: 70, frameHeight: 70 });
+        //coin image
+        this.load.image("coin", "src/assets/lvlAssets/coinGold.png");
+        //player animations (default anims)
+        this.load.atlas("player", "src/assets/lvlAssets/player.png", "src/assets/lvlAssets/player.json");
+
+
+        //bakcground music
         this.load.audio("bgMusic", "src/assets/sounds/bg_music.mp3");
 
         var progressBar = this.add.graphics();
