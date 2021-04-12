@@ -1,0 +1,26 @@
+.contenitorePrincipale {
+    background-color: rgb(194, 193, 191);
+    width: 420pt;
+    height: 490pt;
+    margin-left: 290pt;
+}
+
+#titolo {
+    text-align: center;
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+    font-size: 230%;
+    font-weight: bold;
+}
+
+#intestazione {
+    text-align: center;
+}
+
+.supporto {
+    display: block;
+    margin-left: 130pt;
+}
+
+#testo {
+    height: 100pt;
+}

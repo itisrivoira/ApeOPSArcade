@@ -42,15 +42,23 @@ export class LoadScene extends Phaser.Scene {
         this.load.image("CommandsScene-alt_f4_key", "src/assets/commands_sub/cmds/alt_f4key.png");
 
         //LVLScene assets
-        //map made with Tiled (JSON)
-        this.load.tilemapTiledJSON("map", "src/assets/lvlAssets/map.json");
-        //spritesheet (tiles)
-        this.load.spritesheet("tiles", "src/assets/lvlAssets/tiles.png", { frameWidth: 70, frameHeight: 70 });
-        //coin image
-        this.load.image("coin", "src/assets/lvlAssets/coinGold.png");
-        //player animations (default anims)
-        this.load.atlas("player", "src/assets/lvlAssets/player.png", "src/assets/lvlAssets/player.json");
+        this.load.image("LVLScene-menuFight", "src/assets/lvlAssets/menu_ingame_fight.png");
+        this.load.image("LVLScene-menuItems", "src/assets/lvlAssets/menu_ingame_items.png");
+        this.load.image("LVLScene-hpHeartFull", "src/assets/lvlAssets/hp_heart.png");
+        this.load.image("LVLScene-hpHeartEmpty", "src/assets/lvlAssets/hp_heart_gray.png");
+        this.load.image("LVLScene-hpHeartHalf", "src/assets/lvlAssets/hp_heart_half.png");
 
+        //LVLScene protagonist
+        this.load.image("LVLScene-protag", "src/assets/lvlAssets/protag.png");
+        this.load.image("LVLScene-protagIcon", "src/assets/lvlAssets/protag_Icon.png");
+        this.load.image("LVLScene-protagActionKick", "src/assets/lvlAssets/protagKick.png");
+        this.load.image("LVLScene-protagActionPunch", "src/assets/lvlAssets/protagPunch.png");
+        this.load.image("LVLScene-protagActionShoot", "src/assets/lvlAssets/protagShoot.png");
+        this.load.image("LVLScene-protagActionWin", "src/assets/lvlAssets/protagWin.png");
+
+        //LVLScene first enemy
+        this.load.image("LVLScene-brigadiereRuspa", "src/assets/lvlAssets/brigadiereRuspa.png");
+        this.load.image("LVLScene-brigadiereRuspaIcon", "src/assets/lvlAssets/brigadiereRuspa_Icon.png");
 
         //bakcground music
         this.load.audio("bgMusic", "src/assets/sounds/bg_music.mp3");
