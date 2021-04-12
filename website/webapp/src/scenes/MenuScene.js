@@ -9,6 +9,8 @@ export class MenuScene extends Phaser.Scene {
         console.log(data);
     }
     create() {
+        this.game.scale.resize(800, 440);
+
         //images
         this.add.image(this.game.renderer.width / 2, this.game.renderer.height * 0.20, "title").setDepth(1);
         this.add.image(0, 0, "background").setOrigin(0).setDepth(0);

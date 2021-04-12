@@ -10,7 +10,7 @@ let game = new Phaser.Game({
     physics: {
         default: 'arcade',
         arcade: {
-            //gravity: { y: 400 },
+            gravity: { y: 400 },
             debug: false
         }
     },
@@ -18,3 +18,5 @@ let game = new Phaser.Game({
         LoadScene, MenuScene, LVLScene, OptionsScene, CommandsScene
     ]
 });
+
+game.scale.displaySize.resize

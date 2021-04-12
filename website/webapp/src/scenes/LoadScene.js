@@ -9,6 +9,7 @@ export class LoadScene extends Phaser.Scene {
 
     }
     preload() {
+        //MenuScene buttons
         this.load.image("title", "src/assets/title.png");
         this.load.image("play_button", "src/assets/play_button.png");
         this.load.image("options_button", "src/assets/options_button.png");
@@ -44,6 +45,10 @@ export class LoadScene extends Phaser.Scene {
         //LVLScene assets
         this.load.image("LVLScene-menuFight", "src/assets/lvlAssets/menu_ingame_fight.png");
         this.load.image("LVLScene-menuItems", "src/assets/lvlAssets/menu_ingame_items.png");
+
+        this.load.image("LVLScene-menuHiddenButton", "src/assets/lvlAssets/blank_menu_hiddenButton.png");
+        this.load.image("LVLScene-menuHiddenButton2", "src/assets/lvlAssets/blank_menu_hiddenButton2.png");
+
         this.load.image("LVLScene-hpHeartFull", "src/assets/lvlAssets/hp_heart.png");
         this.load.image("LVLScene-hpHeartEmpty", "src/assets/lvlAssets/hp_heart_gray.png");
         this.load.image("LVLScene-hpHeartHalf", "src/assets/lvlAssets/hp_heart_half.png");
@@ -59,6 +64,7 @@ export class LoadScene extends Phaser.Scene {
         //LVLScene first enemy
         this.load.image("LVLScene-brigadiereRuspa", "src/assets/lvlAssets/brigadiereRuspa.png");
         this.load.image("LVLScene-brigadiereRuspaIcon", "src/assets/lvlAssets/brigadiereRuspa_Icon.png");
+        this.load.image("LVLScene-brigadiereRuspaHit", "src/assets/lvlAssets/brigadiereRuspa_hit.png");
 
         //bakcground music
         this.load.audio("bgMusic", "src/assets/sounds/bg_music.mp3");
