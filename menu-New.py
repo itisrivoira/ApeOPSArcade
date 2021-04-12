@@ -20,6 +20,10 @@ pygame.mixer.pre_init()
 pygame.init()
 random.seed()
 
+# --------------------------------------
+# USARE Q MINUSCULO PER FERMARE IL VIDEO
+# --------------------------------------
+
 font = pygame.font.SysFont(None, 45)
 bg_image = pygame.image.load("images/bgwhite.jpg")
 pg_win = pygame.image.load("images/protagWin.png")
