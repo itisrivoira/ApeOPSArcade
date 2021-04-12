@@ -194,6 +194,8 @@ tmp = None
 music_pause = False
 pause = 0
 fall_speed = 0
+showMusicToggle = True
+showSoundEffectToggle = True
 
 pygame.mixer.music.load( "./Sound/ncsound.ogg" )  # Get the first track from the playlist
 pygame.mixer.music.play(-1) 
@@ -201,34 +203,6 @@ pygame.mixer.music.play(-1)
 def text_objects(text, font, color = BLACK):
     textSurface = font.render(text, True, color)
     return textSurface, textSurface.get_rect()
-
-def toggle_btn(text, x, y, w, h, click, text_colour=BLACK, enabled=True, draw_toggle=True, blit_text=True, enabled_color=LIGHT_BLUE, disabled_color=GREY):
-    mouse = pygame.mouse.get_pos()
-    # draw_toggle and blit_text are used to reduce redundant drawing and blitting (improves quality)
-    rect_height = h // 2
-    if rect_height % 2 == 0:
-        rect_height += 1
-    if enabled and draw_toggle:
-        pygame.draw.rect(win, WHITE, (x + TOGGLE_WIDTH - h // 12, y, TOGGLE_ADJ, rect_height))
-        pygame.draw.rect(win, enabled_color, (x + TOGGLE_WIDTH, y, TOGGLE_ADJ, rect_height))
-        draw_circle(win, int(x + TOGGLE_WIDTH), y + h // 4, h // 4, enabled_color)
-        draw_circle(win, int(x + TOGGLE_WIDTH + TOGGLE_ADJ), y + h // 4, h // 4, enabled_color)
-        draw_circle(win, int(x + TOGGLE_WIDTH + TOGGLE_ADJ), y + h // 4, h // 5, WHITE)  # small inner circle
-    elif draw_toggle:
-        pygame.draw.rect(win, WHITE, (x + TOGGLE_WIDTH - h // 12, y, TOGGLE_ADJ, rect_height))
-        pygame.draw.rect(win, disabled_color, (x + TOGGLE_WIDTH, y, TOGGLE_ADJ, rect_height))
-        draw_circle(win, int(x + TOGGLE_WIDTH), y + h // 4, h // 4, disabled_color)
-        draw_circle(win, int(x + TOGGLE_WIDTH + TOGGLE_ADJ), y + h // 4, h // 4, disabled_color)
-        draw_circle(win, int(x + TOGGLE_WIDTH), y + h // 4, h // 5, WHITE)  # small inner circle
-    if blit_text:
-        smallText = pygame.font.Font('freesansbold.ttf', 20)
-        text_surf, text_rect = text_objects(text, smallText)
-        text_rect.topleft = (x, y)
-        win.blit(text_surf, text_rect)
-    global tmp
-    tmp = x + TOGGLE_WIDTH < mouse[0] < x + TOGGLE_WIDTH + w and y < mouse[1] < y + h
-    return x + TOGGLE_WIDTH < mouse[0] < x + TOGGLE_WIDTH + w and y < mouse[1] < y + h and click and pygame.time.get_ticks() > 100
-
 
 def commandsList():
     win.blit(bg, (bgX, 0))
@@ -247,38 +221,85 @@ def commandsList():
             elif event.type == MOUSEBUTTONDOWN:
                 click = True
         
-        # Per ora non fanno niente quando cliccati, semplice pass
-        if button("Left: LeftArrowKey", 50, 50, BUTTON_WIDTH + 180, BUTTON_HEIGHT - 20, LIGHT_BLUE, BLUE, click):
-            pass
-        elif button("Right: RightArrowKey", 50, 150, BUTTON_WIDTH + 180, BUTTON_HEIGHT - 20, LIGHT_BLUE, BLUE, click):
-            pass
-        elif button("Up: UpArrowKey", 50, 250, BUTTON_WIDTH + 180, BUTTON_HEIGHT - 20, LIGHT_BLUE, BLUE, click):
-            pass
-        elif button("Down (Slide): DownArrowKey", 50, 350, BUTTON_WIDTH + 180, BUTTON_HEIGHT - 20, LIGHT_BLUE, BLUE, click):
-            pass
-        elif button("Return / Go Back: ESC_Key", 450, 50, BUTTON_WIDTH + 180, BUTTON_HEIGHT - 20, LIGHT_BLUE, BLUE, click):
-            pass
-        elif button("Close Game: Alt + F4", 450, 150, BUTTON_WIDTH + 180, BUTTON_HEIGHT - 20, LIGHT_BLUE, BLUE, click):
-            pass
-        elif button("Back", 550, 350, BUTTON_WIDTH - 20, BUTTON_HEIGHT - 20, LIGHT_BLUE, BLUE, click):
-            options_menu()
+        #LEFT KEY
+        cmdButton('left.png', 30, 25, 132, 70)
+        cmdButton('leftarrowkey.png', 178, 50, 125, 31)
+        
+        #RIGHT KEY
+        cmdButton('right.png', 30, 105, 151, 70)
+        cmdButton('rightarrowkey.png', 173, 130, 133, 31)
+        
+        #UP KEY
+        cmdButton('up.png', 30, 185, 97, 70)
+        cmdButton('uparrowkey.png', 180, 210, 118, 31)
+        
+        #DOWN KEY
+        cmdButton('down.png', 30, 265, 154, 70)
+        cmdButton('downarrowkey.png', 175, 290, 136, 31)
+        
+        #RETURN KEY
+        cmdButton('return.png', 350, 25, 190, 70)
+        cmdButton('esckey.png', 540, 50, 90, 31)
+        
+        #RAGEQUIT KEY
+        cmdButton('close.png', 350, 105, 269, 70)
+        cmdButton('alt_f4key.png', 619, 130, 92, 31)
+        
+        #RETURN TO MENU
+        menuButton('button_back_black.png', 550, 355, 124, 56, action = options_menu)
         
         pygame.display.update()
         clock.tick(60)
 
 
+def menuToggle(x, y, w, h, click = False, SIMG = True, activeImage = None, inactiveImage = None):
+    
+    activeImage = pygame.image.load(os.path.join('menuAssets', 'toggle_on.png'))
+    inactiveImage = pygame.image.load(os.path.join('menuAssets', 'toggle_off.png'))
+    mouse = pygame.mouse.get_pos()
+    clickedBtn = pygame.mouse.get_pressed()
+    val = False
+    btn = inactiveImage
+    if x + w > mouse[0] > x and y + h > mouse[1] > y:
+        if clickedBtn[0] == 1:
+            if not SIMG:
+                win.blit(activeImage, (x, y))
+                SIMG = False
+            else:
+                win.blit(inactiveImage, (x, y))
+                SIMG = True
+
+    return x + w > mouse[0] > x and y + h > mouse[1] > y and click and pygame.time.get_ticks() > 100
+
+
 def options_menu():
-    global music_pause
+    global music_pause, showMusicToggle, showSoundEffectToggle
     win.blit(bg, (bgX, 0))
     win.blit(bg, (bgX2, 0))
     pygame.display.update()
     show = True
-    draw_bg_toggle = draw_effects_toggle = True
-    mouse = pygame.mouse.get_pos()
+    showBtn = False
+    counter = 0
+    mouse_x, mouse_y = 0, 0
+    showMusic = pygame.image.load(os.path.join('menuAssets', 'option_music_toggle.png'))
+    showSoundEffect = pygame.image.load(os.path.join('menuAssets', 'option_effects_toggle.png'))
+    toggleOff = pygame.image.load(os.path.join('menuAssets', 'toggle_off.png'))
+    toggleOn = pygame.image.load(os.path.join('menuAssets', 'toggle_on.png'))
+    
     while show:
+        counter += 1
         click = False
+        mouse = pygame.mouse.get_pos()
+        clickedBtn = pygame.mouse.get_pressed()
         pressed_keys = pygame.key.get_pressed()
         for event in pygame.event.get():
+            if showBtn == False:
+                win.blit(showMusic, (125, 125))
+                win.blit(showSoundEffect, (125, 250))
+                win.blit(toggleOn, (550, 115))
+                win.blit(toggleOn, (550, 240))
+                showBtn = True
+            
             alt_f4 = (event.type == KEYDOWN and (event.key == K_F4 and (pressed_keys[K_LALT] or pressed_keys[K_RALT]) or event.key == K_q))
             if event.type == QUIT or alt_f4:
                 sys.exit()
@@ -286,49 +307,75 @@ def options_menu():
                 game_intro()
             elif event.type == MOUSEBUTTONDOWN:
                 click = True
+                if event.button == 1:
+                    mouse_x, mouse_y = event.pos
+                    if (mouse_x >= 550) and (mouse_x <= 550 + 138) and (mouse_y >= 115) and (mouse_y <= 115 + 54):
+                        if showMusicToggle == True:
+                            showMusicToggle = False
+                            music_pause = True
+                        else:
+                            showMusicToggle = True
+                            music_pause = False
 
-        if toggle_btn("Background Music", 250, 100, BUTTON_WIDTH, BUTTON_HEIGHT, click, enabled=config['background_music'], draw_toggle = draw_bg_toggle):
-            draw_bg_toggle = True
-            config['background_music'] = not config['background_music'];
-            if tmp:
-                clickedBtn = pygame.mouse.get_pressed()
-                if clickedBtn[0] == 1:
-                    music_pause = not music_pause
-            if music_pause:
-                pygame.mixer.music.pause()
+                        if music_pause:
+                            pygame.mixer.music.pause()
+                        else:
+                            pygame.mixer.music.unpause()
+                    
+                    elif (mouse_x >= 550) and (mouse_x <= 550 + 138) and (mouse_y >= 240) and (mouse_y <= 240 + 54):
+                        if showSoundEffectToggle == True:
+                            showSoundEffectToggle = False
+                        else:
+                            showSoundEffectToggle = True
+
+            menuButton('button_commands_black.png', 180, 355, 200, 56, action = commandsList)
+            menuButton('button_back_black.png', 500, 355, 124, 56, action = game_intro)
+        
+        if counter == 5:
+            counter = 0
+            if showMusicToggle == True:
+                win.blit(toggleOn, (550, 115))
             else:
-                pygame.mixer.music.unpause()
-        elif toggle_btn("Sound Effects", 250, 200, BUTTON_WIDTH, BUTTON_HEIGHT, click,  enabled=config['sound_effects'], draw_toggle = draw_effects_toggle):
-            draw_effects_toggle = True
-            config['sound_effects'] = not config['sound_effects'];
-        elif button("Commands", 250, 280, BUTTON_WIDTH, BUTTON_HEIGHT - 20, LIGHT_BLUE, BLUE, click, commandsList):
-            pygame.display.update()
-        elif button("Back", 450, 280, BUTTON_WIDTH - 20, BUTTON_HEIGHT - 20, LIGHT_BLUE, BLUE, click):
-            game_intro()
-        else:
-            draw_bg_toggle = draw_effects_toggle = False
+                win.blit(toggleOff, (550, 115))
+
+            if showSoundEffectToggle == True:
+                win.blit(toggleOn, (550, 240))
+            else:
+                win.blit(toggleOff, (550, 240))
+    
         pygame.display.update()
         clock.tick(60)
-        
+    showBtn = False
 
-def button(msg, x, y, w, h, iCol, aCol, click = False, action = None):
+
+def menuButton(img, x, y, w, h, click = False, action = None):
+    
+    btn = pygame.image.load(os.path.join('menuAssets', img))
     mouse = pygame.mouse.get_pos()
     clickedBtn = pygame.mouse.get_pressed()
     val = False
     if x + w > mouse[0] > x and y + h > mouse[1] > y:
-        pygame.draw.rect(win, aCol, (x, y, w, h))
         if clickedBtn[0] == 1 and action != None:
             action()
         if click and pygame.time.get_ticks() > 100:
             val = True
-    else:
-        pygame.draw.rect(win, iCol, (x, y, w, h), 6)
-        pygame.draw.rect(win, iCol, (x+4, y+4, w-7, h-7))
-    
-    smallText = pygame.font.Font('freesansbold.ttf', 20)
-    textSurf, textRect = text_objects(msg, smallText)
-    textRect.center = ( (x + (w/2)), y + (h/2) )
-    win.blit(textSurf, textRect)
+
+    win.blit(btn, (x, y))
+    return val
+
+
+def cmdButton(img, x, y, w, h, click = False, action = None):
+    btn = pygame.image.load(os.path.join('menuAssets/cmdAssets', img))
+    mouse = pygame.mouse.get_pos()
+    clickedBtn = pygame.mouse.get_pressed()
+    val = False
+    if x + w > mouse[0] > x and y + h > mouse[1] > y:
+        if clickedBtn[0] == 1 and action != None:
+            action()
+        if click and pygame.time.get_ticks() > 100:
+            val = True
+
+    win.blit(btn, (x, y))
     return val
 
 
@@ -344,14 +391,10 @@ def endScreen():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 run = False
         win.blit(bg, (0, 0))
-        largeText = pygame.font.Font('freesansbold.ttf', 100)
-        TextSurf, TextRect = text_objects("YOU DIED", largeText, LIGHT_BLUE)
-        TextRect.center = ((W/2, H/2))
-        win.blit(TextSurf, TextRect)
-        largeText = pygame.font.Font('freesansbold.ttf', 80)
-        TextSurf, TextRect = text_objects("CLICK TO RETRY", largeText, LIGHT_BLUE)
-        TextRect.center = ((W/2, H - 150))
-        win.blit(TextSurf, TextRect)
+        death = pygame.image.load(os.path.join('menuAssets', 'died.png'))
+        restart = pygame.image.load(os.path.join('menuAssets', 'restart.png'))
+        win.blit(death, (W/4, H/3 - 50))
+        win.blit(restart, (W/4 - 10, H / 2))
         pygame.display.update()
     
     global objects, bgX, bgX2, runner, pause, fall_speed
@@ -401,15 +444,12 @@ def game_intro():
                 quit()
                 
         redWindow()
-        largeText = pygame.font.Font('freesansbold.ttf', 80)
-        TextSurf, TextRect = text_objects("Ape OPS Arcade", largeText)
-        TextRect.center = ((W/2, H/3))
-        win.blit(TextSurf, TextRect)
-        
 
-        button("Play", 150, 330, 100, 50, (25, 35, 255), (0, 0, 255), action = game_loop)
-        button("Options", 350, 330, 100, 50, (25, 35, 255), (0, 0, 255), action = options_menu)
-        button("Quit", 550, 330, 100, 50, (25, 35, 255), (0, 0, 255), action = quitGame)
+        title = pygame.image.load(os.path.join('menuAssets', 'title.png'))
+        win.blit(title, (25, 0))
+
+        menuButton("play_button.png", W/4 + 20, 215, 382, 80, action = game_loop)
+        menuButton("options_button.png", W/3 - 10, 345, 301, 47, action = options_menu)
         
         pygame.display.update()
         clock.tick(60)

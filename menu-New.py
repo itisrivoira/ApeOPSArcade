@@ -6,134 +6,53 @@ import time
 import sys
 import math
 import random
-#import cv2
+import cv2
+from os import environ
 
+def suppress_qt_warnings():
+    environ["QT_DEVICE_PIXEL_RATIO"] = "0"
+    environ["QT_AUTO_SCREEN_SCALE_FACTOR"] = "1"
+    environ["QT_SCREEN_SCALE_FACTORS"] = "1"
+    environ["QT_SCALE_FACTOR"] = "1"
+
+suppress_qt_warnings()
 pygame.mixer.pre_init()
 pygame.init()
+random.seed()
 
-class Player(object):
-    run = [pygame.image.load(os.path.join('images', str(x) + '.png')) for x in range(8,16)]
-    jump = [pygame.image.load(os.path.join('images', str(x) + '.png')) for x in range(1,8)]
-    slide = [pygame.image.load(os.path.join('images', 'S1.png')),pygame.image.load(os.path.join('images', 'S2.png')),pygame.image.load(os.path.join('images', 'S2.png')),pygame.image.load(os.path.join('images', 'S2.png')), pygame.image.load(os.path.join('images', 'S2.png')),pygame.image.load(os.path.join('images', 'S2.png')), pygame.image.load(os.path.join('images', 'S2.png')), pygame.image.load(os.path.join('images', 'S2.png')), pygame.image.load(os.path.join('images', 'S3.png')), pygame.image.load(os.path.join('images', 'S4.png')), pygame.image.load(os.path.join('images', 'S5.png'))]
-    fall = pygame.image.load(os.path.join('images', '0.png'))
-    jumpList = [1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3,4,4,4,4,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-1,-1,-1,-1,-1,-1,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-4,-4,-4,-4,-4,-4,-4,-4,-4,-4,-4,-4]
-    def __init__(self, x, y, width, height):
-        self.x = x
-        self.y = y
-        self.width = width
-        self.height = height
-        self.jumping = False
-        self.sliding = False
-        self.slideCount = 0
-        self.jumpCount = 0
-        self.runCount = 0
-        self.slideUp = False
-        self.hitbox = ()
-        self.falling = False
+font = pygame.font.SysFont(None, 45)
+bg_image = pygame.image.load("images/bgwhite.jpg")
+pg_win = pygame.image.load("images/protagWin.png")
+enemy_hit = pygame.image.load("images/brigadiereRuspa_hit.png")
+pg_image = pygame.image.load("images/hornyProtag.png") #protagonista
+pg_punch = pygame.image.load("images/medicPunch.png")
+pg_kick = pygame.image.load("images/medicKick.png")
+#pg_dodge = pygame.image.load("images/medicPunch.png")
+#pg_block = pygame.image.load("images/medicPunch.png")
+enemy_image = pygame.image.load("images/hornySalvini.png") #nemico
+menufight_image = pygame.image.load("menuAssets/menu_ingame_fight.png") #menu fighting
+iconpg_image = pygame.image.load("images/medic_Icon.png") #icon image pg
+iconen_image = pygame.image.load("images/salvini_Icon.png") #icon image enemy
+#pg hp
+fullhppg_image = pygame.image.load("images/hp_heart.png") #icon image fullhp
+halfhppg_image = pygame.image.load("images/hp_heart_half.png") #icon image halfhp
+grayhppg_image = pygame.image.load("images/hp_heart_gray.png") #icon image grayhp
+#enemy hp
+fullhpen_image = pygame.image.load("images/hp_heart.png") #icon image fullhp
+halfhpen_image = pygame.image.load("images/hp_heart_half.png") #icon image halfhp
+grayhpen_image = pygame.image.load("images/hp_heart_gray.png") #icon image grayhp
 
-    def draw(self, win):
-        
-        if self.falling:
-            win.blit(self.fall, (self.x, self.y + 30))
-
-        elif self.jumping:
-            self.y -= self.jumpList[self.jumpCount] * 1.2
-            win.blit(self.jump[self.jumpCount//28], (self.x,self.y))
-            self.jumpCount += 1
-            
-            if self.jumpCount > 108:
-                self.jumpCount = 0
-                self.jumping = False
-                self.runCount = 0
-            self.hitbox = (self.x + 4, self.y, self.width - 24, self.height - 10)
-       
-        elif self.sliding or self.slideUp:
-           
-            if self.slideCount < 20:
-                self.y += 1
-            
-            elif self.slideCount == 80:
-                self.y -= 19
-                self.sliding = False
-                self.slideUp = True
-            
-            elif self.slideCount > 20 and self.slideCount < 80:
-                self.hitbox = (self.x, self.y + 3, self.width - 8, self.height - 35)
-            
-            if self.slideCount >= 110:
-                self.slideCount = 0
-                self.slideUp = False
-                self.runCount = 0
-                self.hitbox = (self.x + 4, self.y, self.width - 24, self.height - 10)
-            win.blit(self.slide[self.slideCount//10], (self.x,self.y))
-            self.slideCount += 1
-
-        else:
-            if self.runCount > 42:
-                self.runCount = 0
-            win.blit(self.run[self.runCount//6], (self.x,self.y))
-            self.runCount += 1
-            self.hitbox = (self.x + 4, self.y, self.width - 24, self.height - 13)
-        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2) Mostra hitbox
-
-
-class Saw(object):
-
-    img = [pygame.image.load(os.path.join('images', 'SAW0.png')), pygame.image.load(os.path.join('images', 'SAW1.png')), pygame.image.load(os.path.join('images', 'SAW2.png')), pygame.image.load(os.path.join('images', 'SAW3.png'))]
-
-    def __init__(self, x , y, width, height):
-        self.x = x
-        self.y = y
-        self.width = width
-        self.height = height
-        self.hitbox = (x, y, width, height)
-        self.count = 0
-
-    def draw(self, win):
-        self.hitbox = (self.x + 5, self.y + 5, self.width - 10, self.height)
-        if self.count >= 8:
-            self.count = 0 
-        win.blit(pygame.transform.scale(self.img[self.count//2], (64, 64)), (self.x, self.y))
-        self.count += 1
-        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2) Mostra hitbox
-    
-    def collide(self, rect):
-        if rect[0] + rect[2] > self.hitbox[0] and rect[0] < self.hitbox[0] + self.hitbox[2]:
-            if rect[1] + rect[3] > self.hitbox[1]:
-                return True
-        return False
-    
-
-class Spike(Saw):
-
-    img = pygame.image.load(os.path.join('images', 'spike.png'))
-
-    def __init__(self, x, y, width, height):
-        super().__init__(x, y, width, height)
-
-    def draw(self, win):
-        self.hitbox = (self.x + 10, self.y, 28, 315)
-        win.blit(self.img, (self.x, self.y))
-        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2) Mostra hitbox
-
-    def collide(self, rect):
-        if rect[0] + rect[2] > self.hitbox[0] and rect[0] < self.hitbox[0] + self.hitbox[2]:
-            if rect[1] < self.hitbox[3]:
-                return True
-        return False
 
 
 def redWindow():
+    win = pygame.display.set_mode((W, H))
     win.blit(bg, (bgX, 0))
     win.blit(bg, (bgX2, 0))
 
 
 def mainWindow():
-    win.blit(bg, (bgX, 0))
-    win.blit(bg, (bgX2, 0))
-    runner.draw(win)
-    for w in objects:
-        w.draw(win)
+    win = pygame.display.set_mode((1280, 720))
+    win.fill(WHITE)
     pygame.display.update()
 
 
@@ -148,33 +67,39 @@ def draw_circle(surface, x, y, radius, color):
 
 
 def reset():
-    global objects, bgX, bgX2, runner, pause, fall_speed
 
-    bgX = 0
-    bgX2 = bg.get_width()
-    objects = []
-    runner = Player(200, 313, 64, 64)
-    pause = 0
-    fall_speed = 0
-    mainWindow()
+    global currentEN_HP, currentPG_HP, hp_bar_en, hp_bar_pg, turnCheck, dodgeCheck_EN, dodgeCheck_PG, blockCheck_EN, blockCheck_PG, turnNMB
+
+    turnNMB = 0
+    dodgeCheck_EN = False
+    dodgeCheck_PG = False
+    blockCheck_EN = False
+    blockCheck_PG = False
+    turnCheck = True
+    hp_bar_pg = [ fullhppg_image, fullhppg_image, fullhppg_image ]
+    hp_bar_en = [ fullhpen_image, fullhpen_image, fullhppg_image ]
+    currentPG_HP = [ fullhpen_image, fullhpen_image, fullhppg_image ]
+    currentEN_HP = [ fullhpen_image, fullhpen_image, fullhppg_image ]
     game_intro()
 
 
 config = {'DEBUG': False, 'sound_effects': True, 'background_music': True, 'show_score': True, 'high_scores': [0, 0, 0, 0, 0, 0, 0, 0, 0]}
-
-objects = []
+hp_bar_pg = [ fullhppg_image, fullhppg_image, fullhppg_image ]
+hp_bar_en = [ fullhpen_image, fullhpen_image, fullhppg_image ]
+currentPG_HP = [ fullhpen_image, fullhpen_image, fullhppg_image ]
+currentEN_HP = [ fullhpen_image, fullhpen_image, fullhppg_image ]
 
 W, H = 800, 447
-win = pygame.display.set_mode((W, H))
+W2, H2 = 1280, 720
+#win2 = pygame.display.set_mode((W, H))
+win = pygame.display.set_mode((W, H), pygame.HWSURFACE | pygame.DOUBLEBUF)
 pygame.display.set_caption('Side Scroller')
 
 bg = pygame.image.load(os.path.join('images', 'bg.png')).convert()
 bgX = 0
 bgX2 = bg.get_width()
-runner = Player(200, 313, 64, 64)
 pygame.time.set_timer(USEREVENT + 1, random.randrange(2300, 3500))
 speed = 60
-clock = pygame.time.Clock()
 
 WHITE = 255, 255, 255
 BLACK = 0, 0, 0
@@ -186,29 +111,37 @@ DARK_GREEN = 0, 128, 0
 LIGHT_BLUE = 25, 35, 255
 GREY = 204, 204, 204
 BLUE = 0, 0, 225
-BUTTON_WIDTH = 120
-BUTTON_HEIGHT = 70
-TOGGLE_WIDTH = BUTTON_WIDTH * 1.875
-TOGGLE_ADJ = BUTTON_WIDTH * 0.245
 tmp = None
 music_pause = False
 pause = 0
 fall_speed = 0
 showMusicToggle = True
 showSoundEffectToggle = True
+videoCheck = False
+transparent = (0, 0, 0, 0)
+turnCheck = True
+dodgeCheck_PG = False
+blockCheck_PG = False
+dodgeCheck_EN = False
+blockCheck_EN = False
+turnNMB = 0
 
 pygame.mixer.music.load( "./Sound/ncsound.ogg" )  # Get the first track from the playlist
 pygame.mixer.music.play(-1) 
 
-def text_objects(text, font, color = BLACK):
-    textSurface = font.render(text, True, color)
-    return textSurface, textSurface.get_rect()
+
+def message_to_screen(msg, color, x, y):
+    screen_text = font.render(msg, True, color)
+    win.blit(screen_text, [x, y])
+
 
 def commandsList():
     win.blit(bg, (bgX, 0))
     win.blit(bg, (bgX2, 0))
     pygame.display.update()
     show = True
+    
+    pygame.time.wait(150)
     while show:
         click = False
         pressed_keys = pygame.key.get_pressed()
@@ -249,7 +182,6 @@ def commandsList():
         menuButton('button_back_black.png', 550, 355, 124, 56, action = options_menu)
         
         pygame.display.update()
-        clock.tick(60)
 
 
 def menuToggle(x, y, w, h, click = False, SIMG = True, activeImage = None, inactiveImage = None):
@@ -260,6 +192,7 @@ def menuToggle(x, y, w, h, click = False, SIMG = True, activeImage = None, inact
     clickedBtn = pygame.mouse.get_pressed()
     val = False
     btn = inactiveImage
+    
     if x + w > mouse[0] > x and y + h > mouse[1] > y:
         if clickedBtn[0] == 1:
             if not SIMG:
@@ -285,7 +218,8 @@ def options_menu():
     showSoundEffect = pygame.image.load(os.path.join('menuAssets', 'option_effects_toggle.png'))
     toggleOff = pygame.image.load(os.path.join('menuAssets', 'toggle_off.png'))
     toggleOn = pygame.image.load(os.path.join('menuAssets', 'toggle_on.png'))
-    
+
+    pygame.time.wait(150)
     while show:
         counter += 1
         click = False
@@ -344,12 +278,12 @@ def options_menu():
                 win.blit(toggleOff, (550, 240))
     
         pygame.display.update()
-        clock.tick(60)
     showBtn = False
 
 
 def menuButton(img, x, y, w, h, click = False, action = None):
     
+    global videoCheck
     btn = pygame.image.load(os.path.join('menuAssets', img))
     mouse = pygame.mouse.get_pos()
     clickedBtn = pygame.mouse.get_pressed()
@@ -379,6 +313,33 @@ def cmdButton(img, x, y, w, h, click = False, action = None):
     return val
 
 
+def gameButton(x, y, w, h, action, turn = True, click = False):
+    
+    global turnCheck, dodgeCheck_EN, dodgeCheck_PG, blockCheck_EN, blockCheck_PG, turnNMB
+    mouse = pygame.mouse.get_pos()
+    clickedBtn = pygame.mouse.get_pressed()
+    val = False
+    if turn == True: 
+        if x + w > mouse[0] > x and y + h > mouse[1] > y:   
+            if clickedBtn[0] == 1 and action != None:
+                if action == event_Dodge:
+                    action()
+                    dodgeCheck_PG = True
+                    print(dodgeCheck_PG)
+                elif action == event_Block:
+                    action()
+                    blockCheck_PG = True
+                    print(blockCheck_PG)
+                else:
+                    action()
+                turnCheck = False
+                turnNMB = 1
+            if click and pygame.time.get_ticks() > 100:
+                val = True
+    
+    return val
+
+
 def endScreen():
 
     run = True
@@ -388,57 +349,255 @@ def endScreen():
             if event.type == pygame.QUIT:
                 run = False
                 pygame.quit()
+                quit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 run = False
-        win.blit(bg, (0, 0))
+        
+        redWindow()
         death = pygame.image.load(os.path.join('menuAssets', 'died.png'))
         restart = pygame.image.load(os.path.join('menuAssets', 'restart.png'))
         win.blit(death, (W/4, H/3 - 50))
         win.blit(restart, (W/4 - 10, H / 2))
         pygame.display.update()
-    
-    global objects, bgX, bgX2, runner, pause, fall_speed
 
-    bgX = 0
-    bgX2 = bg.get_width()
-    objects = []
-    runner = Player(200, 313, 64, 64)
-    pause = 0
-    fall_speed = 0
-    mainWindow()
+    global currentEN_HP, currentPG_HP, hp_bar_en, hp_bar_pg, turnCheck, dodgeCheck_EN, dodgeCheck_PG, blockCheck_EN, blockCheck_PG, turnNMB
+
+    turnNMB = 0
+    dodgeCheck_EN = False
+    dodgeCheck_PG = False
+    blockCheck_EN = False
+    blockCheck_PG = False
+    turnCheck = True
+    hp_bar_pg = [ fullhppg_image, fullhppg_image, fullhppg_image ]
+    hp_bar_en = [ fullhpen_image, fullhpen_image, fullhppg_image ]
+    currentPG_HP = [ fullhpen_image, fullhpen_image, fullhppg_image ]
+    currentEN_HP = [ fullhpen_image, fullhpen_image, fullhppg_image ]
     game_intro()
 
 
-# def video():
+def video():
+    global videoCheck
+    video = cv2.VideoCapture('./video/storyline.mp4') 
+    while (video.isOpened()):
+        ret, frame = video.read()
+        if ret:
+            cv2.imshow('Frame', frame)
+            if cv2.waitKey(25) & 0xFF == ord('q'):
+                break
+        else:
+            break
     
-#     video = cv2.VideoCapture('./Sound/file_example_MP4_1920_18MG.mp4')
-#     if (video.isOpened() == False):
-#         print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-    
-#     while (video.isOpened()):
-#         ret, frame = video.read()
-#         if ret:
-#             cv2.imshow('Frame', frame)
-#             if cv2.waitKey(25) & 0xFF == ord('q'):
-#                 break
-#         else:
-#             break
-        
-#         video.release()
-#         cv2.destroyAllWindows()
+    videoCheck = True 
+    video.release()
+    cv2.destroyAllWindows()
+    pygame.time.wait(1000)
+    game_loop()
 
-#     pygame.time.wait(3000)   
-#     game_loop()
+
+def pg_HP():
+    global hp_bar_pg, currentPG_HP
+    x_pos = 150
+    for i in range(len(currentPG_HP)):
+        win.blit(currentPG_HP[i], (x_pos, 40))
+        x_pos += 65
+
+
+def en_HP():
+    global hp_bar_en, currentEN_HP
+    x_pos = 920
+    for i in range(len(currentEN_HP)):
+        win.blit(currentEN_HP[i], (x_pos, 40))
+        x_pos += 65
+
+
+def event_Punch():    
+    global pg_image, enemy_image, hp_bar_en, hp_bar_pg, currentEN_HP, currentPG_HP, turnCheck, dodgeCheck_EN, dodgeCheck_PG, blockCheck_EN, blockCheck_PG
+    x = 100
+    pg_image.fill(transparent)
+    enemy_image.fill(transparent)
+    game_layout()
+    
+    if turnCheck == True:
+        if dodgeCheck_EN == False:    
+            win.blit(enemy_hit, (900, 110))
+            win.blit(pg_punch, (770, 85))
+            message_to_screen("LEGASOV USES PUNCH", BLACK, 490, 40)    
+            
+            for i in range(len(hp_bar_en)):
+                if i == (len(hp_bar_en) - 1):
+                    currentEN_HP[i] = grayhpen_image
+                    hp_bar_en.pop(i)
+        elif dodgeCheck_EN == True:
+            message_to_screen("RUSPA USES DODGE", BLACK, 490, 40) 
+            message_to_screen("LEGASOV USES PUNCH", BLACK, 505, 70)
+            win.blit(pg_punch, (180, 110))
+    else:
+        if dodgeCheck_PG == False:    
+            pg_image = pygame.image.load("images/hornyProtag.png")
+            win.blit(pg_image, (100, 85))        
+            win.blit(enemy_hit, (180, 110))
+            message_to_screen("RUSPA USES PUNCH", BLACK, 500, 40)    
+            
+            for i in range(len(hp_bar_pg)):
+                if i == (len(hp_bar_pg) - 1):
+                    currentPG_HP[i] = grayhpen_image
+                    hp_bar_pg.pop(i)
+        elif dodgeCheck_PG == True:
+            message_to_screen("LEGASOV USES DODGE", BLACK, 490, 40)
+            message_to_screen("RUSPA USES PUNCH", BLACK, 505, 70)
+            win.blit(enemy_hit, (180, 110))
+    
+    dodgeCheck_PG = False   
+    dodgeCheck_EN = False    
+    pg_HP()
+    en_HP()
+    pygame.display.flip()
+    pygame.time.wait(750)
+    message_to_screen(" ", transparent, 185, 40)
+    pg_image = pygame.image.load("images/hornyProtag.png")
+    enemy_image = pygame.image.load("images/hornySalvini.png")
+
+
+def event_Kick():
+    global pg_image, enemy_image, hp_bar_en, hp_bar_pg, currentEN_HP, currentPG_HP, turnCheck, dodgeCheck_EN, dodgeCheck_PG, blockCheck_EN, blockCheck_PG
+    x = 100
+    pg_image.fill(transparent)
+    enemy_image.fill(transparent)
+    game_layout()
+
+    
+    if turnCheck == True:
+        if dodgeCheck_EN == False:    
+            win.blit(enemy_hit, (900, 110))
+            win.blit(pg_kick, (770, 85))
+            message_to_screen("LEGASOV USES KICK", BLACK, 490, 40)    
+            
+            for i in range(len(hp_bar_en)):
+                if i == (len(hp_bar_en) - 1):
+                    currentEN_HP[i] = grayhpen_image
+                    hp_bar_en.pop(i)
+        elif dodgeCheck_EN == True:
+            message_to_screen("RUSPA USES DODGE", BLACK, 490, 40) 
+            message_to_screen("LEGASOV USES KICK", BLACK, 505, 70)
+            win.blit(pg_kick, (180, 110))
+    else:
+        if dodgeCheck_PG == False:    
+            pg_image = pygame.image.load("images/hornyProtag.png")
+            win.blit(pg_image, (100, 85))        
+            win.blit(enemy_hit, (180, 110))
+            message_to_screen("RUSPA USES KICK", BLACK, 500, 40)    
+            
+            for i in range(len(hp_bar_pg)):
+                if i == (len(hp_bar_pg) - 1):
+                    currentPG_HP[i] = grayhpen_image
+                    hp_bar_pg.pop(i)
+        elif dodgeCheck_PG == True:
+            message_to_screen("LEGASOV USES DODGE", BLACK, 490, 40)
+            message_to_screen("RUSPA USES KICK", BLACK, 505, 70)
+            win.blit(enemy_hit, (180, 110))
+    
+    dodgeCheck_EN = False
+    dodgeCheck_PG = False
+    pg_HP()
+    en_HP()
+    pygame.display.flip()
+    pygame.time.wait(750)
+    message_to_screen(" ", transparent, 185, 40)    
+    pg_image = pygame.image.load("images/hornyProtag.png")
+    enemy_image = pygame.image.load("images/hornySalvini.png")
+
+
+def event_Dodge():
+    global dodgeCheck_PG, dodgeCheck_EN
+    pass
+    #if dodgeCheck_PG == True:
+
+
+
+def event_Block():
+    global blockCheck_PG, blockCheck_EN
+    pass
+    # if blockCheck_PG == True:
+    #     for i in range(len(currentPG_HP) + 1):
+    #         if i == (len(hp_bar_pg)):
+    #             currentPG_HP = currentPG_HP
+        
+    #     pg_HP()
+    #     en_HP()
+    #     pygame.display.flip()
+    #     pygame.time.wait(750)
+    #     message_to_screen(" ", transparent, 185, 40)    
+    #     pg_image = pygame.image.load("images/hornyProtag.png")
+    #     enemy_image = pygame.image.load("images/hornySalvini.png")
+    
+    # if blockCheck_EN = True:
+
+
+def event_Enemy():
+    global turnCheck, dodgeCheck_EN, blockCheck_EN
+    
+    move = random.randint(0, 3)
+    if move == 0:
+        print("RUSPA PUNCH")
+        event_Punch()
+    
+    if move == 1:
+        print("RUSPA KICK")
+        event_Kick()
+    
+    if move == 2:
+        print("RUSPA DODGE")
+        event_Dodge()
+        dodgeCheck_EN = True
+    
+    if move == 3:
+        print("RUSPA BLOCK")
+        event_Block()
+        blockCheck_EN = True
+
+    turnCheck = True
+    pygame.time.wait(350)
+
+
+def player_win():
+    global pg_image, enemy_image
+
+    mainWindow()
+    pg_image.fill(transparent)
+    enemy_image.fill(transparent)
+    game_layout()
+    
+    win.blit(enemy_hit, (900, 110))
+    win.blit(pg_win,(100,85))
+    pygame.display.flip()
+    pygame.time.wait(750)
+
+    pg_image = pygame.image.load("images/hornyProtag.png")
+    enemy_image = pygame.image.load("images/hornySalvini.png")
+
+
+def game_layout(): 
+        win.blit(bg_image, (0, 0))
+        win.blit(pg_image,(100,85))  #pg
+        win.blit(enemy_image,(900,110))  #enemy
+        win.blit(menufight_image, (100, 475))    #menufight
+        win.blit(iconpg_image, (10, 10)) #iconpg
+        win.blit(iconen_image, (1175, 10))   #iconenemy
+        pg_HP()
+        en_HP()
+        message_to_screen("KOWALSKI LEGASOV", BLACK, 85, 10)
+        message_to_screen("BRIGADIERE RUSPA", BLACK, 845, 10)
+        pygame.display.update()
 
 
 def game_intro():
-
+    global videoCheck
     music_pause = False
     intro = True
-
+    
+    pygame.time.wait(150)
     while intro:
         for event in pygame.event.get():
-            #print(event)
             if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
@@ -448,74 +607,58 @@ def game_intro():
         title = pygame.image.load(os.path.join('menuAssets', 'title.png'))
         win.blit(title, (25, 0))
 
-        menuButton("play_button.png", W/4 + 20, 215, 382, 80, action = game_loop)
+        if videoCheck == False:
+            menuButton("play_button.png", W/4 + 20, 215, 382, 80, action = video)
+        else:
+            menuButton("play_button.png", W/4 + 20, 215, 382, 80, action = game_loop)
+        
         menuButton("options_button.png", W/3 - 10, 345, 301, 47, action = options_menu)
         
         pygame.display.update()
-        clock.tick(60)
 
 
 def game_loop():
 
-    global bgX, bgX2, pause, fall_speed
+    clock = pygame.time.Clock()
+
+    global videoCheck, turnCheck, turnNMB
     runGame = True
-    #end = False
+    mainWindow()
     while runGame:
-        mainWindow()
+        game_layout()
 
-        #if end:
-        #    endScreen()
-        if pause > 0:
-            pause += 1
-            if pause > fall_speed * 2:
-                endScreen()
+        if hp_bar_en == []:
+            player_win()
+            pygame.time.wait(1150)
+            endScreen()
 
-        for obj in objects:
-            if obj.collide(runner.hitbox):
-                runner.falling = True
-                #end = True
-                if pause == 0:
-                    fall_speed = speed
-                    pause = 1
+        if hp_bar_pg == []:
+            pygame.time.wait(1150)
+            endScreen()
 
-            obj.x -= 1.8
-            if obj.x < obj.width * - 1:
-                objects.pop(objects.index(obj))
+        if turnCheck == True:
+            gameButton(162, 534, 257, 59, event_Punch, turnCheck)
+            gameButton(445, 534, 257, 59, event_Kick, turnCheck)
+            gameButton(162, 616, 257, 59, event_Dodge, turnCheck)
+            gameButton(445, 616, 257, 59, event_Block, turnCheck)
+        else:
+            turnNMB = 0
+            pygame.time.wait(400)
+            event_Enemy()
 
-        bgX -= 1.8
-        bgX2 -= 1.8
-        
-        if bgX < bg.get_width() * -1:
-            bgX = bg.get_width()
-        
-        if bgX2 < bg.get_width() * -1:
-            bgX2 = bg.get_width()
-        
         for event in pygame.event.get():       
             if event.type == pygame.QUIT:
                 runGame = False
+                videoCheck = False
+                turnCheck = True
                 pygame.quit()
                 quit()
-            
-            if event.type == USEREVENT + 1:
-                tmp = random.randrange(0, 2)
-                if tmp == 0:
-                    objects.append(Saw(810, 310, 64, 64))
-                else:
-                    objects.append(Spike(810, 0, 48, 320))
         
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_SPACE] or keys[pygame.K_UP]:
-            if not(runner.jumping):
-                runner.jumping = True
-        
-        if keys[pygame.K_DOWN]:
-            if not(runner.sliding):
-                runner.sliding = True
 
         if keys[K_ESCAPE]:
             reset()
-
-        clock.tick(speed)
+    
+    clock.tick(25)
 
 game_intro()
