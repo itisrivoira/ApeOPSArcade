@@ -2,34 +2,44 @@
     /* Container */
     display: block;
     background-color: rgb(194, 193, 191);
-    width: 940pt;
-    height: 420pt;
+    width: 100%;
+    height: 20%;
     border-radius: 1%;
     padding: 10px;
 }
 
-.img-fluid {
+.formatCarattare {
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+    color: black;
+    font-size: 120%;
+    font-weight: bold;
+}
+
+.img {
     /* Immagine */
-    margin-left: 325pt;
-    height: 360pt;
-    width: 350pt;
-    float: left;
+    margin: auto;
+    display: block;
+    height: 300pt;
+    width: 300pt;
+    text-align: center;
 }
 
 #testo {
     /* Accedi */
-    color: whitesmoke;
+    color: black;
     font-family: "Playfair Display", Georgia, "Times New Roman", serif;
     font-size: 230%;
     font-weight: bold;
-    margin-left: 125pt;
+    margin: auto;
+    display: block;
 }
 
 .col-md-1 {
     /* Login */
-    margin-left: 10px;
+    margin-left: 1%;
     font-family: "Playfair Display", Georgia, "Times New Roman", serif;
     font-size: 120%;
     margin-top: 20px;
     font-weight: bold;
+    float: left;
 }
