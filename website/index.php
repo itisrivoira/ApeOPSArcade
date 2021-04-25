@@ -1,3 +1,12 @@
+<?php
+    session_start();
+
+    if (isset($_GET['logout'])) {
+		session_destroy();
+		unset($_SESSION);
+		header("location: index.php");
+	}
+?>
 <!doctype html>
 <html lang="en">
 
@@ -34,11 +43,16 @@
                     <a class="main-header-logo text-dark" href="#">APE OPS Arcade</a>
                 </div>
                 <div class="col-4 d-flex justify-content-end align-items-center">
-                    <div class="login">
-                        <a href="html/login.html">
-                            <i class="fa fa-user-circle" id="log-in"></i> Login
-                        </a>
-                    </div>
+                    <?php if (!isset($_SESSION['nickname'])): ?>
+                        <div class="login">
+                            <a href="html/login.php">
+                                <i class="fa fa-user-circle" id="log-in"></i> Login
+                            </a>
+                        </div>
+                    <?php else:?>
+                        <p>Benvenuto <strong><?php echo $_SESSION['nickname']; ?></strong></p>
+			            <p> <a href="index.php?logout='1'" style="color: red;"> logout</a> </p>
+		            <?php endif ?>
                 </div>
             </div>
         </header>
