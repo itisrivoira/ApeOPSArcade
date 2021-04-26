@@ -1,8 +1,8 @@
 import { CST } from "../CST.js";
-export class LVLScene extends Phaser.Scene {
+export class LVL2Scene extends Phaser.Scene {
     constructor() {
         super({
-            key: CST.SCENES.STARTER
+            key: CST.SCENES.LEVEL2
         })
         this.hpsProtag = new Array();
         this.hpsEnemy = new Array();
@@ -40,7 +40,7 @@ export class LVLScene extends Phaser.Scene {
 
 
         //Menu images
-        let menu = this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 1.2, "LVLScene-menuFight").setDepth(1);
+        let menu = this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 1.2, "LVL2Scene-menu").setDepth(1);
         let attack_1 = this.add.image(this.game.renderer.width - 987, this.game.renderer.height - 163, "LVLScene-menuHiddenButton").setDepth(0);
         let attack_2 = this.add.image(this.game.renderer.width - 702, this.game.renderer.height - 163, "LVLScene-menuHiddenButton").setDepth(1);
         let dodge = this.add.image(this.game.renderer.width - 987, this.game.renderer.height - 78, "LVLScene-menuHiddenButton").setDepth(1);
@@ -63,22 +63,22 @@ export class LVLScene extends Phaser.Scene {
         this.protagonist = this.add.image(this.game.renderer.width / 5.5, this.game.renderer.height / 2.5, "LVLScene-protag").setDepth(0);
 
         //Enemy start image
-        this.enemy = this.add.image(this.game.renderer.width / 1.2, this.game.renderer.height / 2.35, "LVLScene-brigadiereRuspa").setDepth(0);
+        this.enemy = this.add.image(this.game.renderer.width / 1.2, this.game.renderer.height / 2.35, "LVL2Scene-brigadiereMattarella").setDepth(0);
 
         attack_1.on("pointerup", () => {
             if ((this.checkRound && this.checkAction) && this.hpEnemyRemaining > 0 && this.hpProtagRemaining > 0) {
                 this.checkAction = false;
 
-                let text = this.add.text(this.game.renderer.width - 760, 50, "LEGASOV USA PUNCH", {
+                let text = this.add.text(this.game.renderer.width - 805, 50, "LEGASOV USA LANCIAFIAMME", {
                     fontFamily: "Droid Sans",
                     fontSize: "24px",
                     fill: "#000000"
                 });
 
                 this.protagonist.setDepth(1);
-                this.protagonist.setPosition(900, this.game.renderer.height / 2.5);
-                this.protagonist.setTexture("LVLScene-protagActionPunch");
-                this.enemy.setTexture("LVLScene-brigadiereRuspaHit");
+                this.protagonist.setPosition(700, this.game.renderer.height / 2.5);
+                this.protagonist.setTexture("LVL2Scene-protagActionFire");
+                this.enemy.setTexture("LVL2Scene-brigadiereMattarellaHit");
 
                 this.hpEnemyModifier(3);
 
@@ -92,7 +92,7 @@ export class LVLScene extends Phaser.Scene {
                         this.protagonist.setDepth(0);
                         this.protagonist.setPosition(this.game.renderer.width / 5.5, this.game.renderer.height / 2.5);
                         this.protagonist.setTexture("LVLScene-protag");
-                        this.enemy.setTexture("LVLScene-brigadiereRuspa");
+                        this.enemy.setTexture("LVL2Scene-brigadiereMattarella");
                         console.log("PUNCH [protagonista] finito");
                         this.checkEnemy_BlockDodge = 0;
                     }
@@ -112,7 +112,7 @@ export class LVLScene extends Phaser.Scene {
                 this.protagonist.setDepth(1);
                 this.protagonist.setPosition(900, this.game.renderer.height / 2.5);
                 this.protagonist.setTexture("LVLScene-protagActionKick");
-                this.enemy.setTexture("LVLScene-brigadiereRuspaHit");
+                this.enemy.setTexture("LVL2Scene-brigadiereMattarellaHit");
 
                 this.hpEnemyModifier(2);
 
@@ -126,7 +126,7 @@ export class LVLScene extends Phaser.Scene {
                         this.protagonist.setDepth(0);
                         this.protagonist.setPosition(this.game.renderer.width / 5.5, this.game.renderer.height / 2.5);
                         this.protagonist.setTexture("LVLScene-protag");
-                        this.enemy.setTexture("LVLScene-brigadiereRuspa");
+                        this.enemy.setTexture("LVL2Scene-brigadiereMattarella");
                         console.log("KICK [protagonista] finito");
                         this.checkEnemy_BlockDodge = 0;
                     }
@@ -183,7 +183,7 @@ export class LVLScene extends Phaser.Scene {
 
         });
         items.on("pointerup", () => {
-            this.scene.start(CST.SCENES.LEVEL2, { HELLO: "LVLScene HELLO" });
+
         });
         quit.on("pointerup", () => {
             this.game.destroy(true, true);
@@ -192,7 +192,7 @@ export class LVLScene extends Phaser.Scene {
 
         //Icons and HP images
         let protagIcon = this.add.image(this.game.renderer.width - 1235, this.game.renderer.height - 685, "LVLScene-protagIcon").setDepth(0);
-        let enemyIcon = this.add.image(this.game.renderer.width - 55, this.game.renderer.height - 685, "LVLScene-brigadiereRuspaIcon").setDepth(0);
+        let enemyIcon = this.add.image(this.game.renderer.width - 55, this.game.renderer.height - 685, "LVL2Scene-brigadiereMattarellaIcon").setDepth(0);
 
         let starterWidth = 1170;
         for (let index = 0; index < this.maxHpProtag; index++) {
@@ -213,7 +213,7 @@ export class LVLScene extends Phaser.Scene {
             fontSize: "32px",
             fill: "#000000"
         });
-        this.add.text(this.game.renderer.width - 375, 8, "BRIGADIERE RUSPA", {
+        this.add.text(this.game.renderer.width - 465, 8, "BRIGADIERE MATTARELLA", {
             fontFamily: "Droid Sans",
             fontSize: "32px",
             fill: "#000000"
@@ -239,10 +239,10 @@ export class LVLScene extends Phaser.Scene {
             if (this.hpEnemyRemaining > 0) {
                 switch (action) {
                     case 1:
-                        console.log("Brigadiere attacca con: Pugno");
+                        console.log("Brigadiere attacca con: INCENDIO");
                         this.checkAction = false;
 
-                        text = this.add.text(this.game.renderer.width - 760, 50, "RUSPA USA PUNCH", {
+                        text = this.add.text(this.game.renderer.width - 790, 50, "MATTARELLA USA INCENDIO", {
                             fontFamily: "Droid Sans",
                             fontSize: "24px",
                             fill: "#000000"
@@ -254,8 +254,8 @@ export class LVLScene extends Phaser.Scene {
                                 this.hpProtagModifier(1);
 
                                 this.enemy.setDepth(1);
-                                this.enemy.setPosition(330, this.game.renderer.height / 2.35);
-                                this.enemy.setTexture("LVLScene-brigadiereRuspaHit");
+                                this.enemy.setPosition(420, this.game.renderer.height / 2.35);
+                                this.enemy.setTexture("LVL2Scene-brigadiereMattarellaFire");
                             }
                         });
 
@@ -267,7 +267,7 @@ export class LVLScene extends Phaser.Scene {
 
                                 this.enemy.setDepth(0);
                                 this.enemy.setPosition(this.game.renderer.width / 1.2, this.game.renderer.height / 2.35);
-                                this.enemy.setTexture("LVLScene-brigadiereRuspa");
+                                this.enemy.setTexture("LVL2Scene-brigadiereMattarella");
 
                                 text.destroy();
                                 this.checkProtag_BlockDodge = 0;
@@ -278,7 +278,7 @@ export class LVLScene extends Phaser.Scene {
                         console.log("Brigadiere attacca con: Calcio");
                         this.checkAction = false;
 
-                        text = this.add.text(this.game.renderer.width - 760, 50, "RUSPA USA KICK", {
+                        text = this.add.text(this.game.renderer.width - 760, 50, "MATTARELLA USA KICK", {
                             fontFamily: "Droid Sans",
                             fontSize: "24px",
                             fill: "#000000"
@@ -291,7 +291,7 @@ export class LVLScene extends Phaser.Scene {
 
                                 this.enemy.setDepth(1);
                                 this.enemy.setPosition(330, this.game.renderer.height / 2.35);
-                                this.enemy.setTexture("LVLScene-brigadiereRuspaHit");
+                                this.enemy.setTexture("LVL2Scene-brigadiereMattarellaHit");
                             }
                         });
 
@@ -302,7 +302,7 @@ export class LVLScene extends Phaser.Scene {
 
                                 this.enemy.setDepth(0);
                                 this.enemy.setPosition(this.game.renderer.width / 1.2, this.game.renderer.height / 2.35);
-                                this.enemy.setTexture("LVLScene-brigadiereRuspa");
+                                this.enemy.setTexture("LVL2Scene-brigadiereMattarella");
 
                                 text.destroy();
                                 this.checkProtag_BlockDodge = 0;
@@ -313,7 +313,7 @@ export class LVLScene extends Phaser.Scene {
                         console.log("Brigadiere schiva");
                         this.checkAction = false;
 
-                        text = this.add.text(this.game.renderer.width - 760, 50, "RUSPA SCHIVA", {
+                        text = this.add.text(this.game.renderer.width - 760, 50, "MATTARELLA SCHIVA", {
                             fontFamily: "Droid Sans",
                             fontSize: "24px",
                             fill: "#000000"
@@ -333,7 +333,7 @@ export class LVLScene extends Phaser.Scene {
                         console.log("Brigadiere blocca");
                         this.checkAction = false;
 
-                        text = this.add.text(this.game.renderer.width - 760, 50, "RUSPA BLOCCA", {
+                        text = this.add.text(this.game.renderer.width - 760, 50, "MATTARELLA BLOCCA", {
                             fontFamily: "Droid Sans",
                             fontSize: "24px",
                             fill: "#000000"
@@ -352,16 +352,11 @@ export class LVLScene extends Phaser.Scene {
                 }
                 this.checkRound = true;
             } else {
-                /*text = this.add.text(this.game.renderer.width - 760, 50, "HAI VINTO", {
-                    fontFamily: "Droid Sans",
-                    fontSize: "50px",
-                    fill: "#000000"
-                });*/
                 let youWon = this.add.image(this.game.renderer.width - 640, this.game.renderer.height - 450, "youWon").setDepth(1);
-                youWon.setInteractive();
+                /*youWon.setInteractive();
                 youWon.on("pointerup", () => {
                     this.scene.start(CST.SCENES.LEVEL2, { HELLO: "LVLScene HELLO" });
-                });
+                });*/
                 this.enemy.destroy();
                 this.protagonist.setTexture("LVLScene-protagActionWin");
             }

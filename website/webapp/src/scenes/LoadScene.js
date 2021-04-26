@@ -9,6 +9,9 @@ export class LoadScene extends Phaser.Scene {
 
     }
     preload() {
+        //General Texts
+        this.load.image("youWon", "src/assets/youWon.png");
+
         //MenuScene buttons
         this.load.image("title", "src/assets/title.png");
         this.load.image("play_button", "src/assets/play_button.png");
@@ -66,7 +69,15 @@ export class LoadScene extends Phaser.Scene {
         this.load.image("LVLScene-brigadiereRuspaIcon", "src/assets/lvlAssets/brigadiereRuspa_Icon.png");
         this.load.image("LVLScene-brigadiereRuspaHit", "src/assets/lvlAssets/brigadiereRuspa_hit.png");
 
-        //bakcground music
+        //LVL2Scene Assets
+        this.load.image("LVL2Scene-menu", "src/assets/lvl2Assets/menu_ingame_fight2.png");
+        this.load.image("LVL2Scene-protagActionFire", "src/assets/lvl2Assets/protagFire.png");
+        this.load.image("LVL2Scene-brigadiereMattarella", "src/assets/lvl2Assets/chefNibba.png");
+        this.load.image("LVL2Scene-brigadiereMattarellaFire", "src/assets/lvl2Assets/chefNibba_Fire.png");
+        this.load.image("LVL2Scene-brigadiereMattarellaHit", "src/assets/lvl2Assets/chefNibba_hit.png");
+        this.load.image("LVL2Scene-brigadiereMattarellaIcon", "src/assets/lvl2Assets/chefNibba_icon.png");
+
+        //background music
         this.load.audio("bgMusic", "src/assets/sounds/bg_music.mp3");
 
         var progressBar = this.add.graphics();
