@@ -34,7 +34,7 @@ pg_fire = pygame.image.load("images/protagFire.png")
 enemy_image = pygame.image.load("images/hornySalvini.png")
 enemy_hit = pygame.image.load("images/brigadiereRuspa_hit.png")
 enemy2_image = pygame.image.load("images/chefNibba.png")
-enemy2_fire = pygame.image.load("images/chefNibba_fire.png")
+enemy2_fire = pygame.image.load("images/chefNibba_Fire.png")
 enemy2_hit = pygame.image.load("images/chefNibba_hit.png")
 iconEN2_img = pygame.image.load("images/chefNibba_icon.png")
 
