@@ -4,7 +4,10 @@ SELECT utente.Nickname FROM utente
 WHERE utente.Nickname = $nickname AND utente.Password = $password;
 
 SELECT * FROM utente 
-WHERE utente.Nickname = $nickname AND utente.Email = $email;
+WHERE utente.Nickname = $nickname;
+
+SELECT * FROM utente 
+WHERE utente.Email = $email;
 
 SELECT * FROM utente
 WHERE utente.Nickname = $nickname AND utente.Password = $password;
