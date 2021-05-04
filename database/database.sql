@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS ApeOpsArcade;
 CREATE DATABASE ApeOpsArcade;
 
 USE ApeOpsArcade;
