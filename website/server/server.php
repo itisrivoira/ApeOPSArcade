@@ -1,5 +1,6 @@
 <?php
 	include('utente.php');
+	include('connection.php');
 	session_start();
 
 	$nickname = "";
@@ -8,22 +9,23 @@
 	$_SESSION['success'] = "";
 	
 	//!NOTE  ─── CONNESSIONE AL DATABASE ────────────────────────────────────────────────────
-	//$db = mysqli_connect('localhost', 'root', '', 'wiki_test');
+	$mysqli = $con;
 
 	// REGISTER USER
 	if (isset($_POST['reg_user'])) {
-		/* Ricevi dati dal form
-		$username = mysqli_real_escape_string($db, $_POST['username']);
-		$email = mysqli_real_escape_string($db, $_POST['email']);
-		$password_1 = mysqli_real_escape_string($db, $_POST['password_1']);
-		$password_2 = mysqli_real_escape_string($db, $_POST['password_2']);
-		*/
-		$nickname = $_POST['nickname'];
+		//Ricevi dati dal form
+		$nickname = $mysqli->real_escape_string($_POST['nickname']);
+		$email = $mysqli->real_escape_string($_POST['email']);
+		$naz = $mysqli->real_escape_string($_POST['naz']);
+		$dataNascita = $mysqli->real_escape_string($_POST['dataN']);
+		$password_1 = $mysqli->real_escape_string($_POST['password_1']);
+		$password_2 = $mysqli->real_escape_string($_POST['password_2']);
+		/*$nickname = $_POST['nickname'];
 		$email = $_POST['email'];
 		$naz = $_POST['naz'];
 		$dataNascita = $_POST['dataN'];
 		$password_1 = $_POST['password_1'];
-		$password_2 = $_POST['password_2'];
+		$password_2 = $_POST['password_2'];*/
 
 		// Controlla la compilazione del form
 		if (empty($nickname)) { array_push($errors, "Nickname necessario"); }
@@ -32,40 +34,63 @@
 		if (empty($dataNascita)) { array_push($errors, "Data di nascita necessaria"); }
 		if (empty($password_1)) { array_push($errors, "Password necessaria"); }
 
+		if (strlen($nickname) > 25) { array_push($errors, "Nickname scelto troppo lungo"); }
+		if (DateTime::createFromFormat('Y-m-d', $dataNascita) === false) { array_push($errors, "Data scelta non disponibile, riprovare"); }
+
+		if (strlen($password_1) < 6) {
+			array_push($errors, "La password è troppo debole");
+		}
+
 		if ($password_1 != $password_2) {
 			array_push($errors, "Le password non sono uguali");
+		}
+
+		
+		// Controllo che non esista un utente con nick o email identiche
+		$query = "SELECT * FROM utente 
+		WHERE utente.Nickname = '$nickname';";
+		$results = $mysqli->query($query);
+
+		if (!$results) {
+			array_push($errors, "Error description: " . $mysqli -> error);
+		}
+
+		if ($results->num_rows == 1) {
+			array_push($errors, "Nickname già in uso!");
+		}
+
+		$query = "SELECT * FROM utente 
+		WHERE utente.Email = '$email';";
+		$results = $mysqli->query($query);
+
+		if (!$results) {
+			array_push($errors, "Error description: " . $mysqli -> error);
+		}
+
+		if ($results->num_rows == 1) {
+			array_push($errors, "Email già in uso!");
 		}
 
 		// Registra l'utente solo se non ci sono errori
 		if (count($errors) == 0) {
 			$password = md5($password_1);//Cripta la password
-			/*$query = "INSERT INTO db_users (password, mail, user_login) 
-					  VALUES('$password','$email','$username')";
-			mysqli_query($db, $query);*/
+			$query = "INSERT INTO utente VALUES('$nickname','$password','$email','$naz','$dataNascita');";
+			$results = $mysqli->query($query);
 
-			if (!isset($_SESSION['utenti'])){
-				$_SESSION['utenti'] = array(new Utente($nickname, $email, $naz, $dataNascita, $password));
-				array_push($errors, "Registrazione effettuata!");
+			if (!$results) {
+				array_push($errors, "Error description: " . $mysqli -> error);
+			}
+
+			//var_dump($results);
+
+			if ($results) {
 				$_SESSION['nickname'] = $nickname;
 				$_SESSION['success'] = "Hai eseguito il login";
-				sleep(3);
+				array_push($errors, "Hai eseguito il login");
+				sleep(2);
 				header('location: ../index.php');
-			}else{
-				$arrayUtenti = $_SESSION['utenti'];
-				$flag = FALSE;
-				foreach($arrayUtenti as $user){
-					if($user->getNickname() == $nickname){
-							$flag = TRUE;
-					}
-				}
-				if(!$flag){
-					array_push($arrayUtenti, new Utente($nickname, $email, $naz, $dataNascita, $password));
-					$_SESSION['nickname'] = $nickname;
-					$_SESSION['success'] = "Hai eseguito il login";
-					header('location: ../index.php');
-				}else{
-					array_push($errors, "Nickname già esistente!");
-				}
+			}else {
+				array_push($errors, "Errore durante la registrazione, riprovare");
 			}
 		}
 
@@ -73,10 +98,8 @@
 
 	// LOGIN USER
 	if (isset($_POST['login_user'])) {
-		/*$username = mysqli_real_escape_string($db, $_POST['username']);
-		$password = mysqli_real_escape_string($db, $_POST['password']);*/
-		$nickname = $_POST['nickname'];
-		$password = $_POST['password'];
+		$nickname = $mysqli->real_escape_string($_POST['nickname']);
+		$password = $mysqli->real_escape_string($_POST['password']);
 
 		if (empty($nickname)) {
 			array_push($errors, "Username necessaria");
@@ -87,39 +110,19 @@
 
 		if (count($errors) == 0) {
 			$password = md5($password);
-			/*$query = "SELECT * FROM db_users WHERE user_login='$username' AND password='$password'";
-			$results = mysqli_query($db, $query);
+			$query = "SELECT utente.Nickname FROM utente
+			WHERE utente.Nickname = '$nickname' AND utente.Password = '$password';";
+			$results = $mysqli->query($query);
 
-			if (mysqli_num_rows($results) == 1) {
-				$_SESSION['username'] = $username;
+			if ($results->num_rows == 1) {
+				$row = $results->fetch_array(MYSQLI_ASSOC);
+				$_SESSION['nickname'] = $row["Nickname"];
 				$_SESSION['success'] = "Hai eseguito il login";
-				header('location: ../pages/logged.html');
-				//
+				array_push($errors, "Hai eseguito il login");
+				sleep(2);
+				header('location: ../index.php');
 			}else {
-				array_push($errors, "Errata username/password combinazione");
-			}*/
-			if (!isset($_SESSION['utenti'])){
-				array_push($errors, "Nessun utente presente nel DB");
-			}else{
-				$arrayUtenti = $_SESSION['utenti'];
-				$flag = FALSE;
-				foreach($arrayUtenti as $user){
-					array_push($errors, $user->getNickname());
-					if($user->getNickname() == $nickname){
-						if($user->getPasw() == $password){
-							$flag = TRUE;
-							$_SESSION['nickname'] = $nickname;
-							$_SESSION['success'] = "Hai eseguito il login";
-						}
-					}
-				}
-				if(!$flag){
-					array_push($errors, "Nickname eo password errati!");
-				}else{
-					array_push($errors, "Hai eseguito il login");
-					sleep(2);
-					header('location: ../index.php');
-				}
+				array_push($errors, "Nickname eo password errati!");
 			}
 		}
 	}

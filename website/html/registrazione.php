@@ -44,7 +44,7 @@
             <nav class="nav d-flex justify-content-between">
                 <a class="p-2 text-muted" href="../index.php">HOME</a>
                 <a class="p-2 text-muted" href="../webapp/game.html">GAME</a>
-                <a class="p-2 text-muted" href="#">DOWNLOAD</a>
+                <a class="p-2 text-muted" href="download.php">DOWNLOAD</a>
                 <a class="p-2 text-muted" href="supporto.html">SUPPORTO TECNICO</a>
                 <a class="p-2 text-muted" href="faq.html">FAQ</a>
                 <a class="p-2 text-muted" href="contatti.html">CONTATTI</a>
@@ -64,19 +64,19 @@
                         <div class="formatCarattare">Nickname: <input type="text" name="nickname"></div>
                         <div class="formatCarattare">Email: <input type="text" name="email"></div>
                         <div class="formatCarattare">Nazionalità: <select name="naz">
-                            <option value="AR">Argentina</option>
-                            <option value="AU">Australia</option>
-                            <option value="BR">Brazil</option>
-                            <option value="CA">Canada</option>
-                            <option value="CN">China</option>
-                            <option value="FR">France</option>
-                            <option value="DE">Germany</option>
-                            <option value="IN">India</option>
+                            <option value="ARG">Argentina</option>
+                            <option value="AUS">Australia</option>
+                            <option value="BRA">Brazil</option>
+                            <option value="CAN">Canada</option>
+                            <option value="CHN">China</option>
+                            <option value="FRA">France</option>
+                            <option value="DEU">Germany</option>
+                            <option value="IND">India</option>
                             <option value="ITA">Italy</option>
                             <option value="ENG">England</option>
-                            <option value="JP">Japan</option>
-                            <option value="NL">Netherlands</option>
-                            <option value="US">United States</option>
+                            <option value="JPN">Japan</option>
+                            <option value="NLD">Netherlands</option>
+                            <option value="USA">United States</option>
                         </select></div>
                         <div class="formatCarattare">Anno⠀di⠀Nascita: <input type="date" name="dataN"></div>
                         <div class="formatCarattare">Password: <input type="text" name="password_1"></div>

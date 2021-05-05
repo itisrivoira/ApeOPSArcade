@@ -44,7 +44,7 @@
             <nav class="nav d-flex justify-content-between">
                 <a class="p-2 text-muted" href="../index.php">HOME</a>
                 <a class="p-2 text-muted" href="../webapp/game.html">GAME</a>
-                <a class="p-2 text-muted" href="#">DOWNLOAD</a>
+                <a class="p-2 text-muted" href="download.php">DOWNLOAD</a>
                 <a class="p-2 text-muted" href="supporto.html">SUPPORTO TECNICO</a>
                 <a class="p-2 text-muted" href="faq.html">FAQ</a>
                 <a class="p-2 text-muted" href="contatti.html">CONTATTI</a>
@@ -64,8 +64,8 @@
                 <div class="col-md-12">
                     <?php include("../server/errors.php");?>
                     <form action="login.php" method="POST">
-                        <input type="text" name="nickname" value="nickname">
-                        <input type="text" name="password" value="password">
+                        <input type="text" name="nickname" placeholder="nickname">
+                        <input type="text" name="password" placeholder="password">
                         <br>
                         <input type="submit" name="login_user" value="login">
                     </form>
