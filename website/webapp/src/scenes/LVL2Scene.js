@@ -362,7 +362,7 @@ export class LVL2Scene extends Phaser.Scene {
             }
         }
         if (this.hpProtagRemaining <= 0) {
-            text = this.add.text(this.game.renderer.width - 760, 50, "HAI PERSO", {
+            let text = this.add.text(this.game.renderer.width - 760, 50, "HAI PERSO", {
                 fontFamily: "Droid Sans",
                 fontSize: "50px",
                 fill: "#000000"
