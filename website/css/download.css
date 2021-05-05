@@ -1,0 +1,101 @@
+.containerDownload {
+    background-color: rgb(212, 211, 211);
+    display: block;
+    margin-left: 28%;
+    height: 100%;
+    width: 45%;
+}
+
+.titolo {
+    text-align: center;
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+    font-size: 3.25rem;
+    font-weight: bold;
+    height: 20%;
+}
+
+.testo {
+    text-align: center;
+    margin-top: 20px;
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+    font-size: 1.35rem;
+    font-weight: bold;
+}
+
+.col-md-12 {
+    text-align: center;
+    font-size: 1rem;
+    margin-bottom: 26pt;
+}
+
+.imgDownload {
+    height: 70%;
+    width: 70%;
+    margin-bottom: 100pt;
+}
+
+.immagineSinistra {
+    height: 30%;
+    width: 23%;
+    float: left;
+}
+
+.immagineDestra {
+    height: 30%;
+    width: 23%;
+    float: right;
+}
+
+#immagineAlert {
+    float: right;
+}
+
+@media (max-width: 767px) {
+    #immagineAlert {
+        float: none;
+    }
+}
+
+@media (min-width: 0px) {
+    .titolo {
+        text-align: center;
+        font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+        font-size: 1.5rem;
+        font-weight: bold;
+        height: 10%;
+    }
+    .testo {
+        text-align: center;
+        margin-top: 20px;
+        font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+        font-size: 1.10rem;
+        font-weight: bold;
+    }
+    .imgDownload {
+        height: 90%;
+        width: 90%;
+        margin-bottom: 50pt;
+    }
+}
+
+@media (min-width: 992px) {
+    .titolo {
+        text-align: center;
+        font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+        font-size: 3.25rem;
+        font-weight: bold;
+        height: 20%;
+    }
+    .testo {
+        text-align: center;
+        margin-top: 20px;
+        font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+        font-size: 1.55rem;
+        font-weight: bold;
+    }
+    .imgDownload {
+        height: 70%;
+        width: 70%;
+        margin-bottom: 100pt;
+    }
+}
