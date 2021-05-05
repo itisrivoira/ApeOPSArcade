@@ -61,7 +61,7 @@
             <nav class="nav d-flex justify-content-between">
                 <a class="p-2 text-muted" href="#">HOME</a>
                 <a class="p-2 text-muted" href="webapp/game.html">GAME</a>
-                <a class="p-2 text-muted" href="#">DOWNLOAD</a>
+                <a class="p-2 text-muted" href="html/download.php">DOWNLOAD</a>
                 <a class="p-2 text-muted" href="html/supporto.html">SUPPORTO TECNICO</a>
                 <a class="p-2 text-muted" href="html/faq.html">FAQ</a>
                 <a class="p-2 text-muted" href="html/contatti.html">CONTATTI</a>

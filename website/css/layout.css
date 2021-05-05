@@ -2,8 +2,13 @@
     Header e definizioni caratteristiche navbar
 */
 
+html {
+    height: 100%;
+}
+
 body {
     background-color: whitesmoke;
+    min-height: 100%;
 }
 
 .login {
