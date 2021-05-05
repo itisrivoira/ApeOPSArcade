@@ -52,8 +52,8 @@
         <div class="nav-scroller py-1 mb-2">
             <nav class="nav d-flex justify-content-between">
                 <a class="p-2 text-muted" href="../index.php">HOME</a>
-                <a class="p-2 text-muted" href="../webapp/game.html">GAME</a>
-                <a class="p-2 text-muted" href="downloa.html">DOWNLOAD</a>
+                <a class="p-2 text-muted" href="../webapp/game.php">GAME</a>
+                <a class="p-2 text-muted" href="#">DOWNLOAD</a>
                 <a class="p-2 text-muted" href="supporto.html">SUPPORTO TECNICO</a>
                 <a class="p-2 text-muted" href="faq.html">FAQ</a>
                 <a class="p-2 text-muted" href="contatti.html">CONTATTI</a>
