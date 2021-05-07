@@ -7,6 +7,7 @@ export class MenuScene extends Phaser.Scene {
     }
     init(data) {
         console.log(data);
+        this.flagSound = data.flagSound;
     }
     create() {
         this.game.scale.resize(800, 440);
@@ -16,10 +17,12 @@ export class MenuScene extends Phaser.Scene {
         this.add.image(0, 0, "background").setOrigin(0).setDepth(0);
 
         //music
-        this.sound.pauseOnBlur = false;
-        this.sound.play("bgMusic", {
-            loop: true
-        });
+        if (this.flagSound == 1) {
+            this.sound.pauseOnBlur = false;
+            this.sound.play("bgMusic", {
+                loop: true
+            });
+        }
 
 
         let playButton = this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 1.7, "play_button").setDepth(1);
@@ -36,7 +39,7 @@ export class MenuScene extends Phaser.Scene {
 
         optionsButton.on("pointerup", () => {
             console.log("GOD DAMNIT");
-            this.scene.start(CST.SCENES.OPTIONS, { HELLO: "MenuScene HELLO", flagSound: 1 });
+            this.scene.start(CST.SCENES.OPTIONS, { HELLO: "MenuScene HELLO", flagSound: this.flagSound });
         });
     }
 }

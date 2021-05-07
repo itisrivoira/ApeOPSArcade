@@ -16,6 +16,14 @@ export class OptionsScene extends Phaser.Scene {
 
 
         let musicButton = this.add.sprite(this.game.renderer.width / 1.5, this.game.renderer.height / 2.3, "OptionsScene-toggleOn").setDepth(1);
+
+        if (this.flagSound == 1) {
+            this.soundFlag = true;
+            this.flagSound = 0;
+        } else {
+            musicButton.setTexture("OptionsScene-toggleOff");
+        }
+
         let musicLabel = this.add.image(this.game.renderer.width / 2.4, this.game.renderer.height / 2.3, "OptionsScene-musicLabel").setDepth(1);
         let otherButton = this.add.image(this.game.renderer.width / 1.5, this.game.renderer.height / 1.6, "OptionsScene-toggleOff").setDepth(1);
         let otherLabel = this.add.image(this.game.renderer.width / 3.3, this.game.renderer.height / 1.6, "OptionsScene-effectsLabel").setDepth(1);
@@ -30,17 +38,20 @@ export class OptionsScene extends Phaser.Scene {
 
         musicButton.on("pointerup", () => {
             if (this.flagSound == 1) {
+                console.log("OptionsScene: toggleOff");
                 musicButton.setTexture("OptionsScene-toggleOff");
                 this.sound.removeAll();
                 this.flagSound = 0;
-            } else {
+            } else if (this.flagSound == 0 && this.soundFlag == false) {
+                console.log("OptionsScene: toggleOn 1");
                 musicButton.setTexture("OptionsScene-toggleOn");
-                //music
-                this.sound.pauseOnBlur = false;
-                this.sound.play("bgMusic", {
-                    loop: true
-                });
                 this.flagSound = 1;
+            } else {
+                console.log("OptionsScene: toggleOff first");
+                musicButton.setTexture("OptionsScene-toggleOff");
+                this.sound.removeAll();
+                this.flagSound = 0;
+                this.soundFlag = false;
             }
         });
 
@@ -51,7 +62,7 @@ export class OptionsScene extends Phaser.Scene {
 
         backButton.on("pointerup", () => {
             console.log("FUNGE");
-            this.scene.start(CST.SCENES.MENU, "OptionsScene HELLO");
+            this.scene.start(CST.SCENES.MENU, { HELLO: "OptionsScene HELLO", flagSound: this.flagSound });
         });
 
     }

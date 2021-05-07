@@ -55,6 +55,7 @@ export class LoadScene extends Phaser.Scene {
         this.load.image("LVLScene-hpHeartFull", "src/assets/lvlAssets/hp_heart.png");
         this.load.image("LVLScene-hpHeartEmpty", "src/assets/lvlAssets/hp_heart_gray.png");
         this.load.image("LVLScene-hpHeartHalf", "src/assets/lvlAssets/hp_heart_half.png");
+        this.load.image("LVLScene-hpHeartHalfEnemy", "src/assets/lvlAssets/hp_heart_half_enemy.png");
 
         //LVLScene protagonist
         this.load.image("LVLScene-protag", "src/assets/lvlAssets/protag.png");
@@ -144,6 +145,6 @@ export class LoadScene extends Phaser.Scene {
         });
     }
     create() {
-        this.scene.start(CST.SCENES.MENU, "LoadScene HELLO");
+        this.scene.start(CST.SCENES.MENU, { HELLO: "LoadScene HELLO", flagSound: 1 });
     }
 }

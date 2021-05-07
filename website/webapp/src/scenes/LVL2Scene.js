@@ -427,40 +427,39 @@ export class LVL2Scene extends Phaser.Scene {
         if (type == 1) {
             console.log("HP rimanenti nemico: " + heartsRemaining);
             for (let index = 1; index < heartsRemaining + 1; index++) {
-                //console.log("PrimoFOR: " + index);
                 switch (index) {
                     case 1:
-                        this.hpsEnemy[5].setTexture("LVLScene-hpHeartHalf");
+                        this.hpsEnemy[5].setTexture("LVLScene-hpHeartHalfEnemy");
                         break;
                     case 2:
                         this.hpsEnemy[5].setTexture("LVLScene-hpHeartFull");
                         break;
                     case 3:
-                        this.hpsEnemy[4].setTexture("LVLScene-hpHeartHalf");
+                        this.hpsEnemy[4].setTexture("LVLScene-hpHeartHalfEnemy");
                         break;
                     case 4:
                         this.hpsEnemy[4].setTexture("LVLScene-hpHeartFull");
                         break;
                     case 5:
-                        this.hpsEnemy[3].setTexture("LVLScene-hpHeartHalf");
+                        this.hpsEnemy[3].setTexture("LVLScene-hpHeartHalfEnemy");
                         break;
                     case 6:
                         this.hpsEnemy[3].setTexture("LVLScene-hpHeartFull");
                         break;
                     case 7:
-                        this.hpsEnemy[2].setTexture("LVLScene-hpHeartHalf");
+                        this.hpsEnemy[2].setTexture("LVLScene-hpHeartHalfEnemy");
                         break;
                     case 8:
                         this.hpsEnemy[2].setTexture("LVLScene-hpHeartFull");
                         break;
                     case 9:
-                        this.hpsEnemy[1].setTexture("LVLScene-hpHeartHalf");
+                        this.hpsEnemy[1].setTexture("LVLScene-hpHeartHalfEnemy");
                         break;
                     case 10:
                         this.hpsEnemy[1].setTexture("LVLScene-hpHeartFull");
                         break;
                     case 11:
-                        this.hpsEnemy[0].setTexture("LVLScene-hpHeartHalf");
+                        this.hpsEnemy[0].setTexture("LVLScene-hpHeartHalfEnemy");
                         break;
                     case 12:
                         this.hpsEnemy[0].setTexture("LVLScene-hpHeartFull");
@@ -468,40 +467,39 @@ export class LVL2Scene extends Phaser.Scene {
                 }
             }
             for (let index = 12; index > heartsRemaining; index--) {
-                //console.log("SecondoFOR: " + index);
                 switch (index) {
                     case 12:
-                        this.hpsEnemy[0].setTexture("LVLScene-hpHeartHalf");
+                        this.hpsEnemy[0].setTexture("LVLScene-hpHeartHalfEnemy");
                         break;
                     case 11:
                         this.hpsEnemy[0].setTexture("LVLScene-hpHeartEmpty");
                         break;
                     case 10:
-                        this.hpsEnemy[1].setTexture("LVLScene-hpHeartHalf");
+                        this.hpsEnemy[1].setTexture("LVLScene-hpHeartHalfEnemy");
                         break;
                     case 9:
                         this.hpsEnemy[1].setTexture("LVLScene-hpHeartEmpty");
                         break;
                     case 8:
-                        this.hpsEnemy[2].setTexture("LVLScene-hpHeartHalf");
+                        this.hpsEnemy[2].setTexture("LVLScene-hpHeartHalfEnemy");
                         break;
                     case 7:
                         this.hpsEnemy[2].setTexture("LVLScene-hpHeartEmpty");
                         break;
                     case 6:
-                        this.hpsEnemy[3].setTexture("LVLScene-hpHeartHalf");
+                        this.hpsEnemy[3].setTexture("LVLScene-hpHeartHalfEnemy");
                         break;
                     case 5:
                         this.hpsEnemy[3].setTexture("LVLScene-hpHeartEmpty");
                         break;
                     case 4:
-                        this.hpsEnemy[4].setTexture("LVLScene-hpHeartHalf");
+                        this.hpsEnemy[4].setTexture("LVLScene-hpHeartHalfEnemy");
                         break;
                     case 3:
                         this.hpsEnemy[4].setTexture("LVLScene-hpHeartEmpty");
                         break;
                     case 2:
-                        this.hpsEnemy[5].setTexture("LVLScene-hpHeartHalf");
+                        this.hpsEnemy[5].setTexture("LVLScene-hpHeartHalfEnemy");
                         break;
                     case 1:
                         this.hpsEnemy[5].setTexture("LVLScene-hpHeartEmpty");
@@ -510,7 +508,6 @@ export class LVL2Scene extends Phaser.Scene {
                 this.hpEnemyRemaining = heartsRemaining;
             }
         } else {
-            //Da correggere (cuori invertiti)
             console.log("HP rimanenti protagonista: " + heartsRemaining);
             for (let index = 1; index < heartsRemaining + 1; index++) {
                 //console.log("PrimoFOR: " + index);
