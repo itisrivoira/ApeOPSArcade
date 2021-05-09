@@ -11,6 +11,71 @@
 	//!NOTE  ─── CONNESSIONE AL DATABASE ────────────────────────────────────────────────────
 	$mysqli = $con;
 
+	if (isset($_GET['change'])) {
+		if(isset($_GET['salva'])){
+			$newNickname = $mysqli->real_escape_string($_POST['nickname']);
+			$newEmail = $mysqli->real_escape_string($_POST['email']);
+			$newNaz = $mysqli->real_escape_string($_POST['naz']);
+			$newDataNascita = $mysqli->real_escape_string($_POST['dataN']);
+			$newPassword_1 = $mysqli->real_escape_string($_POST['password_1']);
+			$newPassword_2 = $mysqli->real_escape_string($_POST['password_2']);
+
+			if (strlen($newNickname) > 25) { array_push($errors, "Nickname scelto troppo lungo"); }
+			if (DateTime::createFromFormat('Y-m-d', $newDataNascita) === false) { array_push($errors, "Data scelta non disponibile, riprovare"); }
+
+			if (strlen($newPassword_1) < 6) {
+				array_push($errors, "La password è troppo debole");
+			}
+
+			if ($newPassword_1 != $newPassword_2) {
+				array_push($errors, "Le password non sono uguali");
+			}
+
+			if($newNickname != $_SESSION['nickname']){
+				// Controllo che non esista un utente con nick identico
+				$query = "SELECT * FROM utente 
+				WHERE utente.Nickname = '$nickname';";
+				$results = $mysqli->query($query);
+
+				if (!$results) {
+					array_push($errors, "Error description: " . $mysqli -> error);
+				}
+
+				if ($results->num_rows == 1) {
+					array_push($errors, "Nickname già in uso!");
+				}
+			}
+
+			if($newEmail != $_SESSION['nickname']){
+			$query = "SELECT * FROM utente 
+			WHERE utente.Email = '$email';";
+			$results = $mysqli->query($query);
+
+			if (!$results) {
+				array_push($errors, "Error description: " . $mysqli -> error);
+			}
+
+			if ($results->num_rows == 1) {
+				array_push($errors, "Email già in uso!");
+			}
+		}else{
+			$nickname = $_SESSION["nickname"];
+			$query = "SELECT * FROM utente
+			WHERE utente.Nickname = '$nickname';";
+			$results = $mysqli->query($query);
+
+			if ($results->num_rows == 1) {
+				$row = $results->fetch_array(MYSQLI_ASSOC);
+				$nicknameResult = $row["Nickname"];
+				$emailResult = $row["Email"];
+				$nazResult = $row["Nazione"];
+				$dataResult = $row["DataNascita"];
+			}else {
+				array_push($errors, "Errore durante il recupero dei dati");
+			}
+		}
+	}
+
 	// REGISTER USER
 	if (isset($_POST['reg_user'])) {
 		//Ricevi dati dal form

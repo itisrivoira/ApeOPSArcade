@@ -19,7 +19,8 @@
 
 .supporto {
     display: block;
-    margin-left: 170pt;
+    margin: auto;
+    text-align: center;
 }
 
 #testo {

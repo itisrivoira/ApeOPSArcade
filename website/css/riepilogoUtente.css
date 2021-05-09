@@ -1,0 +1,41 @@
+.layout {
+    display: block;
+    background-color: rgb(194, 193, 191);
+    width: 100%;
+    border-radius: 1%;
+    padding: 13px;
+    margin-right: 20pt;
+}
+
+.titolo {
+    text-align: center;
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+    font-size: 2.25rem;
+    font-weight: bold;
+    height: 20%;
+    margin-bottom: 10pt;
+}
+
+.formatCarattare {
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+    color: black;
+    font-size: 120%;
+    font-weight: bold;
+}
+
+.img {
+    /* Immagine */
+    margin: auto;
+    display: block;
+    height: 90%;
+    width: 300pt;
+    text-align: center;
+}
+
+
+/*select menu utente*/
+
+
+/*.menuUtente {
+    background-color: rgb(42, 148, 240);
+}*/

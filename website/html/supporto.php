@@ -1,13 +1,17 @@
 <?php
 
+    session_start();
 
+    if (isset($_GET['logout'])) {
+        session_destroy();
+        unset($_SESSION);
+        header("location: ../index.php");
+    }
 
     
     USE PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;
   
-
-    
     if(isset($_POST['Invia'])){ 
         // $nick indica il nickname del mittente
         $nick = $_POST['Nickname'];
@@ -45,17 +49,16 @@
 
         if(!$mail->Send()){
             echo "errore nell'invio della mail: ".$mail->ErrorInfo;
-            return false;
         }else{
-            return true;
+            header("location: ../index.php");;
         }
 
     }
 
 ?>
 
-    <!DOCTYPE html>
-    <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
     <head>
         <meta charset="UTF-8">
@@ -83,14 +86,19 @@
                         <!--Colonna per riempire spazio vuoto-->
                     </div>
                     <div class="col-4 text-center">
-                        <a class="main-header-logo text-dark" href="#">APE OPS Arcade</a>
+                        <a class="main-header-logo text-dark" href="">APE OPS Arcade</a>
                     </div>
                     <div class="col-4 d-flex justify-content-end align-items-center">
-                        <div class="login">
-                            <a href="login.php">
-                                <i class="fa fa-user-circle"></i> Login
-                            </a>
-                        </div>
+                        <?php if (!isset($_SESSION['nickname'])): ?>
+                            <div class="login">
+                                <a href="login.php">
+                                    <i class="fa fa-user-circle" id="log-in"></i> Login
+                                </a>
+                            </div>
+                        <?php else:?>
+                            <p style="padding-right: 0.5em; text-align:right;">Benvenuto <strong><a href="riepilogoUtente.php?change=1" style="text-decoration: none; color: black;"><?php echo $_SESSION['nickname']; ?></a></strong></p>
+			                <p class="logoutButton"> <a href="supporto.php?logout='1'" style="color: red; text-decoration: none;">LOGOUT</a> </p></div>
+                        <?php endif ?>
                     </div>
                 </div>
             </header>
@@ -98,8 +106,8 @@
             <div class="nav-scroller py-1 mb-2">
                 <nav class="nav d-flex justify-content-between">
                     <a class="p-2 text-muted" href="../index.php">HOME</a>
-                    <a class="p-2 text-muted" href="../webapp/game.html">GAME</a>
-                    <a class="p-2 text-muted" href="#">DOWNLOAD</a>
+                    <a class="p-2 text-muted" href="../webapp/game.php">GAME</a>
+                    <a class="p-2 text-muted" href="download.php">DOWNLOAD</a>
                     <a class="p-2 text-muted" href="faq.html">FAQ</a>
                     <a class="p-2 text-muted" href="contatti.html">CONTATTI</a>
                 </nav>
@@ -107,7 +115,7 @@
         </div>
 
         <!-- Immagini contorno-->
-        <img src="../img/dottoreCheRide.png" class="immagineSinistra">
+        <img src="../img/protagWin.png" class="immagineSinistra">
         <img src="../img/chef.png" class="immagineDestra">
 
         <div class="contenitorePrincipale">
@@ -116,16 +124,16 @@
                 <br> Per inviare un email al supporto tecnico, </br>
                 <br> compila il seguente modulo. </br>
             </div>
-            <form action="supporto.php" method="post">
+            <form action="supporto.php" method="post" id="supportForm">
                 <div class="supporto">
-                    <br>Nickname:</br>
-                    <input type="text" name="Nickname" id="Nickname">
+                    <br>NICKNAME</br>
+                    <input type="text" name="Nickname" id="Nickname" placeholder="ilTuoUsername" style="text-align: center;">
                     <br>
-                    <br>Email:</br>
-                    <input type="text" name="email" id="email">
+                    <br>EMAIL</br>
+                    <input type="text" name="email" id="email" placeholder="example@example.com">
                     <br>
-                    <br>Testo:</br>
-                    <input type="text" name="testo" id="testo">
+                    <br>TESTO</br>
+                    <textarea rows="4" cols="" name="comment" form="supportForm" placeholder="Inserisci il testo qui..."></textarea>
                     <br>
                     <br>
                     <input type="submit" name="Invia" value="Invia">
@@ -154,4 +162,4 @@
 
     </body>
 
-    </html>
+</html>

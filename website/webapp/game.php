@@ -47,8 +47,8 @@
                 <div class="col-4 d-flex justify-content-end align-items-center">
                     <div class="col-4 d-flex justify-content-end align-items-center">
                         <?php if (isset($_SESSION['nickname'])): ?>
-                            <p>Benvenuto <strong><?php echo $_SESSION['nickname']; ?></strong></p>
-			                <p> <a href="game.php?logout='1'" style="color: red;"> logout</a> </p>
+                            <p style="padding-right: 0.5em; text-align:right;">Benvenuto <strong><a href="../html/riepilogoUtente.php?change=1" style="text-decoration: none; color: black;"><?php echo $_SESSION['nickname']; ?></a></strong></p>
+			                <p class="logoutButton"> <a href="index.php?logout='1'" style="color: red; text-decoration: none;">LOGOUT</a> </p></div>
 		                <?php endif ?>
                     </div>
                 </div>
@@ -58,8 +58,8 @@
         <div class="nav-scroller py-1 mb-2">
             <nav class="nav d-flex justify-content-between">
                 <a class="p-2 text-muted" href="../index.php">HOME</a>
-                <a class="p-2 text-muted" href="#">DOWNLOAD</a>
-                <a class="p-2 text-muted" href="../html/supporto.html">SUPPORTO TECNICO</a>
+                <a class="p-2 text-muted" href="../html/download.php">DOWNLOAD</a>
+                <a class="p-2 text-muted" href="../html/supporto.php">SUPPORTO TECNICO</a>
                 <a class="p-2 text-muted" href="../html/faq.html">FAQ</a>
                 <a class="p-2 text-muted" href="../html/contatti.html">CONTATTI</a>
             </nav>

@@ -58,12 +58,12 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-2">
+                <div class="col-md-4">
                     <?php include("../server/errors.php");?>
                     <form action="registrazione.php" method="POST">
-                        <div class="formatCarattare">Nickname: <input type="text" name="nickname"></div>
-                        <div class="formatCarattare">Email: <input type="text" name="email"></div>
-                        <div class="formatCarattare">Nazionalità: <select name="naz">
+                        <div class="formatCarattare">Nickname: <br><input type="text" name="nickname"></div>
+                        <div class="formatCarattare">Email: <br><input type="text" name="email"></div>
+                        <div class="formatCarattare">Nazionalità: <br><select name="naz">
                             <option value="ARG">Argentina</option>
                             <option value="AUS">Australia</option>
                             <option value="BRA">Brazil</option>
@@ -78,16 +78,16 @@
                             <option value="NLD">Netherlands</option>
                             <option value="USA">United States</option>
                         </select></div>
-                        <div class="formatCarattare">Anno⠀di⠀Nascita: <input type="date" name="dataN"></div>
-                        <div class="formatCarattare">Password: <input type="text" name="password_1"></div>
-                        <div class="formatCarattare">Conferma⠀Password: <input type="text" name="password_2"></div>
+                        <div class="formatCarattare">Anno⠀di⠀Nascita: <br><input type="date" name="dataN"></div>
+                        <div class="formatCarattare">Password: <br><input type="text" name="password_1"></div>
+                        <div class="formatCarattare">Conferma⠀Password: <br><input type="text" name="password_2"></div>
                         <br>
                         <input type="submit" name="reg_user" value="Conferma">
                     </form>
                 </div>
 
 
-                <div class="col-md-10">
+                <div class="col-md-8">
                     <img src="../img/ape_logo.png" class="img" alt="Responsive image">
                 </div>
 
