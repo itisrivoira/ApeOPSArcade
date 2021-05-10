@@ -30,19 +30,30 @@ pg_image = pygame.image.load("images/hornyProtag.png")
 pg_punch = pygame.image.load("images/medicPunch.png")
 pg_kick = pygame.image.load("images/medicKick.png")
 pg_fire = pygame.image.load("images/protagFire.png")
+pg_slash = pygame.image.load("images/protagSlash.png")
+iconpg_image = pygame.image.load("images/medic_Icon.png") #icon image pg
 
 enemy_image = pygame.image.load("images/hornySalvini.png")
 enemy_hit = pygame.image.load("images/brigadiereRuspa_hit.png")
+iconen_image = pygame.image.load("images/salvini_Icon.png") #icon image enemy
+
+#enemy 2
 enemy2_image = pygame.image.load("images/chefNibba.png")
 enemy2_fire = pygame.image.load("images/chefNibba_Fire.png")
 enemy2_hit = pygame.image.load("images/chefNibba_hit.png")
 iconEN2_img = pygame.image.load("images/chefNibba_icon.png")
 
+#enemy 3 BOSS
+enemy3_image = pygame.image.load("images/apeStand.png")
+enemy3_slash = pygame.image.load("images/apeSlash.png")
+enemy3_fire = pygame.image.load("images/apeFlameAtk.png")
+enemy3_hit = pygame.image.load("images/apeHit.png")
+iconEN3_img = pygame.image.load("images/apeIcon.png")
+
 #fighting menu
+menufight_image3 = pygame.image.load("menuAssets/menu_ingame_fight3.png")
 menufight_image2 = pygame.image.load("menuAssets/menu_ingame_fight2.png")
 menufight_image = pygame.image.load("menuAssets/menu_ingame_fight.png") #menu fighting
-iconpg_image = pygame.image.load("images/medic_Icon.png") #icon image pg
-iconen_image = pygame.image.load("images/salvini_Icon.png") #icon image enemy
 
 #pg hp
 fullhppg_image = pygame.image.load("images/hp_heart.png") #icon image fullhp
@@ -54,6 +65,11 @@ fullhpen_image = pygame.image.load("images/hp_heart.png") #icon image fullhp
 halfhpen_image = pygame.image.load("images/hp_heart_half.png") #icon image halfhp
 grayhpen_image = pygame.image.load("images/hp_heart_gray.png") #icon image grayhp
 
+#bgs
+bg_lvl1 = pygame.image.load("images/bg_lvl1.png")
+bg_lvl2 = pygame.image.load("images/bg_lvl2.png")
+bg_lvl3 = pygame.image.load("images/bg_lvl3.png")
+
 
 #window bgs
 def redWindow():
@@ -62,10 +78,9 @@ def redWindow():
     win.blit(bg, (bgX2, 0))
 
 
-def mainWindow():
+def mainWindow(img_BG):
     win = pygame.display.set_mode((1280, 720))
-    win.fill(WHITE)
-
+    win.blit(img_BG, (0, 0))
 
 def quitGame():
     pygame.quit()
@@ -83,12 +98,16 @@ def reset():
 
     if levelCount == 1:
         if hp_bar_en == []:
-            levelCount += 1
+            levelCount = 2
         elif hp_bar_pg == []:
             levelCount = 1
     elif levelCount == 2:
         if hp_bar_en == []:
-            #levelCount += 1
+            levelCount = 3
+        elif hp_bar_pg == []:
+            levelCount = 1
+    elif levelCount == 3:
+        if hp_bar_en == []:
             levelCount = 1
         elif hp_bar_pg == []:
             levelCount = 1
@@ -357,6 +376,7 @@ def gameButton(x, y, w, h, action, turn = True, click = False):
     if turn == True: 
         if x + w > mouse[0] > x and y + h > mouse[1] > y:   
             if clickedBtn[0] == 1 and action != None:
+                
                 if levelCount == 1:    
                     if action == event_Dodge:
                         dodgeCheck_PG = True
@@ -368,7 +388,8 @@ def gameButton(x, y, w, h, action, turn = True, click = False):
                         action()
                     else:
                         action()
-                else:
+                
+                elif levelCount == 2:
                     if action == event_Dodge2:
                         dodgeCheck_PG = True
                         print(dodgeCheck_PG)
@@ -378,7 +399,19 @@ def gameButton(x, y, w, h, action, turn = True, click = False):
                         print(blockCheck_PG)
                         action()
                     else:
-                        action()                    
+                        action()
+                
+                elif levelCount == 3:
+                    if action == event_Dodge3:
+                        dodgeCheck_PG = True
+                        print(dodgeCheck_PG)
+                        action()
+                    elif action == event_Block3:
+                        blockCheck_PG = True
+                        print(blockCheck_PG)
+                        action()
+                    else:
+                        action()                                            
                 turnCheck = False
                 turnNMB = 1
             if click and pygame.time.get_ticks() > 100:
@@ -404,16 +437,22 @@ def endScreen():
                     pygame.time.wait(150)
                     if hp_bar_en == []:
                         levelCount += 1
-                        game_layout2()
                     elif hp_bar_pg == []:
                         levelCount = 1
                         run = False
+                
                 elif levelCount == 2:
                     pygame.time.wait(150)                    
                     if hp_bar_en == []:
-                        #levelCount += 1
+                        levelCount += 1
+                    elif hp_bar_pg == []:
                         levelCount = 1
                         run = False
+                
+                elif levelCount == 3:
+                    pygame.time.wait(150)                    
+                    if hp_bar_en == []:
+                        levelCount += 1
                     elif hp_bar_pg == []:
                         levelCount = 1
                         run = False
@@ -521,14 +560,19 @@ def event_Punch():
                         hpENcheck[i] = False
                         if i >= 1:    
                             hpENhalf[i - 1] = True
+                    if currentEN_HP == [ grayhpen_image, grayhpen_image, halfhpen_image ]:
+                        currentEN_HP = [ grayhpen_image, grayhpen_image, grayhpen_image ]
+                        en_HP()
 
         else:
             if dodgeCheck_EN == True:
+                blockCheck_EN = False
                 message_to_screen("RUSPA USES DODGE", BLACK, 490, 40) 
                 message_to_screen("LEGASOV USES PUNCH", BLACK, 505, 70)
                 win.blit(pg_punch, (770, 110))
         
             elif blockCheck_EN == True:
+                dodgeCheck_EN = False
                 message_to_screen("RUSPA USES BLOCK", BLACK, 490, 40) 
                 message_to_screen("LEGASOV USES PUNCH", BLACK, 505, 70)
                 win.blit(pg_punch, (770, 110))
@@ -569,11 +613,13 @@ def event_Punch():
         
         else:
             if dodgeCheck_PG == True:
+                blockCheck_PG = False
                 message_to_screen("LEGASOV USES DODGE", BLACK, 490, 40)
                 message_to_screen("RUSPA USES PUNCH", BLACK, 505, 70)
                 win.blit(enemy_hit, (180, 110))
         
             elif blockCheck_PG == True:
+                dodgeCheck_PG = True
                 message_to_screen("LEGASOV USES BLOCK", BLACK, 490, 40)
                 message_to_screen("RUSPA USES PUNCH", BLACK, 505, 70)
                 win.blit(pg_image, (100, 85)) 
@@ -637,16 +683,21 @@ def event_Kick():
                         hpENcheck[i] = False
                         if i >= 1:    
                             hpENhalf[i - 1] = True
+                    if currentEN_HP == [ grayhpen_image, grayhpen_image, halfhpen_image ]:
+                        currentEN_HP = [ grayhpen_image, grayhpen_image, grayhpen_image ]
+                        en_HP()                    
         
         else:
             if dodgeCheck_EN == True:
                 #DODGED -- SCHIVATO
+                blockCheck_EN = False
                 message_to_screen("RUSPA USES DODGE", BLACK, 490, 40) 
                 message_to_screen("LEGASOV USES KICK", BLACK, 505, 70)
                 win.blit(pg_kick, (770, 110))
         
             elif blockCheck_EN == True:
                 #BLOCKED -- BLOCCATO
+                dodgeCheck_EN = False
                 message_to_screen("RUSPA USES BLOCK", BLACK, 490, 40) 
                 message_to_screen("LEGASOV USES KICK", BLACK, 505, 70)
                 win.blit(pg_kick, (770, 110))
@@ -688,12 +739,14 @@ def event_Kick():
         else:
             if dodgeCheck_PG == True:
                 #DODGED -- SCHIVATO
+                blockCheck_PG = False
                 message_to_screen("LEGASOV USES DODGE", BLACK, 490, 40)
                 message_to_screen("RUSPA USES KICK", BLACK, 505, 70)
                 win.blit(enemy_hit, (180, 110))
         
             elif blockCheck_PG == True:
                 #BLOCKED -- BLOCCATO
+                dodgeCheck_PG = False
                 message_to_screen("LEGASOV USES BLOCK", BLACK, 490, 40)
                 message_to_screen("RUSPA USES KICK", BLACK, 505, 70)
                 win.blit(pg_image, (100, 85)) 
@@ -774,6 +827,9 @@ def event_Enemy():
 def event_Fire():    
     global pg_image, enemy2_image, hp_bar_en, hp_bar_pg, currentEN_HP, currentPG_HP, turnCheck, dodgeCheck_EN, dodgeCheck_PG, blockCheck_EN, blockCheck_PG, hpENcheck, hpPGcheck, hpENhalf, hpPGhalf
     x = 100
+    if levelCount == 3:
+        return
+    
     pg_image.fill(transparent)
     enemy2_image.fill(transparent)
     game_layout2()
@@ -783,11 +839,13 @@ def event_Fire():
         if dodgeCheck_EN == False and blockCheck_EN == False:    
             win.blit(enemy2_hit, (900, 110))
             win.blit(pg_fire, (210, 70))
-            message_to_screen("LEGASOV USES FIREOUT", BLACK, 470, 40)    
+            message_to_screen("LEGASOV USES FIREOUT", BLACK, 470, 60)    
             
             for i in range(len(hp_bar_en)):
                 if i == (len(hp_bar_en) - 1):
-                    if hpENcheck[i] == True:   
+                    if currentEN_HP == [ grayhpen_image, grayhpen_image, halfhpen_image ]:
+                        currentEN_HP = [ grayhpen_image, grayhpen_image, grayhpen_image ]
+                    elif hpENcheck[i] == True:   
                         currentEN_HP[i] = grayhpen_image
                         hp_bar_en.pop(i)
                         hpENcheck[i] = False
@@ -798,16 +856,21 @@ def event_Fire():
                         hpENcheck[i] = False
                         if i >= 1:    
                             hpENhalf[i - 1] = True
+                    if currentEN_HP == [ grayhpen_image, grayhpen_image, halfhpen_image ]:
+                        currentEN_HP = [ grayhpen_image, grayhpen_image, grayhpen_image ]
+                        en_HP()
 
         else:
             if dodgeCheck_EN == True:
-                message_to_screen("MATTARELLA USES DODGE", BLACK, 470, 40) 
-                message_to_screen("LEGASOV USES FIREOUT", BLACK, 485, 70)
+                blockCheck_EN = False
+                message_to_screen("MATTARELLA USES DODGE", BLACK, 450, 60) 
+                message_to_screen("LEGASOV USES FIREOUT", BLACK, 485, 90)
                 win.blit(pg_fire, (210, 70))
         
             elif blockCheck_EN == True:
-                message_to_screen("MATTARELLA USES BLOCK", BLACK, 470, 40) 
-                message_to_screen("LEGASOV USES FIREOUT", BLACK, 485, 70)
+                dodgeCheck_EN = False
+                message_to_screen("MATTARELLA USES BLOCK", BLACK, 450, 60) 
+                message_to_screen("LEGASOV USES FIREOUT", BLACK, 485, 90)
                 win.blit(enemy2_hit, (900, 110))
                 win.blit(pg_fire, (210, 70))
                 
@@ -828,7 +891,7 @@ def event_Fire():
             pg_image = pygame.image.load("images/hornyProtag.png")
             win.blit(pg_image, (100, 85))        
             win.blit(enemy2_fire, (250, 110))
-            message_to_screen("MATTARELLA USES INCENDIO", BLACK, 485, 40)    
+            message_to_screen("MATTARELLA USES INCENDIO", BLACK, 450, 60)    
             
             for i in range(len(hp_bar_pg)):
                 if i == (len(hp_bar_pg) - 1):
@@ -846,13 +909,15 @@ def event_Fire():
         
         else:
             if dodgeCheck_PG == True:
-                message_to_screen("LEGASOV USES DODGE", BLACK, 470, 40)
-                message_to_screen("MATTARELLA USES INCENDIO", BLACK, 485, 70)
+                blockCheck_PG = False
+                message_to_screen("LEGASOV USES DODGE", BLACK, 460, 60)
+                message_to_screen("MATTARELLA USES INCENDIO", BLACK, 450, 90)
                 win.blit(enemy2_fire, (250, 110))
         
             elif blockCheck_PG == True:
-                message_to_screen("LEGASOV USES BLOCK", BLACK, 470, 40)
-                message_to_screen("MATTARELLA USES INCENDIO", BLACK, 485, 70)
+                dodgeCheck_PG = False
+                message_to_screen("LEGASOV USES BLOCK", BLACK, 460, 60)
+                message_to_screen("MATTARELLA USES INCENDIO", BLACK, 450, 90)
                 win.blit(pg_image, (100, 85)) 
                 win.blit(enemy2_fire, (250, 110))
                 
@@ -884,6 +949,8 @@ def event_Fire():
 def event_Kick2():
     global pg_image, enemy2_image, hp_bar_en, hp_bar_pg, currentEN_HP, currentPG_HP, turnCheck, dodgeCheck_EN, dodgeCheck_PG, blockCheck_EN, blockCheck_PG, hpENcheck, hpPGcheck, hpENhalf, hpPGhalf
     x = 100
+    if levelCount == 3:
+        return    
     pg_image.fill(transparent)
     enemy2_image.fill(transparent)
     game_layout2()
@@ -894,11 +961,13 @@ def event_Kick2():
             #NO DAMAGE REDUCTION OR DODGE
             win.blit(enemy2_hit, (900, 110))
             win.blit(pg_kick, (770, 85))
-            message_to_screen("LEGASOV USES KICK", BLACK, 490, 40)    
+            message_to_screen("LEGASOV USES KICK", BLACK, 470, 60)    
             
             for i in range(len(hp_bar_en)):
                 if i == (len(hp_bar_en) - 1):
-                    if hpENcheck[i] == True:   
+                    if currentEN_HP == [ grayhpen_image, grayhpen_image, halfhpen_image ]:
+                        currentEN_HP = [ grayhpen_image, grayhpen_image, grayhpen_image ]
+                    elif hpENcheck[i] == True:   
                         currentEN_HP[i] = grayhpen_image
                         hp_bar_en.pop(i)
                         hpENcheck[i] = False
@@ -909,20 +978,26 @@ def event_Kick2():
                         hpENcheck[i] = False
                         if i >= 1:    
                             hpENhalf[i - 1] = True
-        
+                    if currentEN_HP == [ grayhpen_image, grayhpen_image, halfhpen_image ]:
+                        currentEN_HP = [ grayhpen_image, grayhpen_image, grayhpen_image ]
+                        en_HP()
+
         else:
             if dodgeCheck_EN == True:
                 #DODGED -- SCHIVATO
-                message_to_screen("MATTARELLA USES DODGE", BLACK, 470, 40) 
-                message_to_screen("LEGASOV USES KICK", BLACK, 505, 70)
+                blockCheck_EN = False
+                message_to_screen("MATTARELLA USES DODGE", BLACK, 450, 60) 
+                message_to_screen("LEGASOV USES KICK", BLACK, 470, 90)
                 win.blit(pg_kick, (770, 110))
         
             elif blockCheck_EN == True:
                 #BLOCKED -- BLOCCATO
-                message_to_screen("MATTARELLA USES BLOCK", BLACK, 470, 40) 
-                message_to_screen("LEGASOV USES KICK", BLACK, 505, 70)
+                dodgeCheck_EN = False
+                message_to_screen("MATTARELLA USES BLOCK", BLACK, 450, 60) 
+                message_to_screen("LEGASOV USES KICK", BLACK, 470, 90)
                 win.blit(enemy2_hit, (900, 110))
                 win.blit(pg_kick, (770, 110))
+                
                 for i in range(len(hp_bar_en)):
                     if i == (len(hp_bar_en) - 1):
                         if hpENcheck[i] == True:   
@@ -941,7 +1016,7 @@ def event_Kick2():
             pg_image = pygame.image.load("images/hornyProtag.png")
             win.blit(pg_image, (100, 85))        
             win.blit(enemy2_hit, (180, 110))
-            message_to_screen("MATTARELLA USES KICK", BLACK, 485, 40)    
+            message_to_screen("MATTARELLA USES KICK", BLACK, 450, 60)    
             
             for i in range(len(hp_bar_pg)):
                 if i == (len(hp_bar_pg) - 1):
@@ -960,14 +1035,16 @@ def event_Kick2():
         else:
             if dodgeCheck_PG == True:
                 #DODGED -- SCHIVATO
-                message_to_screen("LEGASOV USES DODGE", BLACK, 470, 40)
-                message_to_screen("MATTARELLA USES KICK", BLACK, 485, 70)
+                blockCheck_PG = False
+                message_to_screen("LEGASOV USES DODGE", BLACK, 460, 60)
+                message_to_screen("MATTARELLA USES KICK", BLACK, 450, 90)
                 win.blit(enemy2_hit, (200, 110))
         
             elif blockCheck_PG == True:
                 #BLOCKED -- BLOCCATO
-                message_to_screen("LEGASOV USES BLOCK", BLACK, 470, 40)
-                message_to_screen("MATTARELLA USES KICK", BLACK, 485, 70)
+                dodgeCheck_PG = False
+                message_to_screen("LEGASOV USES BLOCK", BLACK, 460, 60)
+                message_to_screen("MATTARELLA USES KICK", BLACK, 450, 90)
                 win.blit(pg_image, (100, 85)) 
                 win.blit(enemy2_hit, (200, 110))
                 
@@ -998,16 +1075,22 @@ def event_Kick2():
 #evento dodge livello 2
 def event_Dodge2():
     global dodgeCheck_PG, dodgeCheck_EN
+    if levelCount == 3:
+        return    
     pass
 
 #evento block livello 2
 def event_Block2():
     global blockCheck_PG, blockCheck_EN
+    if levelCount == 3:
+        return    
     pass
 
 #evento nemico livello 2
 def event_Enemy2():
     global turnCheck, dodgeCheck_EN, blockCheck_EN
+    if levelCount == 3:
+        return
     
     move = random.randint(0, 3)
     if move == 0:
@@ -1032,15 +1115,300 @@ def event_Enemy2():
     pygame.time.wait(250)
 
 
+#evento 1st atk lvl 3
+def event_Fire2():    
+    global pg_image, enemy3_image, hp_bar_en, hp_bar_pg, currentEN_HP, currentPG_HP, turnCheck, dodgeCheck_EN, dodgeCheck_PG, blockCheck_EN, blockCheck_PG, hpENcheck, hpPGcheck, hpENhalf, hpPGhalf
+    x = 100
+    pg_image.fill(transparent)
+    enemy3_image.fill(transparent)
+    game_layout3()
+    
+    if turnCheck == True:
+        #Turno Protagonista
+        if dodgeCheck_EN == False and blockCheck_EN == False:    
+            win.blit(enemy3_hit, (900, 110))
+            win.blit(pg_fire, (210, 70))
+            message_to_screen("LEGASOV USES FIREOUT", BLACK, 470, 60)    
+            
+            for i in range(len(hp_bar_en)):
+                if i == (len(hp_bar_en) - 1):
+                    if currentEN_HP == [ grayhpen_image, grayhpen_image, halfhpen_image ]:
+                        currentEN_HP = [ grayhpen_image, grayhpen_image, grayhpen_image ]
+                    elif hpENcheck[i] == True:   
+                        currentEN_HP[i] = grayhpen_image
+                        hp_bar_en.pop(i)
+                        hpENcheck[i] = False
+                    elif hpENhalf[i] == True:
+                        currentEN_HP[i] = grayhpen_image
+                        currentEN_HP[i - 1] = halfhpen_image
+                        hp_bar_en.pop(i)
+                        hpENcheck[i] = False
+                        if i >= 1:    
+                            hpENhalf[i - 1] = True
+                    if currentEN_HP == [ grayhpen_image, grayhpen_image, halfhpen_image ]:
+                        currentEN_HP = [ grayhpen_image, grayhpen_image, grayhpen_image ]
+                        en_HP()
+
+        else:
+            if dodgeCheck_EN == True:
+                blockCheck_EN = False
+                message_to_screen("APE USES DODGE", BLACK, 450, 60) 
+                message_to_screen("LEGASOV USES FIREOUT", BLACK, 485, 90)
+                win.blit(pg_fire, (210, 70))
+        
+            elif blockCheck_EN == True:
+                dodgeCheck_EN = False
+                message_to_screen("APE USES BLOCK", BLACK, 450, 60) 
+                message_to_screen("LEGASOV USES FIREOUT", BLACK, 485, 90)
+                win.blit(enemy3_hit, (900, 110))
+                win.blit(pg_fire, (210, 70))
+                
+                for i in range(len(hp_bar_en)):
+                    if i == (len(hp_bar_en) - 1):
+                        if hpENcheck[i] == True:   
+                            currentEN_HP[i] = halfhpen_image
+                            hpENcheck[i] = False
+                            hpENhalf[i] = True
+                        elif hpENhalf[i] == True:
+                            currentEN_HP[i] = grayhpen_image
+                            hp_bar_en.pop(i)
+                            hpENcheck[i] = False
+                            hpENhalf[i] = False   
+    else:
+        #Turno Nemico
+        if dodgeCheck_PG == False and blockCheck_PG == False:    
+            pg_image = pygame.image.load("images/hornyProtag.png")
+            win.blit(pg_image, (100, 85))        
+            win.blit(enemy3_fire, (250, 110))
+            message_to_screen("APE USES FLAME MANTLE", BLACK, 450, 60)    
+            
+            for i in range(len(hp_bar_pg)):
+                if i == (len(hp_bar_pg) - 1):
+                    if hpPGcheck[i] == True:   
+                        currentPG_HP[i] = grayhpen_image
+                        hp_bar_pg.pop(i)
+                        hpPGcheck[i] = False
+                    elif hpPGhalf[i] == True:
+                        currentPG_HP[i] = grayhpen_image
+                        currentPG_HP[i - 1] = halfhpen_image
+                        hp_bar_pg.pop(i)
+                        hpPGcheck[i] = False
+                        if i >= 1:    
+                            hpPGhalf[i - 1] = True
+        
+        else:
+            if dodgeCheck_PG == True:
+                blockCheck_PG = False
+                message_to_screen("LEGASOV USES DODGE", BLACK, 460, 60)
+                message_to_screen("APE USES FLAME MANTLE", BLACK, 450, 90)
+                win.blit(enemy3_fire, (250, 110))
+        
+            elif blockCheck_PG == True:
+                dodgeCheck_PG = False
+                message_to_screen("LEGASOV USES BLOCK", BLACK, 460, 60)
+                message_to_screen("APE USES FLAME MANTLE", BLACK, 450, 90)
+                win.blit(pg_image, (100, 85)) 
+                win.blit(enemy3_fire, (250, 110))
+                
+                for i in range(len(hp_bar_pg)):
+                    if i == (len(hp_bar_pg) - 1):
+                        if hpPGcheck[i] == True:   
+                            currentPG_HP[i] = halfhpen_image
+                            hpPGcheck[i] = False
+                            hpPGhalf[i] = True
+                        elif hpPGhalf[i] == True:
+                            currentPG_HP[i] = grayhpen_image
+                            hp_bar_pg.pop(i)
+                            hpPGcheck[i] = False
+                            hpPGhalf[i] = False 
+
+    dodgeCheck_PG = False   
+    dodgeCheck_EN = False    
+    blockCheck_EN = False
+    blockCheck_PG = False
+    pg_HP()
+    en_HP()
+    pygame.display.flip()
+    pygame.time.wait(750)
+    message_to_screen(" ", transparent, 185, 40)
+    pg_image = pygame.image.load("images/hornyProtag.png")
+    enemy3_image = pygame.image.load("images/apeStand.png")
+
+
+#evento kick / 2nd atk livello 3
+def event_Slash():
+    global pg_image, enemy3_image, hp_bar_en, hp_bar_pg, currentEN_HP, currentPG_HP, turnCheck, dodgeCheck_EN, dodgeCheck_PG, blockCheck_EN, blockCheck_PG, hpENcheck, hpPGcheck, hpENhalf, hpPGhalf
+    x = 100
+    pg_image.fill(transparent)
+    enemy3_image.fill(transparent)
+    game_layout3()
+    
+    if turnCheck == True:
+        #Turno Protagonista 
+        if dodgeCheck_EN == False and blockCheck_EN == False:    
+            #NO DAMAGE REDUCTION OR DODGE
+            win.blit(enemy3_hit, (900, 110))
+            win.blit(pg_slash, (770, 85))
+            message_to_screen("LEGASOV USES SLASH", BLACK, 470, 60)    
+            
+            for i in range(len(hp_bar_en)):
+                if i == (len(hp_bar_en) - 1):
+                    if currentEN_HP == [ grayhpen_image, grayhpen_image, halfhpen_image ]:
+                        currentEN_HP = [ grayhpen_image, grayhpen_image, grayhpen_image ]
+                    elif hpENcheck[i] == True:   
+                        currentEN_HP[i] = grayhpen_image
+                        hp_bar_en.pop(i)
+                        hpENcheck[i] = False
+                    elif hpENhalf[i] == True:
+                        currentEN_HP[i] = grayhpen_image
+                        currentEN_HP[i - 1] = halfhpen_image
+                        hp_bar_en.pop(i)
+                        hpENcheck[i] = False
+                        if i >= 1:    
+                            hpENhalf[i - 1] = True
+                    if currentEN_HP == [ grayhpen_image, grayhpen_image, halfhpen_image ]:
+                        currentEN_HP = [ grayhpen_image, grayhpen_image, grayhpen_image ]
+                        en_HP()
+
+        else:
+            if dodgeCheck_EN == True:
+                #DODGED -- SCHIVATO
+                blockCheck_EN = False
+                message_to_screen("APE USES STELLAR DODGE", BLACK, 440, 60) 
+                message_to_screen("LEGASOV USES SLASH", BLACK, 470, 90)
+                win.blit(pg_slash, (770, 110))
+        
+            elif blockCheck_EN == True:
+                #BLOCKED -- BLOCCATO
+                dodgeCheck_EN = False
+                message_to_screen("APE USES STELLAR BLOCK", BLACK, 440, 60) 
+                message_to_screen("LEGASOV USES SLASH", BLACK, 470, 90)
+                win.blit(enemy3_hit, (900, 110))
+                win.blit(pg_slash, (770, 110))
+                
+                for i in range(len(hp_bar_en)):
+                    if i == (len(hp_bar_en) - 1):
+                        if hpENcheck[i] == True:   
+                            currentEN_HP[i] = halfhpen_image
+                            hpENcheck[i] = False
+                            hpENhalf[i] = True
+                        elif hpENhalf[i] == True:
+                            currentEN_HP[i] = grayhpen_image
+                            hp_bar_en.pop(i)
+                            hpENcheck[i] = False
+                            hpENhalf[i] = False
+    else:
+        #Turno Nemico
+        if dodgeCheck_PG == False and blockCheck_PG == False:    
+            #NO DAMAGE REDUCTION OR DODGE
+            pg_image = pygame.image.load("images/hornyProtag.png")
+            win.blit(pg_image, (100, 85))        
+            win.blit(enemy3_slash, (180, 110))
+            message_to_screen("APE USES STELLAR SLASH", BLACK, 450, 60)    
+            
+            for i in range(len(hp_bar_pg)):
+                if i == (len(hp_bar_pg) - 1):
+                    if hpPGcheck[i] == True:   
+                        currentPG_HP[i] = grayhpen_image
+                        hp_bar_pg.pop(i)
+                        hpPGcheck[i] = False
+                    elif hpPGhalf[i] == True:
+                        currentPG_HP[i] = grayhpen_image
+                        currentPG_HP[i - 1] = halfhpen_image
+                        hp_bar_pg.pop(i)
+                        hpPGcheck[i] = False
+                        if i >= 1:    
+                            hpPGhalf[i - 1] = True
+        
+        else:
+            if dodgeCheck_PG == True:
+                #DODGED -- SCHIVATO
+                blockCheck_PG = False
+                message_to_screen("LEGASOV USES DODGE", BLACK, 460, 60)
+                message_to_screen("MATTARELLA USES KICK", BLACK, 450, 90)
+                win.blit(enemy3_slash, (200, 110))
+        
+            elif blockCheck_PG == True:
+                #BLOCKED -- BLOCCATO
+                dodgeCheck_PG = False
+                message_to_screen("LEGASOV USES BLOCK", BLACK, 460, 60)
+                message_to_screen("MATTARELLA USES KICK", BLACK, 450, 90)
+                win.blit(pg_image, (100, 85)) 
+                win.blit(enemy3_slash, (200, 110))
+                
+                for i in range(len(hp_bar_pg)):
+                    if i == (len(hp_bar_pg) - 1):
+                        if hpPGcheck[i] == True:   
+                            currentPG_HP[i] = halfhpen_image
+                            hpPGcheck[i] = False
+                            hpPGhalf[i] = True
+                        elif hpPGhalf[i] == True:
+                            currentPG_HP[i] = grayhpen_image
+                            hp_bar_pg.pop(i)
+                            hpPGcheck[i] = False
+                            hpPGhalf[i] = False   
+
+    dodgeCheck_EN = False
+    dodgeCheck_PG = False
+    blockCheck_EN = False
+    blockCheck_PG = False
+    pg_HP()
+    en_HP()
+    pygame.display.flip()
+    pygame.time.wait(750)
+    message_to_screen(" ", transparent, 185, 40)    
+    pg_image = pygame.image.load("images/hornyProtag.png")
+    enemy3_image = pygame.image.load("images/apeStand.png")
+
+
+#evento dodge livello 3
+def event_Dodge3():
+    global dodgeCheck_PG, dodgeCheck_EN
+    pass
+
+#evento block livello 3
+def event_Block3():
+    global blockCheck_PG, blockCheck_EN
+    pass
+
+
+#evento nemico livello 3
+def event_Enemy3():
+    global turnCheck, dodgeCheck_EN, blockCheck_EN
+    
+    move = random.randint(0, 3)
+    if move == 0:
+        print("FLAME MANTLE")
+        event_Fire2()
+    
+    if move == 1:
+        print("STELLAR SLASH")
+        event_Slash()
+    
+    if move == 2:
+        print("STELLAR DODGE")
+        event_Dodge3()
+        dodgeCheck_EN = True
+    
+    if move == 3:
+        print("STELLAR BLOCK")
+        event_Block3()
+        blockCheck_EN = True
+
+    turnCheck = True
+    pygame.time.wait(250)
+
+
 #vittoria player png
 def player_win():
-    global pg_image, enemy_image
+    global pg_image, enemy_image, currentEN_HP
 
-    mainWindow()
+    mainWindow(bg_lvl1)
     pg_image.fill(transparent)
     enemy_image.fill(transparent)
-    game_layout()
-    
+    currentEN_HP = [ grayhpen_image, grayhpen_image, grayhpen_image ]
+
+    game_layout()   
     win.blit(enemy_hit, (900, 110))
     win.blit(pg_win,(100,85))
     pygame.display.flip()
@@ -1049,15 +1417,17 @@ def player_win():
     pg_image = pygame.image.load("images/hornyProtag.png")
     enemy_image = pygame.image.load("images/hornySalvini.png")
 
+
 #vittoria player png 2
 def player_win2():
-    global pg_image, enemy2_image
+    global pg_image, enemy2_image, currentEN_HP
 
-    mainWindow()
+    mainWindow(bg_lvl2)
     pg_image.fill(transparent)
     enemy2_image.fill(transparent)
+    currentEN_HP = [ grayhpen_image, grayhpen_image, grayhpen_image ]
+
     game_layout2()
-    
     win.blit(enemy2_hit, (900, 110))
     win.blit(pg_win,(100,85))
     pygame.display.flip()
@@ -1067,13 +1437,32 @@ def player_win2():
     enemy2_image = pygame.image.load("images/chefNibba.png")
 
 
+#vittoria player png 3
+def player_win3():
+    global pg_image, enemy3_image, currentEN_HP
+
+    mainWindow(bg_lvl3)
+    pg_image.fill(transparent)
+    enemy3_image.fill(transparent)
+    currentEN_HP = [ grayhpen_image, grayhpen_image, grayhpen_image ]
+
+    game_layout3()
+    win.blit(enemy3_hit, (900, 110))
+    win.blit(pg_win,(100,85))
+    pygame.display.flip()
+    pygame.time.wait(750)
+
+    pg_image = pygame.image.load("images/hornyProtag.png")
+    enemy3_image = pygame.image.load("images/apeStand.png")
+
+
 #livello 1
 def game_layout():
     global levelCount
     if levelCount == 2:
         return
     
-    win.blit(bg_image, (0, 0))
+    win.blit(bg_lvl1, (0, 0))
     win.blit(pg_image,(100,85))  #pg
     win.blit(enemy_image,(900,110))  #enemy
     win.blit(menufight_image, (100, 475))    #menufight
@@ -1082,16 +1471,18 @@ def game_layout():
     pg_HP()
     en_HP()
     message_to_screen("KOWALSKI LEGASOV", BLACK, 85, 10)
+    message_to_screen("LIVELLO 1", BLACK, 555, 10)
     message_to_screen("BRIGADIERE RUSPA", BLACK, 845, 10)
     pygame.display.update()
+
 
 #livello 2
 def game_layout2():
     global levelCount
-    if levelCount > 2 or levelCount == 1:
+    if levelCount > 2:
         return
 
-    win.blit(bg_image, (0, 0))
+    win.blit(bg_lvl2, (0, 0))
     win.blit(pg_image,(100,85))  #pg
     win.blit(enemy2_image,(900,110))  #enemy2
     win.blit(menufight_image2, (100, 475))    #menufight2
@@ -1100,8 +1491,28 @@ def game_layout2():
     pg_HP()
     en_HP()
     message_to_screen("KOWALSKI LEGASOV", BLACK, 85, 10)
+    message_to_screen("LIVELLO 2", BLACK, 525, 10)
     message_to_screen("BRIGADIERE MATTARELLA", BLACK, 765, 10)
     pygame.display.update()
+
+
+#livello 3
+def game_layout3():
+    global levelCount
+
+    win.blit(bg_lvl3, (0, 0))
+    win.blit(pg_image,(100,85))  #pg
+    win.blit(enemy3_image,(900,110))  #enemy2
+    win.blit(menufight_image3, (100, 475))    #menufight2
+    win.blit(iconpg_image, (10, 10)) #iconpg
+    win.blit(iconEN3_img, (1175, 10))   #iconenemy2
+    pg_HP()
+    en_HP()
+    message_to_screen("KOWALSKI LEGASOV", BLACK, 85, 10)
+    message_to_screen("LIVELLO 3", BLACK, 525, 10)
+    message_to_screen("IL GORILLA STELLARE", BLACK, 765, 10)
+    pygame.display.update()
+
 
 #menu iniziale
 def game_intro():
@@ -1138,9 +1549,9 @@ def game_loop():
     global videoCheck, turnCheck, turnNMB, levelCount, hp_bar_en, hp_bar_pg
     runGame = True
     reset()
-    mainWindow()
     while runGame:
         if levelCount == 1:
+            mainWindow(bg_lvl1)
             game_layout()
             pygame.time.wait(150)
 
@@ -1169,7 +1580,7 @@ def game_loop():
                 event_Enemy()
         
         elif levelCount == 2:           
-            mainWindow()
+            mainWindow(bg_lvl2)
             game_layout2()
             pygame.time.wait(150)
             
@@ -1177,12 +1588,15 @@ def game_loop():
                 player_win2()
                 pygame.time.wait(1150)
                 endScreen()
-                game_intro()
+                turnCheck = True
+                levelCount = 3
 
             if hp_bar_pg == []:
                 pygame.time.wait(1150)
                 endScreen()
+                reset()
                 game_intro()
+                levelCount = 1
 
             if turnCheck == True:
                 gameButton(162, 534, 257, 59, event_Fire, turnCheck)
@@ -1193,6 +1607,32 @@ def game_loop():
                 turnNMB = 0
                 pygame.time.wait(400)
                 event_Enemy2()
+        
+        elif levelCount == 3:        
+            mainWindow(bg_lvl3)
+            game_layout3()
+            pygame.time.wait(150)
+            
+            if hp_bar_en == []:
+                player_win3()
+                pygame.time.wait(1150)
+                endScreen()
+                game_intro()
+
+            if hp_bar_pg == []:
+                pygame.time.wait(1150)
+                endScreen()
+                game_intro()
+
+            if turnCheck == True:
+                gameButton(162, 534, 257, 59, event_Fire2, turnCheck)
+                gameButton(445, 534, 257, 59, event_Slash, turnCheck)
+                gameButton(162, 616, 257, 59, event_Dodge3, turnCheck)
+                gameButton(445, 616, 257, 59, event_Block3, turnCheck)
+            else:
+                turnNMB = 0
+                pygame.time.wait(400)
+                event_Enemy3()
 
 
         for event in pygame.event.get():       
