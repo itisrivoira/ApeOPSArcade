@@ -26,8 +26,26 @@ export class LVLScene extends Phaser.Scene {
 
     init(data) {
         console.log(data);
+        this.flagSound = data.flagSound;
     }
     create() {
+        //music
+        if (this.flagSound == 1) {
+            this.sound.removeAll();
+            this.sound.pauseOnBlur = false;
+            this.sound.play("battle", {
+                loop: false,
+                volume: 0.5
+            });
+            this.sound.play("bgBattle", {
+                loop: true,
+                volume: 0.2
+            });
+        }
+
+        //background image
+        this.add.image(0, 0, "LVLScene-background").setOrigin(0).setDepth(0);
+
         //Added enter and exit keys
         this.cursors = this.input.keyboard.createCursorKeys();
         this.keys = this.input.keyboard.addKeys({ 'enter': Phaser.Input.Keyboard.KeyCodes.ENTER, 'exit1': Phaser.Input.Keyboard.KeyCodes.F4, 'exit2': Phaser.Input.Keyboard.KeyCodes.ALT });
@@ -37,6 +55,12 @@ export class LVLScene extends Phaser.Scene {
 
         //Sets game canvas size to 1280x720
         this.game.scale.resize(1280, 720);
+
+        let textlevel = this.add.text(this.game.renderer.width - 740, 0, "STAGE N°1", {
+            fontFamily: "Droid Sans",
+            fontSize: "40px",
+            fill: "#000000"
+        });
 
 
         //Menu images

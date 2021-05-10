@@ -46,6 +46,8 @@ export class LoadScene extends Phaser.Scene {
         this.load.image("CommandsScene-alt_f4_key", "src/assets/commands_sub/cmds/alt_f4key.png");
 
         //LVLScene assets
+        this.load.image("LVLScene-background", "src/assets/lvlAssets/background.png");
+
         this.load.image("LVLScene-menuFight", "src/assets/lvlAssets/menu_ingame_fight.png");
         this.load.image("LVLScene-menuItems", "src/assets/lvlAssets/menu_ingame_items.png");
 
@@ -71,6 +73,8 @@ export class LoadScene extends Phaser.Scene {
         this.load.image("LVLScene-brigadiereRuspaHit", "src/assets/lvlAssets/brigadiereRuspa_hit.png");
 
         //LVL2Scene Assets
+        this.load.image("LVL2Scene-background", "src/assets/lvl2Assets/background.png");
+
         this.load.image("LVL2Scene-menu", "src/assets/lvl2Assets/menu_ingame_fight2.png");
         this.load.image("LVL2Scene-protagActionFire", "src/assets/lvl2Assets/protagFire.png");
         this.load.image("LVL2Scene-brigadiereMattarella", "src/assets/lvl2Assets/chefNibba.png");
@@ -78,8 +82,21 @@ export class LoadScene extends Phaser.Scene {
         this.load.image("LVL2Scene-brigadiereMattarellaHit", "src/assets/lvl2Assets/chefNibba_hit.png");
         this.load.image("LVL2Scene-brigadiereMattarellaIcon", "src/assets/lvl2Assets/chefNibba_icon.png");
 
+        //LVL3Scene Assets
+        this.load.image("LVL3Scene-background", "src/assets/lvl3Assets/background.png");
+
+        this.load.image("LVL3Scene-menu", "src/assets/lvl3Assets/menu_ingame_fight3.png");
+        this.load.image("LVL3Scene-protagSlash", "src/assets/lvl3Assets/protagSlash.png");
+        this.load.image("LVL3Scene-gorilla", "src/assets/lvl3Assets/apeStand.png");
+        this.load.image("LVL3Scene-gorillaFlame", "src/assets/lvl3Assets/apeFlameAtk.png");
+        this.load.image("LVL3Scene-gorillaSlash", "src/assets/lvl3Assets/apeSlash.png");
+        this.load.image("LVL3Scene-gorillaHit", "src/assets/lvl3Assets/apeHit.png");
+        this.load.image("LVL3Scene-gorillaIcon", "src/assets/lvl3Assets/apeIcon.png");
+
         //background music
         this.load.audio("bgMusic", "src/assets/sounds/bg_music.mp3");
+        this.load.audio("battle", "src/assets/sounds/battle.mp3");
+        this.load.audio("bgBattle", "src/assets/sounds/bg_battle.mp3");
 
         var progressBar = this.add.graphics();
         var progressBox = this.add.graphics();

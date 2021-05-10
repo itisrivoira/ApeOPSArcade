@@ -20,7 +20,8 @@ export class MenuScene extends Phaser.Scene {
         if (this.flagSound == 1) {
             this.sound.pauseOnBlur = false;
             this.sound.play("bgMusic", {
-                loop: true
+                loop: true,
+                volume: 0.5
             });
         }
 
@@ -34,7 +35,7 @@ export class MenuScene extends Phaser.Scene {
 
         playButton.on("pointerup", () => {
             console.log("LET ME IN");
-            this.scene.start(CST.SCENES.STARTER, "MenuScene HELLO");
+            this.scene.start(CST.SCENES.STARTER, { HELLO: "MenuScene HELLO", flagSound: this.flagSound });
         });
 
         optionsButton.on("pointerup", () => {

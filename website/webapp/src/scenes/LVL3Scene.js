@@ -1,8 +1,8 @@
 import { CST } from "../CST.js";
-export class LVL2Scene extends Phaser.Scene {
+export class LVL3Scene extends Phaser.Scene {
     constructor() {
         super({
-            key: CST.SCENES.LEVEL2
+            key: CST.SCENES.LEVEL3
         })
         this.hpsProtag = new Array();
         this.hpsEnemy = new Array();
@@ -29,7 +29,7 @@ export class LVL2Scene extends Phaser.Scene {
     }
     create() {
         //background image
-        this.add.image(0, 0, "LVL2Scene-background").setOrigin(0).setDepth(0);
+        this.add.image(0, 0, "LVL3Scene-background").setOrigin(0).setDepth(0);
 
         //Added enter and exit keys
         this.cursors = this.input.keyboard.createCursorKeys();
@@ -43,7 +43,7 @@ export class LVL2Scene extends Phaser.Scene {
 
 
         //Menu images
-        let menu = this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 1.2, "LVL2Scene-menu").setDepth(1);
+        let menu = this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 1.2, "LVL3Scene-menu").setDepth(1);
         let attack_1 = this.add.image(this.game.renderer.width - 987, this.game.renderer.height - 163, "LVLScene-menuHiddenButton").setDepth(0);
         let attack_2 = this.add.image(this.game.renderer.width - 702, this.game.renderer.height - 163, "LVLScene-menuHiddenButton").setDepth(1);
         let dodge = this.add.image(this.game.renderer.width - 987, this.game.renderer.height - 78, "LVLScene-menuHiddenButton").setDepth(1);
@@ -52,6 +52,12 @@ export class LVL2Scene extends Phaser.Scene {
         let fight = this.add.image(this.game.renderer.width - 322, this.game.renderer.height - 181, "LVLScene-menuHiddenButton").setDepth(1);
         let items = this.add.image(this.game.renderer.width - 322, this.game.renderer.height - 112, "LVLScene-menuHiddenButton2").setDepth(1);
         let quit = this.add.image(this.game.renderer.width - 322, this.game.renderer.height - 55, "LVLScene-menuHiddenButton2").setDepth(1);
+
+        let textlevel = this.add.text(this.game.renderer.width - 740, 0, "STAGE N°3", {
+            fontFamily: "Droid Sans",
+            fontSize: "40px",
+            fill: "#ffffff"
+        });
 
         //Menu images setInteractive()
         attack_1.setInteractive();
@@ -62,17 +68,11 @@ export class LVL2Scene extends Phaser.Scene {
         items.setInteractive();
         quit.setInteractive();
 
-        let textlevel = this.add.text(this.game.renderer.width - 740, 0, "STAGE N°2", {
-            fontFamily: "Droid Sans",
-            fontSize: "40px",
-            fill: "#000000"
-        });
-
         //Protagonist start image
         this.protagonist = this.add.image(this.game.renderer.width / 5.5, this.game.renderer.height / 2.5, "LVLScene-protag").setDepth(0);
 
         //Enemy start image
-        this.enemy = this.add.image(this.game.renderer.width / 1.2, this.game.renderer.height / 2.35, "LVL2Scene-brigadiereMattarella").setDepth(0);
+        this.enemy = this.add.image(this.game.renderer.width / 1.2, this.game.renderer.height / 2.35, "LVL3Scene-gorilla").setDepth(0);
 
         attack_1.on("pointerup", () => {
             if ((this.checkRound && this.checkAction) && this.hpEnemyRemaining > 0 && this.hpProtagRemaining > 0) {
@@ -81,15 +81,15 @@ export class LVL2Scene extends Phaser.Scene {
                 let text = this.add.text(this.game.renderer.width - 805, 50, "LEGASOV USA LANCIAFIAMME", {
                     fontFamily: "Droid Sans",
                     fontSize: "24px",
-                    fill: "#000000"
+                    fill: "#ffffff"
                 });
 
                 this.protagonist.setDepth(1);
                 this.protagonist.setPosition(700, this.game.renderer.height / 2.5);
                 this.protagonist.setTexture("LVL2Scene-protagActionFire");
-                this.enemy.setTexture("LVL2Scene-brigadiereMattarellaHit");
+                this.enemy.setTexture("LVL3Scene-gorillaHit");
 
-                this.hpEnemyModifier(3);
+                this.hpEnemyModifier(2.5);
 
                 this.time.addEvent({
                     delay: 3000,
@@ -101,7 +101,7 @@ export class LVL2Scene extends Phaser.Scene {
                         this.protagonist.setDepth(0);
                         this.protagonist.setPosition(this.game.renderer.width / 5.5, this.game.renderer.height / 2.5);
                         this.protagonist.setTexture("LVLScene-protag");
-                        this.enemy.setTexture("LVL2Scene-brigadiereMattarella");
+                        this.enemy.setTexture("LVL3Scene-gorilla");
                         console.log("PUNCH [protagonista] finito");
                         this.checkEnemy_BlockDodge = 0;
                     }
@@ -112,16 +112,16 @@ export class LVL2Scene extends Phaser.Scene {
             if ((this.checkRound && this.checkAction) && this.hpEnemyRemaining > 0 && this.hpProtagRemaining > 0) {
                 this.checkAction = false;
 
-                let text = this.add.text(this.game.renderer.width - 760, 50, "LEGASOV USA KICK", {
+                let text = this.add.text(this.game.renderer.width - 830, 50, "LEGASOV USA COLTELLO TATTICO", {
                     fontFamily: "Droid Sans",
                     fontSize: "24px",
-                    fill: "#000000"
+                    fill: "#ffffff"
                 });
 
                 this.protagonist.setDepth(1);
-                this.protagonist.setPosition(900, this.game.renderer.height / 2.5);
-                this.protagonist.setTexture("LVLScene-protagActionKick");
-                this.enemy.setTexture("LVL2Scene-brigadiereMattarellaHit");
+                this.protagonist.setPosition(860, this.game.renderer.height / 2.5);
+                this.protagonist.setTexture("LVL3Scene-protagSlash");
+                this.enemy.setTexture("LVL3Scene-gorillaHit");
 
                 this.hpEnemyModifier(2);
 
@@ -135,8 +135,8 @@ export class LVL2Scene extends Phaser.Scene {
                         this.protagonist.setDepth(0);
                         this.protagonist.setPosition(this.game.renderer.width / 5.5, this.game.renderer.height / 2.5);
                         this.protagonist.setTexture("LVLScene-protag");
-                        this.enemy.setTexture("LVL2Scene-brigadiereMattarella");
-                        console.log("KICK [protagonista] finito");
+                        this.enemy.setTexture("LVL3Scene-gorilla");
+                        console.log("SLASH [protagonista] finito");
                         this.checkEnemy_BlockDodge = 0;
                     }
                 });
@@ -149,7 +149,7 @@ export class LVL2Scene extends Phaser.Scene {
                 let text = this.add.text(this.game.renderer.width - 760, 50, "LEGASOV SCHIVA", {
                     fontFamily: "Droid Sans",
                     fontSize: "24px",
-                    fill: "#000000"
+                    fill: "#ffffff"
                 });
 
                 this.time.addEvent({
@@ -172,7 +172,7 @@ export class LVL2Scene extends Phaser.Scene {
                 let text = this.add.text(this.game.renderer.width - 760, 50, "LEGASOV BLOCCA", {
                     fontFamily: "Droid Sans",
                     fontSize: "24px",
-                    fill: "#000000"
+                    fill: "#ffffff"
                 });
 
                 this.time.addEvent({
@@ -192,7 +192,7 @@ export class LVL2Scene extends Phaser.Scene {
 
         });
         items.on("pointerup", () => {
-            this.scene.start(CST.SCENES.LEVEL3, { HELLO: "LVL2Scene HELLO" });
+
         });
         quit.on("pointerup", () => {
             this.game.destroy(true, true);
@@ -201,7 +201,7 @@ export class LVL2Scene extends Phaser.Scene {
 
         //Icons and HP images
         let protagIcon = this.add.image(this.game.renderer.width - 1235, this.game.renderer.height - 685, "LVLScene-protagIcon").setDepth(0);
-        let enemyIcon = this.add.image(this.game.renderer.width - 55, this.game.renderer.height - 685, "LVL2Scene-brigadiereMattarellaIcon").setDepth(0);
+        let enemyIcon = this.add.image(this.game.renderer.width - 50, this.game.renderer.height - 685, "LVL3Scene-gorillaIcon").setDepth(0);
 
         let starterWidth = 1170;
         for (let index = 0; index < this.maxHpProtag; index++) {
@@ -220,12 +220,12 @@ export class LVL2Scene extends Phaser.Scene {
         this.add.text(this.game.renderer.width - 1195, 8, "KOWALSKY LEGASOV", {
             fontFamily: "Droid Sans",
             fontSize: "32px",
-            fill: "#000000"
+            fill: "#ffffff"
         });
-        this.add.text(this.game.renderer.width - 465, 8, "BRIGADIERE MATTARELLA", {
+        this.add.text(this.game.renderer.width - 375, 8, "GORILLA STELLARE", {
             fontFamily: "Droid Sans",
             fontSize: "32px",
-            fill: "#000000"
+            fill: "#ffffff"
         });
 
         //HPS entities
@@ -248,23 +248,23 @@ export class LVL2Scene extends Phaser.Scene {
             if (this.hpEnemyRemaining > 0) {
                 switch (action) {
                     case 1:
-                        console.log("Brigadiere attacca con: INCENDIO");
+                        console.log("Gorilla attacca con: FIAMME");
                         this.checkAction = false;
 
-                        text = this.add.text(this.game.renderer.width - 790, 50, "MATTARELLA USA INCENDIO", {
+                        text = this.add.text(this.game.renderer.width - 790, 50, "GORILLA USA FIAMME", {
                             fontFamily: "Droid Sans",
                             fontSize: "24px",
-                            fill: "#000000"
+                            fill: "#ffffff"
                         });
 
                         this.time.addEvent({
                             delay: 1000,
                             callback: () => {
-                                this.hpProtagModifier(1);
+                                this.hpProtagModifier(3);
 
                                 this.enemy.setDepth(1);
                                 this.enemy.setPosition(420, this.game.renderer.height / 2.35);
-                                this.enemy.setTexture("LVL2Scene-brigadiereMattarellaFire");
+                                this.enemy.setTexture("LVL3Scene-gorillaFlame");
                             }
                         });
 
@@ -276,7 +276,7 @@ export class LVL2Scene extends Phaser.Scene {
 
                                 this.enemy.setDepth(0);
                                 this.enemy.setPosition(this.game.renderer.width / 1.2, this.game.renderer.height / 2.35);
-                                this.enemy.setTexture("LVL2Scene-brigadiereMattarella");
+                                this.enemy.setTexture("LVL3Scene-gorilla");
 
                                 text.destroy();
                                 this.checkProtag_BlockDodge = 0;
@@ -284,23 +284,23 @@ export class LVL2Scene extends Phaser.Scene {
                         });
                         break;
                     case 2:
-                        console.log("Brigadiere attacca con: Calcio");
+                        console.log("Gorilla attacca con: Taglio");
                         this.checkAction = false;
 
-                        text = this.add.text(this.game.renderer.width - 760, 50, "MATTARELLA USA KICK", {
+                        text = this.add.text(this.game.renderer.width - 760, 50, "GORILLA USA TAGLIO", {
                             fontFamily: "Droid Sans",
                             fontSize: "24px",
-                            fill: "#000000"
+                            fill: "#ffffff"
                         });
 
                         this.time.addEvent({
                             delay: 1000,
                             callback: () => {
-                                this.hpProtagModifier(2);
+                                this.hpProtagModifier(1.5);
 
                                 this.enemy.setDepth(1);
-                                this.enemy.setPosition(330, this.game.renderer.height / 2.35);
-                                this.enemy.setTexture("LVL2Scene-brigadiereMattarellaHit");
+                                this.enemy.setPosition(470, this.game.renderer.height / 2.35);
+                                this.enemy.setTexture("LVL3Scene-gorillaSlash");
                             }
                         });
 
@@ -311,7 +311,7 @@ export class LVL2Scene extends Phaser.Scene {
 
                                 this.enemy.setDepth(0);
                                 this.enemy.setPosition(this.game.renderer.width / 1.2, this.game.renderer.height / 2.35);
-                                this.enemy.setTexture("LVL2Scene-brigadiereMattarella");
+                                this.enemy.setTexture("LVL3Scene-gorilla");
 
                                 text.destroy();
                                 this.checkProtag_BlockDodge = 0;
@@ -319,13 +319,13 @@ export class LVL2Scene extends Phaser.Scene {
                         });
                         break;
                     case 3:
-                        console.log("Brigadiere schiva");
+                        console.log("Gorilla schiva");
                         this.checkAction = false;
 
-                        text = this.add.text(this.game.renderer.width - 760, 50, "MATTARELLA SCHIVA", {
+                        text = this.add.text(this.game.renderer.width - 760, 50, "GORILLA SCHIVA", {
                             fontFamily: "Droid Sans",
                             fontSize: "24px",
-                            fill: "#000000"
+                            fill: "#ffffff"
                         });
 
                         this.time.addEvent({
@@ -339,13 +339,13 @@ export class LVL2Scene extends Phaser.Scene {
                         this.checkProtag_BlockDodge = 0;
                         break;
                     case 4:
-                        console.log("Brigadiere blocca");
+                        console.log("Gorilla blocca");
                         this.checkAction = false;
 
-                        text = this.add.text(this.game.renderer.width - 760, 50, "MATTARELLA BLOCCA", {
+                        text = this.add.text(this.game.renderer.width - 760, 50, "GORILLA BLOCCA", {
                             fontFamily: "Droid Sans",
                             fontSize: "24px",
-                            fill: "#000000"
+                            fill: "#ffffff"
                         });
 
                         this.time.addEvent({
@@ -362,10 +362,10 @@ export class LVL2Scene extends Phaser.Scene {
                 this.checkRound = true;
             } else {
                 let youWon = this.add.image(this.game.renderer.width - 640, this.game.renderer.height - 450, "youWon").setDepth(1);
-                youWon.setInteractive();
+                /*youWon.setInteractive();
                 youWon.on("pointerup", () => {
-                    this.scene.start(CST.SCENES.LEVEL3, { HELLO: "LVL2Scene HELLO" });
-                });
+                    this.scene.start(CST.SCENES.LEVEL2, { HELLO: "LVLScene HELLO" });
+                });*/
                 this.enemy.destroy();
                 this.protagonist.setTexture("LVLScene-protagActionWin");
             }
@@ -374,7 +374,7 @@ export class LVL2Scene extends Phaser.Scene {
             let text = this.add.text(this.game.renderer.width - 760, 50, "HAI PERSO", {
                 fontFamily: "Droid Sans",
                 fontSize: "50px",
-                fill: "#000000"
+                fill: "#ffffff"
             });
             this.protagonist.destroy();
         }
