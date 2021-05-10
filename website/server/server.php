@@ -12,7 +12,7 @@
 	$mysqli = $con;
 
 	if (isset($_GET['change'])) {
-		if(isset($_GET['salva'])){
+		if(isset($_POST['salva'])){
 			$newNickname = $mysqli->real_escape_string($_POST['nickname']);
 			$newEmail = $mysqli->real_escape_string($_POST['email']);
 			$newNaz = $mysqli->real_escape_string($_POST['naz']);
@@ -20,44 +20,139 @@
 			$newPassword_1 = $mysqli->real_escape_string($_POST['password_1']);
 			$newPassword_2 = $mysqli->real_escape_string($_POST['password_2']);
 
-			if (strlen($newNickname) > 25) { array_push($errors, "Nickname scelto troppo lungo"); }
-			if (DateTime::createFromFormat('Y-m-d', $newDataNascita) === false) { array_push($errors, "Data scelta non disponibile, riprovare"); }
+			$nickname = $_SESSION['nickname'];
+			$query = "SELECT * FROM utente
+			WHERE utente.Nickname = '$nickname';";
+			$globalResults = $mysqli->query($query);
+			$globalRow = $globalResults->fetch_array(MYSQLI_ASSOC);
 
-			if (strlen($newPassword_1) < 6) {
-				array_push($errors, "La password è troppo debole");
+			if(!empty($newPassword_1) && md5($newPassword_1) != $globalRow['Password']){
+				if (strlen($newPassword_1) < 6) {
+					array_push($errors, "La password è troppo debole");
+				}
+	
+				if ($newPassword_1 != $newPassword_2) {
+					array_push($errors, "Le password non sono uguali");
+				}else{
+					$nickname = $_SESSION["nickname"];
+					$query = "SELECT * FROM utente
+					WHERE utente.Nickname = '$nickname';";
+					$results = $mysqli->query($query);
+
+					if ($results->num_rows == 1) {
+						$row = $results->fetch_array(MYSQLI_ASSOC);
+						$passwordResult = $row["Password"];
+						$md5Password = md5($newPassword_1);
+						if ($md5Password != $passwordResult) {
+							$oldNickname = $row['Nickname'];
+							$query = "UPDATE utente SET utente.Password = '$md5Password' WHERE utente.Nickname = '$oldNickname';";
+							$results = $mysqli->query($query);
+							if(!$results){
+								array_push($errors, "Errore durante inserimento informazioni dal db");
+							}else{
+								array_push($errors, "Password aggiornata!");
+							}
+						}else{
+							array_push($errors, "Utilizza una password diversa da quella vecchia!");
+						}
+					}else{
+						array_push($errors, "Errore durante recupero informazioni dal db");
+					}
+				}
 			}
 
-			if ($newPassword_1 != $newPassword_2) {
-				array_push($errors, "Le password non sono uguali");
+			if(!empty($newNickname)){
+				if (strlen($newNickname) > 25) { 
+					array_push($errors, "Nickname scelto troppo lungo"); 
+				}elseif(strlen($newNickname) < 4){
+					array_push($errors, "Nickname scelto troppo corto"); 
+				}else{
+					if($newNickname != $_SESSION['nickname']){
+						// Controllo che non esista un utente con nick identico
+						$query = "SELECT * FROM utente 
+						WHERE utente.Nickname = '$newNickname';";
+						$results = $mysqli->query($query);
+
+						if (!$results) {
+							array_push($errors, "Error description: " . $mysqli -> error);
+						}else{
+							if ($results->num_rows == 1) {
+								array_push($errors, "Nickname già in uso!");
+							}else{
+								$oldNickname = $_SESSION['nickname'];
+								$query = "UPDATE utente SET utente.Nickname = '$newNickname' WHERE utente.Nickname = '$oldNickname';";
+								$results = $mysqli->query($query);
+								if(!$results){
+									array_push($errors, "Errore durante inserimento informazioni nel db [NICKNAME]");
+								}else{
+									array_push($errors, "Nickname aggiornato!");
+									$_SESSION["nickname"] = $newNickname;
+								}
+							}
+						}
+					}
+				}
+			}else{
+				array_push($errors, "Campo nickname vuoto!");
 			}
 
-			if($newNickname != $_SESSION['nickname']){
-				// Controllo che non esista un utente con nick identico
-				$query = "SELECT * FROM utente 
+			if(!empty($newEmail)){
+				$nickname = $_SESSION["nickname"];
+				$query = "SELECT utente.Email FROM utente
 				WHERE utente.Nickname = '$nickname';";
 				$results = $mysqli->query($query);
-
-				if (!$results) {
-					array_push($errors, "Error description: " . $mysqli -> error);
+				$results = $results->fetch_array(MYSQLI_ASSOC);
+				if($newEmail != $results['Email']){
+					$query = "SELECT * FROM utente 
+					WHERE utente.Email = '$newEmail';";
+					$results = $mysqli->query($query);
+	
+					if (!$results) {
+						array_push($errors, "Error description: " . $mysqli -> error);
+					}else{
+						if ($results->num_rows >= 1) {
+							array_push($errors, "Email già in uso!");
+						}else{
+							$query = "UPDATE utente SET utente.Email = '$newEmail' WHERE utente.Nickname = '$nickname';";
+							$results = $mysqli->query($query);
+							if(!$results){
+								array_push($errors, "Errore durante inserimento informazioni nel db [EMAIL]");
+							}else{
+								array_push($errors, "Email aggiornata!");
+							}
+						}
+					}
 				}
+			}else{
+				array_push($errors, "Campo email vuoto!");
+			}
 
-				if ($results->num_rows == 1) {
-					array_push($errors, "Nickname già in uso!");
+			if(!empty($newDataNascita) && $newDataNascita != $globalRow['DataNascita']){
+				$nickname = $_SESSION['nickname'];
+				if (DateTime::createFromFormat('Y-m-d', $newDataNascita) === false) { 
+					array_push($errors, "Data scelta non disponibile, riprovare"); 
+				}else{
+					$query = "UPDATE utente SET utente.DataNascita = '$newDataNascita' WHERE utente.Nickname = '$nickname';";
+					$results = $mysqli->query($query);
+					if($results){
+						array_push($errors, "Data aggiornata!");						
+					}else{
+						array_push($errors, "Errore durante inserimento informazioni nel db [DATA]");
+					}
 				}
 			}
 
-			if($newEmail != $_SESSION['nickname']){
-			$query = "SELECT * FROM utente 
-			WHERE utente.Email = '$email';";
-			$results = $mysqli->query($query);
-
-			if (!$results) {
-				array_push($errors, "Error description: " . $mysqli -> error);
+			if(!empty($newNaz) && $newNaz != $globalRow['Nazione']){
+				$nickname = $_SESSION['nickname'];
+				$query = "UPDATE utente SET utente.Nazione = '$newNaz' WHERE utente.Nickname = '$nickname';";
+				$results = $mysqli->query($query);
+				if($results){
+					array_push($errors, "Nazione aggiornata!");						
+				}else{
+					array_push($errors, "Errore durante inserimento informazioni nel db [NAZIONE]");
+				}
 			}
-
-			if ($results->num_rows == 1) {
-				array_push($errors, "Email già in uso!");
-			}
+			//TODO AGGIORNA PAGINA
 		}else{
 			$nickname = $_SESSION["nickname"];
 			$query = "SELECT * FROM utente
