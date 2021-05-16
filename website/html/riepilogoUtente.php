@@ -40,7 +40,7 @@
                         <a class="main-header-logo text-dark" href="#">APE OPS Arcade</a>
                     </div>
                     <div class="col-4 d-flex justify-content-end align-items-center">
-                        <p style="padding-right: 0.5em; text-align:right;">Benvenuto <strong><a href="riepilogoUtente.php" style="text-decoration: none; color: black;"><?php echo $_SESSION['nickname']; ?></a></strong></p>
+                        <p style="padding-right: 0.5em; text-align:right;">Benvenuto <strong><a href="riepilogoUtente.php?change=1" style="text-decoration: none; color: black;"><?php echo $_SESSION['nickname']; ?></a></strong></p>
                         <p class="logoutButton"> <a href="riepilogoUtente.php?logout='1'" style="color: red; text-decoration: none;">LOGOUT</a> </p>
                     </div>
                 </div>
@@ -110,7 +110,35 @@
 
 
             <footer class="bottom-footer">
-                <p>Creato e modificato da <a href="https://github.com/lollomire">Miretti Lorenzo.</a></p>
+                <div class="row">
+
+                    <div class="col-md-3">
+                        <h2 class="nomiSviluppatori">Sviluppatori: </h2>
+                        Riccardo Cherchi<br><p>Miretti Lorenzo<br>Francolino Simone<br>Kevin Kadiasi<br>Stefano Pagliuzzi</p>
+                    </div>
+
+                    <div class="col-md-3">
+                        <h2 class="nomiSviluppatori">Il progetto: </h2>
+                        <p>Il progetto è nato a seguito della richiesta di una storia che fosse diversa dalle altre,una storia che doveva colpire dritto il cuore del giocatore.La storia doveva poi essere rappresentata sotto forma di gioco interattivo adatto a tutte le età e che avesse come premessa una natura semplice e divertente.</p>
+                    </div>
+
+
+                    <div class="col-md-3">
+                        <h4 class="font-italic nomiSviluppatori">Altrove</h4>
+                        <ol class="list-unstyled">
+                            <li><a href="https://github.com/itisrivoira/ApeOPSArcade">GitHub</a></li>
+                            <li><a href="https://geti2p.net">I2P</a></li>
+                        </ol>
+                    </div>
+
+                    <div class="col-md-3">
+                        <h4 class="font-italic nomiSviluppatori">Informazioni Aggiuntive</h4>
+                        <ol class="list-unstyled">
+                            <li>Visita la pagina di <a href="html/faq.html">faq</a></li>
+                            <li>e la pagina <a href="html/contatti.html">contatti</a></li>
+                        </ol>
+                    </div>
+                </div>
             </footer>
         </div>
 

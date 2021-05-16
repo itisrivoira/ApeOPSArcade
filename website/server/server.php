@@ -234,7 +234,7 @@
 		// Registra l'utente solo se non ci sono errori
 		if (count($errors) == 0) {
 			$password = md5($password_1);//Cripta la password
-			$query = "INSERT INTO utente VALUES('$nickname','$password','$email','$naz','$dataNascita');";
+			$query = "INSERT INTO utente VALUES('$nickname','$password','$email','$naz','$dataNascita', 0);";
 			$results = $mysqli->query($query);
 
 			if (!$results) {
@@ -283,6 +283,27 @@
 				header('location: ../index.php');
 			}else {
 				array_push($errors, "Nickname eo password errati!");
+			}
+		}
+	}
+
+	if(isset($req_dbVolteGiocato) && isset($_SESSION['nickname'])){
+		if(!isset($_GET['ctrlAction'])){
+			$nickname = $_SESSION['nickname'];
+			$query = "UPDATE utente SET utente.NumGiocate = utente.NumGiocate + 1 WHERE utente.Nickname = '$nickname';";
+			$results = $mysqli->query($query);
+			if(!$results){
+				echo "Errore durante aggiornamento giocate";
+			}
+
+			$query = "SELECT SUM(utente.NumGiocate) AS NumGiocate FROM utente;";
+			$results = $mysqli->query($query);
+
+			if ($results->num_rows == 1) {
+				$row = $results->fetch_array(MYSQLI_ASSOC);
+				$volteGiocato = $row["NumGiocate"];
+			}else {
+				echo "DB Errore";
 			}
 		}
 	}

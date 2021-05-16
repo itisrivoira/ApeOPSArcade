@@ -43,9 +43,9 @@
         <div class="nav-scroller py-1 mb-2">
             <nav class="nav d-flex justify-content-between">
                 <a class="p-2 text-muted" href="../index.php">HOME</a>
-                <a class="p-2 text-muted" href="../webapp/game.html">GAME</a>
+                <a class="p-2 text-muted" href="../webapp/game.php">GAME</a>
                 <a class="p-2 text-muted" href="download.php">DOWNLOAD</a>
-                <a class="p-2 text-muted" href="supporto.html">SUPPORTO TECNICO</a>
+                <a class="p-2 text-muted" href="supporto.php">SUPPORTO TECNICO</a>
                 <a class="p-2 text-muted" href="faq.html">FAQ</a>
                 <a class="p-2 text-muted" href="contatti.html">CONTATTI</a>
             </nav>
@@ -65,7 +65,7 @@
                     <?php include("../server/errors.php");?>
                     <form action="login.php" method="POST">
                         <input type="text" name="nickname" placeholder="nickname">
-                        <input type="text" name="password" placeholder="password">
+                        <input type="password" name="password" placeholder="password">
                         <br>
                         <input type="submit" name="login_user" value="login">
                     </form>
@@ -97,11 +97,36 @@
     </div>
 
     <footer class="bottom-footer">
-        <p>Creato e modificato da <a href="https://github.com/lollomire">Miretti Lorenzo.</a></p>
+        <div class="row">
+
+            <div class="col-md-3">
+                <h2 class="nomiSviluppatori">Sviluppatori: </h2>
+                Riccardo Cherchi<br><p>Miretti Lorenzo<br>Francolino Simone<br>Kevin Kadiasi<br>Stefano Pagliuzzi</p>
+            </div>
+
+            <div class="col-md-3">
+                <h2 class="nomiSviluppatori">Il progetto: </h2>
+                <p>Il progetto è nato a seguito della richiesta di una storia che fosse diversa dalle altre,una storia che doveva colpire dritto il cuore del giocatore.La storia doveva poi essere rappresentata sotto forma di gioco interattivo adatto a tutte le età e che avesse come premessa una natura semplice e divertente.</p>
+            </div>
+
+
+            <div class="col-md-3">
+                <h4 class="font-italic nomiSviluppatori">Altrove</h4>
+                <ol class="list-unstyled">
+                    <li><a href="https://github.com/itisrivoira/ApeOPSArcade">GitHub</a></li>
+                    <li><a href="https://geti2p.net">I2P</a></li>
+                </ol>
+            </div>
+
+            <div class="col-md-3">
+                <h4 class="font-italic nomiSviluppatori">Informazioni Aggiuntive</h4>
+                <ol class="list-unstyled">
+                    <li>Visita la pagina di <a href="html/faq.html">faq</a></li>
+                    <li>e la pagina <a href="html/contatti.html">contatti</a></li>
+                </ol>
+            </div>
+        </div>
     </footer>
-
-
-
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script>

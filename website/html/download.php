@@ -61,37 +61,70 @@
 
 
         <div class="container">
-            <!-- Immagini contorno-->
-            <img src="../img/brigadiereRuspa.png" class="immagineSinistra">
-            <img src="../img/protag.png" class="immagineDestra">
-
-
-            <div class="containerDownload">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="titolo">DOWNLOAD</div>
-                    </div>
+            <div class="row justify-content-center">
+                <div class="col-md-3">
+                    <img src="../img/brigadiereRuspa.png" class="img-fluid mx-auto d-block">
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div>
-                            <br>
-                            <p  class="testo">Per scaricare APE OPS Arcade...<br>Clicca sul pulsante di download<br> e preparati ad una fantastica avventura</p>
+
+                <div class="col-md-6 containerDownload">
+                        <div class="row justify-content-center">
+                            <div class="row" style="width:100%;">
+                                <div class="col">
+                                    <p class="titolo">DOWNLOAD</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div>
+                                        <br>
+                                        <p  class="testo">Per scaricare APE OPS Arcade...<br>Clicca sul pulsante di download<br> e preparati ad una fantastica avventura</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="width:100%;">
+                                <div class="col">
+                                    <!-- Bottone download -->
+                                    <a href="../server/risorse/risorse.php" download="risorse" class="btn btn-success btn-lg active Download" role="button" aria-pressed="true">DOWNLOAD</a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
                 </div>
-                <div class="col-md-12">
-                    <!-- Bottone download -->
-                    <a href="../server/risorse/risorse.php" download="risorse" class="btn btn-success btn-lg active Download" role="button" aria-pressed="true">DOWNLOAD</a>
+
+                <div class="col-md-3">
+                    <img src="../img/protag.png" class="img-fluid mx-auto d-block">
                 </div>
-            </div>
         </div>
 
         <footer class="bottom-footer">
-            <p>Creato e modificato da <a href="https://github.com/lollomire">Miretti Lorenzo</a></p>
-            <p>
-                <a href="../index.html">Torna all'inizio</a>
-            </p>
+            <div class="row">
+
+                <div class="col-md-3">
+                    <h2 class="nomiSviluppatori">Sviluppatori: </h2>
+                    Riccardo Cherchi<br><p>Miretti Lorenzo<br>Francolino Simone<br>Kevin Kadiasi<br>Stefano Pagliuzzi</p>
+                </div>
+
+                <div class="col-md-3">
+                    <h2 class="nomiSviluppatori">Il progetto: </h2>
+                    <p>Il progetto è nato a seguito della richiesta di una storia che fosse diversa dalle altre,una storia che doveva colpire dritto il cuore del giocatore.La storia doveva poi essere rappresentata sotto forma di gioco interattivo adatto a tutte le età e che avesse come premessa una natura semplice e divertente.</p>
+                </div>
+
+
+                <div class="col-md-3">
+                    <h4 class="font-italic nomiSviluppatori">Altrove</h4>
+                    <ol class="list-unstyled">
+                        <li><a href="https://github.com/itisrivoira/ApeOPSArcade">GitHub</a></li>
+                        <li><a href="https://geti2p.net">I2P</a></li>
+                    </ol>
+                </div>
+
+                <div class="col-md-3">
+                    <h4 class="font-italic nomiSviluppatori">Informazioni Aggiuntive</h4>
+                    <ol class="list-unstyled">
+                        <li>Visita la pagina di <a href="html/faq.html">faq</a></li>
+                        <li>e la pagina <a href="html/contatti.html">contatti</a></li>
+                    </ol>
+                </div>
+            </div>
         </footer>
 
 
