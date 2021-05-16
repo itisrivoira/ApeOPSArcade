@@ -82,9 +82,7 @@
                 </div>
                 <div class="col-md-12">
                     <!-- Bottone download -->
-                    <a href="../server/risorse/risorse.php" download="risorse">
-                        <img src="../img/downloadBottone.jpeg" class="imgDownload" alt="risorse.php">
-                    </a>
+                    <a href="../server/risorse/risorse.php" download="risorse" class="btn btn-success btn-lg active Download" role="button" aria-pressed="true">DOWNLOAD</a>
                 </div>
             </div>
         </div>
