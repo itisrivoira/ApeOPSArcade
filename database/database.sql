@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS utente(
 	Email varchar(32) NOT NULL,
 	Nazione CHAR(3),
 	DataNascita DATE,
+	NumGiocate INT,
 	PRIMARY KEY (Nickname)
 	);
 

@@ -38,6 +38,8 @@ WHERE salvataggio.punteggio = $punteggio;
 SELECT * FROM salvataggio
 WHERE salvataggio.nickname = $nickname;
 
+SELECT SUM(utente.NumGiocate) AS NumGiocate FROM utente;
+
 
 
 UPDATE utente SET utente.Nickname = $nickname WHERE utente.Nickname = $oldNickname;
@@ -45,8 +47,4 @@ UPDATE utente SET utente.Email = $email WHERE utente.Nickname = $nickname;
 UPDATE utente SET utente.Password = $password WHERE utente.Nickname = $nickname;
 UPDATE utente SET utente.Nazione = $naz WHERE utente.Nickname = $nickname;
 UPDATE utente SET utente.DataN = $dataNascita WHERE utente.Nickname = $nickname;
-UPDATE configura SET configura.codiceTasto = $codiceT WHERE configura.codiceTasto = $codiceT;
-UPDATE configura SET configura.descrizione = $descrizione WHERE configura.codiceTasto = $codiceT;
-
-
-
+UPDATE utente SET utente.NumGiocate = utente.NumGiocate + 1 WHERE utente.Nickname = $nickname;
