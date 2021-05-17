@@ -8,6 +8,7 @@ export class MenuScene extends Phaser.Scene {
     init(data) {
         console.log(data);
         this.flagSound = data.flagSound;
+        this.flagSoundEffects = data.flagSoundEffects;
     }
     create() {
         this.game.scale.resize(800, 440);
@@ -35,12 +36,12 @@ export class MenuScene extends Phaser.Scene {
 
         playButton.on("pointerup", () => {
             console.log("LET ME IN");
-            this.scene.start(CST.SCENES.STARTER, { HELLO: "MenuScene HELLO", flagSound: this.flagSound });
+            this.scene.start(CST.SCENES.STARTER, { HELLO: "MenuScene HELLO", flagSound: this.flagSound, flagSoundEffects: this.flagSoundEffects });
         });
 
         optionsButton.on("pointerup", () => {
             console.log("GOD DAMNIT");
-            this.scene.start(CST.SCENES.OPTIONS, { HELLO: "MenuScene HELLO", flagSound: this.flagSound });
+            this.scene.start(CST.SCENES.OPTIONS, { HELLO: "MenuScene HELLO", flagSound: this.flagSound, flagSoundEffects: this.flagSoundEffects });
         });
     }
 }

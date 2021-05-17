@@ -26,8 +26,24 @@ export class LVL3Scene extends Phaser.Scene {
 
     init(data) {
         console.log(data);
+        this.flagSound = data.flagSound;
+        this.flagSoundEffects = data.flagSoundEffects;
     }
     create() {
+        //music
+        if (this.flagSound == 1) {
+            this.sound.pauseOnBlur = false;
+            this.sound.removeAll();
+            this.sound.play("battle", {
+                loop: false,
+                volume: 0.5
+            });
+            this.sound.play("bgBattle", {
+                loop: true,
+                volume: 0.2
+            });
+        }
+
         //background image
         this.add.image(0, 0, "LVL3Scene-background").setOrigin(0).setDepth(0);
 
@@ -87,6 +103,14 @@ export class LVL3Scene extends Phaser.Scene {
                 this.protagonist.setDepth(1);
                 this.protagonist.setPosition(700, this.game.renderer.height / 2.5);
                 this.protagonist.setTexture("LVL2Scene-protagActionFire");
+
+                if (this.flagSoundEffects == 1) {
+                    this.sound.play("SFX_flamethrower", {
+                        loop: false,
+                        volume: 0.5
+                    });
+                }
+
                 this.enemy.setTexture("LVL3Scene-gorillaHit");
 
                 this.hpEnemyModifier(2.5);
@@ -101,6 +125,7 @@ export class LVL3Scene extends Phaser.Scene {
                         this.protagonist.setDepth(0);
                         this.protagonist.setPosition(this.game.renderer.width / 5.5, this.game.renderer.height / 2.5);
                         this.protagonist.setTexture("LVLScene-protag");
+                        this.enemy.visible = true;
                         this.enemy.setTexture("LVL3Scene-gorilla");
                         console.log("PUNCH [protagonista] finito");
                         this.checkEnemy_BlockDodge = 0;
@@ -121,6 +146,27 @@ export class LVL3Scene extends Phaser.Scene {
                 this.protagonist.setDepth(1);
                 this.protagonist.setPosition(860, this.game.renderer.height / 2.5);
                 this.protagonist.setTexture("LVL3Scene-protagSlash");
+
+                if (this.flagSoundEffects == 1) {
+                    let randomSFX = Math.floor(Math.random() * 3) + 1;
+                    if (randomSFX == 1) {
+                        this.sound.play("SFX_knife1", {
+                            loop: false,
+                            volume: 0.5
+                        });
+                    } else if (randomSFX == 2) {
+                        this.sound.play("SFX_knife2", {
+                            loop: false,
+                            volume: 0.5
+                        });
+                    } else {
+                        this.sound.play("SFX_knife3", {
+                            loop: false,
+                            volume: 0.5
+                        });
+                    }
+                }
+
                 this.enemy.setTexture("LVL3Scene-gorillaHit");
 
                 this.hpEnemyModifier(2);
@@ -135,6 +181,7 @@ export class LVL3Scene extends Phaser.Scene {
                         this.protagonist.setDepth(0);
                         this.protagonist.setPosition(this.game.renderer.width / 5.5, this.game.renderer.height / 2.5);
                         this.protagonist.setTexture("LVLScene-protag");
+                        this.enemy.visible = true;
                         this.enemy.setTexture("LVL3Scene-gorilla");
                         console.log("SLASH [protagonista] finito");
                         this.checkEnemy_BlockDodge = 0;
@@ -195,8 +242,11 @@ export class LVL3Scene extends Phaser.Scene {
 
         });
         quit.on("pointerup", () => {
-            this.game.destroy(true, true);
-            //this.scene.start(CST.SCENES.MENU, { HELLO: "LVLScene HELLO" });
+            //this.game.destroy(true, true);
+            this.sound.removeAll();
+
+            //this.scene.start(CST.SCENES.MENU, { HELLO: "LVL3Scene HELLO", flagSound: this.flagSound, flagSoundEffects: this.flagSoundEffects });
+            window.location.reload();
         });
 
         //Icons and HP images
@@ -265,6 +315,12 @@ export class LVL3Scene extends Phaser.Scene {
                                 this.enemy.setDepth(1);
                                 this.enemy.setPosition(420, this.game.renderer.height / 2.35);
                                 this.enemy.setTexture("LVL3Scene-gorillaFlame");
+                                if (this.flagSoundEffects == 1) {
+                                    this.sound.play("SFX_fire", {
+                                        loop: false,
+                                        volume: 0.5
+                                    });
+                                }
                             }
                         });
 
@@ -301,6 +357,25 @@ export class LVL3Scene extends Phaser.Scene {
                                 this.enemy.setDepth(1);
                                 this.enemy.setPosition(470, this.game.renderer.height / 2.35);
                                 this.enemy.setTexture("LVL3Scene-gorillaSlash");
+                                if (this.flagSoundEffects == 1) {
+                                    let randomSFX = Math.floor(Math.random() * 3) + 1;
+                                    if (randomSFX == 1) {
+                                        this.sound.play("SFX_knife1", {
+                                            loop: false,
+                                            volume: 0.5
+                                        });
+                                    } else if (randomSFX == 2) {
+                                        this.sound.play("SFX_knife2", {
+                                            loop: false,
+                                            volume: 0.5
+                                        });
+                                    } else {
+                                        this.sound.play("SFX_knife3", {
+                                            loop: false,
+                                            volume: 0.5
+                                        });
+                                    }
+                                }
                             }
                         });
 
@@ -362,10 +437,11 @@ export class LVL3Scene extends Phaser.Scene {
                 this.checkRound = true;
             } else {
                 let youWon = this.add.image(this.game.renderer.width - 640, this.game.renderer.height - 450, "youWon").setDepth(1);
-                /*youWon.setInteractive();
+                youWon.setInteractive();
                 youWon.on("pointerup", () => {
-                    this.scene.start(CST.SCENES.LEVEL2, { HELLO: "LVLScene HELLO" });
-                });*/
+                    //this.scene.start(CST.SCENES.MENU, { HELLO: "LVL3Scene HELLO", flagSound: this.flagSound, flagSoundEffects: this.flagSoundEffects });
+                    window.location.reload();
+                });
                 this.enemy.destroy();
                 this.protagonist.setTexture("LVLScene-protagActionWin");
             }
@@ -388,6 +464,7 @@ export class LVL3Scene extends Phaser.Scene {
                 heartsRemaining = this.hpEnemyRemaining - damage / 2;
                 //Da aggiungere
             } else if (this.checkEnemy_BlockDodge == 3) {
+                this.enemy.visible = false;
                 heartsRemaining = this.hpEnemyRemaining;
             } else {
                 heartsRemaining = this.hpEnemyRemaining - damage;

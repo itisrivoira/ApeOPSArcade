@@ -8,6 +8,7 @@ export class OptionsScene extends Phaser.Scene {
     init(data) {
         console.log(data);
         this.flagSound = data.flagSound;
+        this.flagSoundEffects = data.flagSoundEffects;
     }
     create() {
         //images
@@ -16,23 +17,35 @@ export class OptionsScene extends Phaser.Scene {
 
 
         let musicButton = this.add.sprite(this.game.renderer.width / 1.5, this.game.renderer.height / 2.3, "OptionsScene-toggleOn").setDepth(1);
+        let musicLabel = this.add.image(this.game.renderer.width / 2.4, this.game.renderer.height / 2.3, "OptionsScene-musicLabel").setDepth(1);
+        let otherButton = this.add.sprite(this.game.renderer.width / 1.5, this.game.renderer.height / 1.6, "OptionsScene-toggleOn").setDepth(1);
+        let otherLabel = this.add.image(this.game.renderer.width / 3.3, this.game.renderer.height / 1.6, "OptionsScene-effectsLabel").setDepth(1);
 
-        if (this.flagSound == 1) {
+        if (this.flagSound == 1 && this.flagSoundEffects == 1) {
             this.soundFlag = true;
             this.flagSound = 0;
+
+            this.soundFlagEffects = true;
+            this.flagSoundEffects = 0;
+        } else if (this.flagSound == 1 && this.flagSoundEffects == 0) {
+            this.soundFlag = true;
+            this.flagSound = 0;
+            otherButton.setTexture("OptionsScene-toggleOff");
+        } else if (this.flagSound == 0 && this.flagSoundEffects == 1) {
+            this.soundFlagEffects = true;
+            this.flagSoundEffects = 0;
+            musicButton.setTexture("OptionsScene-toggleOff");
         } else {
             musicButton.setTexture("OptionsScene-toggleOff");
+            otherButton.setTexture("OptionsScene-toggleOff");
         }
-
-        let musicLabel = this.add.image(this.game.renderer.width / 2.4, this.game.renderer.height / 2.3, "OptionsScene-musicLabel").setDepth(1);
-        let otherButton = this.add.image(this.game.renderer.width / 1.5, this.game.renderer.height / 1.6, "OptionsScene-toggleOff").setDepth(1);
-        let otherLabel = this.add.image(this.game.renderer.width / 3.3, this.game.renderer.height / 1.6, "OptionsScene-effectsLabel").setDepth(1);
 
         let commandsButton = this.add.image(this.game.renderer.width / 3.3, this.game.renderer.height / 2 + 150, "OptionsScene-commands").setDepth(1);
         let backButton = this.add.image(this.game.renderer.width / 1.4, this.game.renderer.height / 2 + 150, "OptionsScene-back").setDepth(1);
 
         //interactive buttons
         musicButton.setInteractive();
+        otherButton.setInteractive();
         commandsButton.setInteractive();
         backButton.setInteractive();
 
@@ -55,6 +68,24 @@ export class OptionsScene extends Phaser.Scene {
             }
         });
 
+        otherButton.on("pointerup", () => {
+            if (this.flagSoundEffects == 1) {
+                console.log("OptionsScene other: toggleOff");
+                otherButton.setTexture("OptionsScene-toggleOff");
+                this.flagSoundEffects = 0;
+            } else if (this.flagSoundEffects == 0 && this.soundFlagEffects == false) {
+                console.log("OptionsScene other: toggleOn 1");
+                otherButton.setTexture("OptionsScene-toggleOn");
+                this.flagSoundEffects = 1;
+            } else {
+                console.log("OptionsScene other: toggleOff first");
+                otherButton.setTexture("OptionsScene-toggleOff");
+                this.flagSoundEffects = 0;
+                this.soundFlagEffects = false;
+            }
+        });
+
+
         commandsButton.on("pointerup", () => {
             console.log("GOING TO COMMANDS...");
             this.scene.start(CST.SCENES.OPTIONS_COMMANDS, "OptionsScene HELLO");
@@ -62,7 +93,7 @@ export class OptionsScene extends Phaser.Scene {
 
         backButton.on("pointerup", () => {
             console.log("FUNGE");
-            this.scene.start(CST.SCENES.MENU, { HELLO: "OptionsScene HELLO", flagSound: this.flagSound });
+            this.scene.start(CST.SCENES.MENU, { HELLO: "OptionsScene HELLO", flagSound: this.flagSound, flagSoundEffects: this.flagSoundEffects });
         });
 
     }

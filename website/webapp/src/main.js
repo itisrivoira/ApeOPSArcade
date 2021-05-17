@@ -2,7 +2,7 @@ import { LoadScene } from "./scenes/LoadScene.js";
 import { MenuScene } from "./scenes/MenuScene.js";
 import { OptionsScene } from "./scenes/OptionsScene.js";
 import { CommandsScene } from "./scenes/CommandsScene.js";
-import { LVLScene } from "./scenes/LVLScene.js";
+import { LVL1Scene } from "./scenes/LVL1Scene.js";
 import { LVL2Scene } from "./scenes/LVL2Scene.js";
 import { LVL3Scene } from "./scenes/LVL3Scene.js";
 let game = new Phaser.Game({
@@ -17,6 +17,6 @@ let game = new Phaser.Game({
         }
     },
     scene: [
-        LoadScene, MenuScene, LVLScene, LVL2Scene, LVL3Scene, OptionsScene, CommandsScene
+        LoadScene, MenuScene, LVL1Scene, LVL2Scene, LVL3Scene, OptionsScene, CommandsScene
     ]
 });

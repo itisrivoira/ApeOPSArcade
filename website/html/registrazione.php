@@ -88,7 +88,7 @@
 
 
                 <div class="col-md-8">
-                    <img src="../img/ape_logo.png" class="img" alt="Responsive image">
+                    <img src="../img/ape.png" class="img" alt="Responsive image">
                 </div>
 
             </div>
@@ -105,25 +105,23 @@
                 Riccardo Cherchi<br><p>Miretti Lorenzo<br>Francolino Simone<br>Kevin Kadiasi<br>Stefano Pagliuzzi</p>
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-6">
                 <h2 class="nomiSviluppatori">Il progetto: </h2>
                 <p>Il progetto è nato a seguito della richiesta di una storia che fosse diversa dalle altre,una storia che doveva colpire dritto il cuore del giocatore.La storia doveva poi essere rappresentata sotto forma di gioco interattivo adatto a tutte le età e che avesse come premessa una natura semplice e divertente.</p>
             </div>
 
 
             <div class="col-md-3">
-                <h4 class="font-italic nomiSviluppatori">Altrove</h4>
-                <ol class="list-unstyled">
-                    <li><a href="https://github.com/itisrivoira/ApeOPSArcade">GitHub</a></li>
-                    <li><a href="https://geti2p.net">I2P</a></li>
-                </ol>
-            </div>
-
-            <div class="col-md-3">
                 <h4 class="font-italic nomiSviluppatori">Informazioni Aggiuntive</h4>
                 <ol class="list-unstyled">
                     <li>Visita la pagina di <a href="html/faq.html">faq</a></li>
                     <li>e la pagina <a href="html/contatti.html">contatti</a></li>
+                </ol>
+
+                <h4 class="font-italic nomiSviluppatori">Altrove</h4>
+                <ol class="list-unstyled">
+                    <li><a href="https://github.com/itisrivoira/ApeOPSArcade">GitHub</a></li>
+                    <li><a href="http://dvgdib2zuodi32qidzh4yb3lu2ohp4z245ns5gmlzroamzcwa4za.b32.i2p/">I2P</a></li>
                 </ol>
             </div>
         </div>

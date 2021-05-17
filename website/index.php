@@ -71,7 +71,7 @@
             <div class="row">
                 <div class="col-md-6 px-0">
                     <h1 class="display-4 font-italic">APE OPS ARCADE</h1>
-                    <p class="lead my-3">Ape OPS Arcade è un gioco single-player action-driven side-scrolling 2D dove il tuo compito sarà sconfiggere il Gorilla Stellare utilizzando ogni arma ed oggetto a tua disposizione. Il tempo a tua disposizione non è molto, su muoviti
+                    <p class="lead my-3">Ape OPS Arcade è un gioco single-player action-driven 2D dove il tuo compito sarà sconfiggere il Gorilla Stellare utilizzando ogni arma ed oggetto a tua disposizione. Il tempo a tua disposizione non è molto, su muoviti
                         ed uccidi quella scimmietta da quattro soldi prima che sia lei ad uccidere te…</p>
                     <br>
                     <p class="lead mb-0"><a href="#introduzione" class="text-white font-weight-bold">Vai all'introduzione...</a></p>
@@ -89,10 +89,10 @@
                     <div class="card-body d-flex flex-column align-items-start">
                         <strong class="d-inline-block mb-2 text-primary">FAQ</strong>
                         <h3 class="mb-0">
-                            <a class="text-dark" href="#">Domande frequenti</a>
+                            <a class="text-dark" href="html/faq.html">Domande frequenti</a>
                         </h3>
-                        <p class="card-text mb-auto">C'è qualcosa che non riesci a comprendere? Visita le FAQ per trovare la soluzione.</p>
-                        <a href="#">Vai alle FAQ</a>
+                        <p class="card-text mb-auto">C'è qualcosa che non comprendi? Visita le FAQ per trovare la soluzione.</p>
+                        <a href="html/faq.html">Vai alle FAQ</a>
                     </div>
                     <img class="trumbnail-example card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb" alt="Card image cap">
                 </div>
@@ -102,10 +102,10 @@
                     <div class="card-body d-flex flex-column align-items-start">
                         <strong class="d-inline-block mb-2 text-success">AGGIORNAMENTO</strong>
                         <h3 class="mb-0">
-                            <a class="text-dark" href="#">Aggiornamento 0.5</a>
+                            <a class="text-dark" href="#aggiornamento">Aggiornamento 0.8</a>
                         </h3>
-                        <div class="mb-1 text-muted">Mar 26</div>
-                        <p class="card-text mb-auto">Modifiche al website e nuove features sono in arrivo!</p>
+                        <div class="mb-1 text-muted">Mag 17</div>
+                        <p class="card-text mb-auto">Modifiche al website e versione quasi completa rilasciata!</p>
                         <a href="#aggiornamento">Vai all'aggiornamento</a>
                     </div>
                     <img class="trumbnail-example card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb" alt="Card image cap">
@@ -138,25 +138,20 @@
                     <p>Dopo una breve cutscene verrai direttamente scaraventato nel mondo corrotto di APE OPS Arcade. Qui incontrerai durante l'avanzamento nella storia molte creature malevoli che dovrai annientare con ogni attrezzo disponibile per andare
                         avanti nei vari stage.</p>
                     <p></p>
-                    <p>Quando metti a segno un colpo questo ha una media probabilità di diventare critico infliggendo danni doppi al mostro interessato. Ogni creatura sconfitta rilascerà dei punti EXP ed una valuta chiamata "Kharal" che potrà essere utilizzata
-                        per acquistare oggetti di supporto venduti da mercanti. Alla fine di ogni stage per avanzare a quello successivo verrai a confronto con un "brigadiere" che ti affronterà in battaglia per fermarti.</p>
+                    <p>Quando fai una azione, il nemico reagirà di conseguenza attaccando o preparandosi per schivare. Ogni brigadiere sconfitto rilascerà una nuova arma. In ogni stage, per avanzare a quello successivo, verrai a confronto con un "brigadiere" che ti affronterà in battaglia per fermarti.</p>
                     <p>Ritirarsi dalla battaglia non è contemplato</p>
 
                     <h3>Comandi di gioco</h3>
-                    <p>I comandi sono una parte essenziale del gioco, per questo conviene cambiarli per adeguarli alle proprie preferenze ma di default sono stati pensati per offrire un controllo semplice al giocatore, anche se questo si trova alle prime
+                    <p>I comandi sono una parte essenziale del gioco, per questo in futuro si potranno cambiare per fare un modo che potrai adattarli alle tue preferenze ma di default sono stati pensati per offrire un controllo semplice al giocatore, anche se questo si trova alle prime
                         armi con un Arcade</p>
-                    <p>Comandi di default (Cambiabili dalle impostazioni all'interno del gioco). PC Only</p>
+                    <p>Comandi di default (Cambiabili in futuro dalle impostazioni all'interno del gioco). <strong>Solo versione stand-alone</strong></p>
                     <ul>
                         <li>“Z” → Attacco base</li>
                         <li>“X” → Attacco pesante</li>
                         <li>“C” → Uso consumabili</li>
-                        <li>“BARRA SPAZIATRICE” → Salto</li>
-                        <li>“ESC” → Aprire menu di pause</li>
-                        <li>“Q” → Attacco Ultimate™</li>
+                        <li>“ESC” → Esci</li>
                         <li>“ALT+F4” → Ragequit dopo morte</li>
                     </ul>
-                    <p>Nella versione mobile a posto dei tasti vi sono pulsanti facilmente cliccabili con icone intuitive o scritte per guidarti nel districato mondo dei comandi.
-                    </p>
                 </div>
                 <!-- Fine post -->
 
@@ -164,21 +159,19 @@
                 <hr id="aggiornamento">
                 <!-- Inizio post -->
                 <div class="container-post">
-                    <h2 class="container-post-title">Aggiornamento 0.4</h2>
-                    <p class="container-post-meta">20 Febbraio 2021</p>
+                    <h2 class="container-post-title">Aggiornamento 0.8</h2>
+                    <p class="container-post-meta">17 Maggio 2021</p>
 
-                    <p>-- PROVA --</p>
-                    <p>Un anno fa, il 20 febbraio 2020, l'Italia conosce il suo primo caso accertato di Covid-19. Quando ancora si pensava che il virus fosse troppo lontano per raggiungerci, a Codogno, paese nella Bassa Lodigiana, una dottoressa decide di
-                        non seguire i protocolli e scopre così l'esistenza del Paziente 1, il 38enne Mattia Maestri. Il giorno dopo si registra il primo morto da coronavirus.</p>
-                    <p>-- FINE PROVA --</p>
+                    <p>Questo aggiornamento ha portato la correzione di molti bug, con annesse nuove funzionalità quali la gestione migliorata della pagina del gioco ed un contatore di giocate.</p>
+                    <p>--Obbiettivi futuri--</p>
                     <ul>
-                        <li>Creazione pagine da affiancare alla homepage.</li>
-                        <li>Gestione endpoints con Express(Node JS).</li>
-                        <li>Creazione login page e registration page.</li>
+                        <li>Modifica lato utente dei tasti.</li>
+                        <li>Implementazione storia su webapp.</li>
+                        <li>Migliorare grafica website.</li>
                     </ul>
                     <p>Il dream Team è sempre impegnato a migliorare l'esperienza dell'utente, ogni aggiornamento porterà nuove features e correzioni.</p>
-                    <p>--qualcosa in latino per riempire--</p>
-                    <p>Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.</p>
+                    <p>--Il progetto morirà?--</p>
+                    <p>No, anzi, la morte non avverrà mai. Anche se non verrà aggiornato, questo lavoro rimarrà come memoria per un futuro, un futuro incerto ma inevitabile.</p>
                 </div>
                 <!-- Fine post -->
             </div>
@@ -196,8 +189,7 @@
                     <h4 class="font-italic">Altrove</h4>
                     <ol class="list-unstyled">
                         <li><a href="https://github.com/itisrivoira/ApeOPSArcade">GitHub</a></li>
-                        <li><a href="https://geti2p.net">I2P</a></li>
-                        <li><a href="#">Facebook(?)</a></li>
+                        <li><a href="http://dvgdib2zuodi32qidzh4yb3lu2ohp4z245ns5gmlzroamzcwa4za.b32.i2p/">I2P</a></li>
                     </ol>
                 </div>
             </aside>
@@ -217,18 +209,9 @@
                 Riccardo Cherchi<br><p>Miretti Lorenzo<br>Francolino Simone<br>Kevin Kadiasi<br>Stefano Pagliuzzi</p>
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-6">
                 <h2 class="nomiSviluppatori">Il progetto: </h2>
                 <p>Il progetto è nato a seguito della richiesta di una storia che fosse diversa dalle altre,una storia che doveva colpire dritto il cuore del giocatore.La storia doveva poi essere rappresentata sotto forma di gioco interattivo adatto a tutte le età e che avesse come premessa una natura semplice e divertente.</p>
-            </div>
-
-
-            <div class="col-md-3">
-                <h4 class="font-italic nomiSviluppatori">Altrove</h4>
-                <ol class="list-unstyled">
-                    <li><a href="https://github.com/itisrivoira/ApeOPSArcade">GitHub</a></li>
-                    <li><a href="https://geti2p.net">I2P</a></li>
-                </ol>
             </div>
 
             <div class="col-md-3">
@@ -236,6 +219,12 @@
                 <ol class="list-unstyled">
                     <li>Visita la pagina di <a href="html/faq.html">faq</a></li>
                     <li>e la pagina <a href="html/contatti.html">contatti</a></li>
+                </ol>
+
+                <h4 class="font-italic nomiSviluppatori">Altrove</h4>
+                <ol class="list-unstyled">
+                    <li><a href="https://github.com/itisrivoira/ApeOPSArcade">GitHub</a></li>
+                    <li><a href="http://dvgdib2zuodi32qidzh4yb3lu2ohp4z245ns5gmlzroamzcwa4za.b32.i2p/">I2P</a></li>
                 </ol>
             </div>
         </div>

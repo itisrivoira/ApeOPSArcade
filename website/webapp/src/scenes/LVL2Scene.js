@@ -26,8 +26,24 @@ export class LVL2Scene extends Phaser.Scene {
 
     init(data) {
         console.log(data);
+        this.flagSound = data.flagSound;
+        this.flagSoundEffects = data.flagSoundEffects;
     }
     create() {
+        //music
+        if (this.flagSound == 1) {
+            this.sound.pauseOnBlur = false;
+            this.sound.removeAll();
+            this.sound.play("battle", {
+                loop: false,
+                volume: 0.5
+            });
+            this.sound.play("bgBattle", {
+                loop: true,
+                volume: 0.2
+            });
+        }
+
         //background image
         this.add.image(0, 0, "LVL2Scene-background").setOrigin(0).setDepth(0);
 
@@ -87,6 +103,14 @@ export class LVL2Scene extends Phaser.Scene {
                 this.protagonist.setDepth(1);
                 this.protagonist.setPosition(700, this.game.renderer.height / 2.5);
                 this.protagonist.setTexture("LVL2Scene-protagActionFire");
+
+                if (this.flagSoundEffects == 1) {
+                    this.sound.play("SFX_flamethrower", {
+                        loop: false,
+                        volume: 0.5
+                    });
+                }
+
                 this.enemy.setTexture("LVL2Scene-brigadiereMattarellaHit");
 
                 this.hpEnemyModifier(3);
@@ -101,6 +125,7 @@ export class LVL2Scene extends Phaser.Scene {
                         this.protagonist.setDepth(0);
                         this.protagonist.setPosition(this.game.renderer.width / 5.5, this.game.renderer.height / 2.5);
                         this.protagonist.setTexture("LVLScene-protag");
+                        this.enemy.visible = true;
                         this.enemy.setTexture("LVL2Scene-brigadiereMattarella");
                         console.log("PUNCH [protagonista] finito");
                         this.checkEnemy_BlockDodge = 0;
@@ -121,6 +146,27 @@ export class LVL2Scene extends Phaser.Scene {
                 this.protagonist.setDepth(1);
                 this.protagonist.setPosition(900, this.game.renderer.height / 2.5);
                 this.protagonist.setTexture("LVLScene-protagActionKick");
+
+                if (this.flagSoundEffects == 1) {
+                    let randomSFX = Math.floor(Math.random() * 3) + 1;
+                    if (randomSFX == 1) {
+                        this.sound.play("SFX_karate1", {
+                            loop: false,
+                            volume: 0.5
+                        });
+                    } else if (randomSFX == 2) {
+                        this.sound.play("SFX_karate2", {
+                            loop: false,
+                            volume: 0.5
+                        });
+                    } else {
+                        this.sound.play("SFX_karate3", {
+                            loop: false,
+                            volume: 0.5
+                        });
+                    }
+                }
+
                 this.enemy.setTexture("LVL2Scene-brigadiereMattarellaHit");
 
                 this.hpEnemyModifier(2);
@@ -135,6 +181,7 @@ export class LVL2Scene extends Phaser.Scene {
                         this.protagonist.setDepth(0);
                         this.protagonist.setPosition(this.game.renderer.width / 5.5, this.game.renderer.height / 2.5);
                         this.protagonist.setTexture("LVLScene-protag");
+                        this.enemy.visible = true;
                         this.enemy.setTexture("LVL2Scene-brigadiereMattarella");
                         console.log("KICK [protagonista] finito");
                         this.checkEnemy_BlockDodge = 0;
@@ -192,11 +239,14 @@ export class LVL2Scene extends Phaser.Scene {
 
         });
         items.on("pointerup", () => {
-            this.scene.start(CST.SCENES.LEVEL3, { HELLO: "LVL2Scene HELLO" });
+            this.scene.start(CST.SCENES.LEVEL3, { HELLO: "LVL2Scene HELLO", flagSound: this.flagSound, flagSoundEffects: this.flagSoundEffects });
         });
         quit.on("pointerup", () => {
-            this.game.destroy(true, true);
-            //this.scene.start(CST.SCENES.MENU, { HELLO: "LVLScene HELLO" });
+            //this.game.destroy(true, true);
+            this.sound.removeAll();
+
+            //this.scene.start(CST.SCENES.MENU, { HELLO: "LVL2Scene HELLO", flagSound: this.flagSound, flagSoundEffects: this.flagSoundEffects });
+            window.location.reload();
         });
 
         //Icons and HP images
@@ -265,6 +315,12 @@ export class LVL2Scene extends Phaser.Scene {
                                 this.enemy.setDepth(1);
                                 this.enemy.setPosition(420, this.game.renderer.height / 2.35);
                                 this.enemy.setTexture("LVL2Scene-brigadiereMattarellaFire");
+                                if (this.flagSoundEffects == 1) {
+                                    this.sound.play("SFX_fire", {
+                                        loop: false,
+                                        volume: 0.5
+                                    });
+                                }
                             }
                         });
 
@@ -301,6 +357,25 @@ export class LVL2Scene extends Phaser.Scene {
                                 this.enemy.setDepth(1);
                                 this.enemy.setPosition(330, this.game.renderer.height / 2.35);
                                 this.enemy.setTexture("LVL2Scene-brigadiereMattarellaHit");
+                                if (this.flagSoundEffects == 1) {
+                                    let randomSFX = Math.floor(Math.random() * 3) + 1;
+                                    if (randomSFX == 1) {
+                                        this.sound.play("SFX_karate1", {
+                                            loop: false,
+                                            volume: 0.5
+                                        });
+                                    } else if (randomSFX == 2) {
+                                        this.sound.play("SFX_karate2", {
+                                            loop: false,
+                                            volume: 0.5
+                                        });
+                                    } else {
+                                        this.sound.play("SFX_karate3", {
+                                            loop: false,
+                                            volume: 0.5
+                                        });
+                                    }
+                                }
                             }
                         });
 
@@ -364,7 +439,7 @@ export class LVL2Scene extends Phaser.Scene {
                 let youWon = this.add.image(this.game.renderer.width - 640, this.game.renderer.height - 450, "youWon").setDepth(1);
                 youWon.setInteractive();
                 youWon.on("pointerup", () => {
-                    this.scene.start(CST.SCENES.LEVEL3, { HELLO: "LVL2Scene HELLO" });
+                    this.scene.start(CST.SCENES.LEVEL3, { HELLO: "LVL2Scene HELLO", flagSound: this.flagSound, flagSoundEffects: this.flagSoundEffects });
                 });
                 this.enemy.destroy();
                 this.protagonist.setTexture("LVLScene-protagActionWin");
@@ -388,6 +463,7 @@ export class LVL2Scene extends Phaser.Scene {
                 heartsRemaining = this.hpEnemyRemaining - damage / 2;
                 //Da aggiungere
             } else if (this.checkEnemy_BlockDodge == 3) {
+                this.enemy.visible = false;
                 heartsRemaining = this.hpEnemyRemaining;
             } else {
                 heartsRemaining = this.hpEnemyRemaining - damage;

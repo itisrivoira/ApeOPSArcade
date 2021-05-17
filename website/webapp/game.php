@@ -84,11 +84,11 @@
                     <div id="heading" class="col-md-12">
                         <h2 id="game-name">APE OPS Arcade - Sconfiggi il gorilla stellare</h2>
                         Giocato: <strong id="game-times-played"><?php if(isset($volteGiocato)): echo $volteGiocato;?><?php else: echo "NULL";?><?php endif ?></strong> volte | Voti: ⍟⍟⍟⍟⍟
-                        <a class="tags-label" href="">TAG</a>
-                        <a class="tags-label" href="">ANOTHER</a>
-                        <a class="tags-label" href="">ANOTHER</a>
-                        <a class="tags-label" href="">ANOTHER</a>
-                        <a class="tags-label" href="">ANOTHER</a>
+                        <p class="tags-label">ARCADE</a>
+                        <p class="tags-label">2D</p>
+                        <p class="tags-label">ACTION</p>
+                        <p class="tags-label">WHOLESOME</p>
+                        <p class="tags-label">PARODY</p>
                     </div>
                 </div>
                 <div class="row">
@@ -127,14 +127,13 @@
                                 <img id="game-img-little" class="img-fluid" data-src="holder.js/180x106?theme=thumb" alt="immagineRandom">
                                 <p>
                                     In APE OPS Arcade assumerai il ruolo di uno scienziato i cui esperimenti non sono andati molto bene, il tuo compito è eliminare un gorilla geneticamente mutato che vuole distruggere la Terra.<br> Inoltre incontrerai
-                                    durante l'avanzamento nella storia molte creature malevoli che dovrai annientare con ogni attrezzo disponibile per andare avanti nei vari stage.<br> Quando metti a segno un colpo questo ha una media probabilità di diventare
-                                    critico infliggendo danni doppi al mostro interessato.<br> Ogni creatura sconfitta rilascerà dei punti EXP ed una valuta chiamata "Kharal" che potrà essere utilizzata per acquistare oggetti di supporto venduti da mercanti.<br><br>                                    Alla fine di ogni stage per avanzare a quello successivo verrai a confronto con un "brigadiere" che ti affronterà in battaglia per fermarti. Ritirarsi dalla battaglia non è contemplato
+                                    durante l'avanzamento nella storia molte creature malevoli che dovrai annientare con ogni attrezzo disponibile per andare avanti nei vari stage.<br><br>Alla fine di ogni stage per avanzare a quello successivo verrai a confronto con un "brigadiere" che ti affronterà in battaglia per fermarti. Ritirarsi dalla battaglia non è contemplato
                                 </p>
                                 <h5 style="margin-top: 40px; font-family: 'Montserrat', sans-serif;">
                                     <i style="color: #ffffff; background: #4dc862; margin: 0px;" class="fa fa-gamepad circle-icon"></i> COMANDI DI GIOCO
                                 </h5>
-                                <p style="background: #f0f8ec; padding: 24px; border-radius: 8px;"> Comandi di default (Cambiabili dalle impostazioni all'interno del gioco). PC Only <br><br> “Z” → Attacco base <br>“X” → Attacco pesante <br>“C” → Uso consumabili <br>“BARRA SPAZIATRICE” → Salto <br>“ESC” → Aprire menu di
-                                    pause <br>“Q” → Attacco Ultimate™ <br>“ALT+F4” → Ragequit dopo morte</p>
+                                <p style="background: #f0f8ec; padding: 24px; border-radius: 8px;"> Comandi di default (Cambiabili dalle impostazioni all'interno del gioco). Stand-alone only <br><br> “Z” → Attacco base <br>“X” → Attacco pesante <br>“C” → Uso consumabili <br>“ESC” → Aprire menu di
+                                    pause<br>“ALT+F4” → Ragequit dopo morte</p>
                             </div>
                         </div>
                     </div>
@@ -152,25 +151,23 @@
                 Riccardo Cherchi<br><p>Miretti Lorenzo<br>Francolino Simone<br>Kevin Kadiasi<br>Stefano Pagliuzzi</p>
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-6">
                 <h2 class="nomiSviluppatori">Il progetto: </h2>
                 <p>Il progetto è nato a seguito della richiesta di una storia che fosse diversa dalle altre,una storia che doveva colpire dritto il cuore del giocatore.La storia doveva poi essere rappresentata sotto forma di gioco interattivo adatto a tutte le età e che avesse come premessa una natura semplice e divertente.</p>
             </div>
 
 
             <div class="col-md-3">
-                <h4 class="font-italic nomiSviluppatori">Altrove</h4>
-                <ol class="list-unstyled">
-                    <li><a href="https://github.com/itisrivoira/ApeOPSArcade">GitHub</a></li>
-                    <li><a href="https://geti2p.net">I2P</a></li>
-                </ol>
-            </div>
-
-            <div class="col-md-3">
                 <h4 class="font-italic nomiSviluppatori">Informazioni Aggiuntive</h4>
                 <ol class="list-unstyled">
                     <li>Visita la pagina di <a href="html/faq.html">faq</a></li>
                     <li>e la pagina <a href="html/contatti.html">contatti</a></li>
+                </ol>
+
+                <h4 class="font-italic nomiSviluppatori">Altrove</h4>
+                <ol class="list-unstyled">
+                    <li><a href="https://github.com/itisrivoira/ApeOPSArcade">GitHub</a></li>
+                    <li><a href="https://geti2p.net">I2P</a></li>
                 </ol>
             </div>
         </div>

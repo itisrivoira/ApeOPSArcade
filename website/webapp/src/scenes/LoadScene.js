@@ -98,6 +98,24 @@ export class LoadScene extends Phaser.Scene {
         this.load.audio("battle", "src/assets/sounds/battle.mp3");
         this.load.audio("bgBattle", "src/assets/sounds/bg_battle.mp3");
 
+        //sound effects
+        this.load.audio("SFX_punch1", "src/assets/sounds/effects/punch1.mp3");
+        this.load.audio("SFX_punch2", "src/assets/sounds/effects/punch2.mp3");
+        this.load.audio("SFX_punch3", "src/assets/sounds/effects/punch3.mp3");
+        this.load.audio("SFX_punch4", "src/assets/sounds/effects/punch4.mp3");
+
+        this.load.audio("SFX_karate1", "src/assets/sounds/effects/karate1.mp3");
+        this.load.audio("SFX_karate2", "src/assets/sounds/effects/karate2.mp3");
+        this.load.audio("SFX_karate3", "src/assets/sounds/effects/karate3.mp3");
+
+        this.load.audio("SFX_fire", "src/assets/sounds/effects/fire.mp3");
+        this.load.audio("SFX_flamethrower", "src/assets/sounds/effects/flamethrower.mp3");
+
+        this.load.audio("SFX_knife1", "src/assets/sounds/effects/knife1.mp3");
+        this.load.audio("SFX_knife2", "src/assets/sounds/effects/knife2.mp3");
+        this.load.audio("SFX_knife3", "src/assets/sounds/effects/knife3.mp3");
+
+
         var progressBar = this.add.graphics();
         var progressBox = this.add.graphics();
         progressBox.fillStyle(0x222222, 0.8);
@@ -162,6 +180,6 @@ export class LoadScene extends Phaser.Scene {
         });
     }
     create() {
-        this.scene.start(CST.SCENES.MENU, { HELLO: "LoadScene HELLO", flagSound: 1 });
+        this.scene.start(CST.SCENES.MENU, { HELLO: "LoadScene HELLO", flagSound: 1, flagSoundEffects: 1 });
     }
 }
