@@ -1,0 +1,58 @@
+.containerDownload {
+    background-color: rgb(212, 211, 211);
+    text-align: center;
+    width: 100%;
+}
+
+.titolo {
+    text-align: center;
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+    font-size: 3.25rem;
+    font-weight: bold;
+}
+
+.testo {
+    text-align: center;
+    margin-top: 20px;
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+    font-size: 1.35rem;
+    font-weight: bold;
+}
+
+.col-md-12 {
+    text-align: center;
+    font-size: 1rem;
+    margin-bottom: 26pt;
+}
+
+@media (min-width: 0px) {
+    .titolo {
+        text-align: center;
+        font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+    .testo {
+        text-align: center;
+        margin-top: 20px;
+        font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+        font-size: 1.10rem;
+        font-weight: bold;
+    }
+}
+
+@media (min-width: 992px) {
+    .titolo {
+        text-align: center;
+        font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+        font-size: 3.25rem;
+        font-weight: bold;
+    }
+    .testo {
+        text-align: center;
+        margin-top: 20px;
+        font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+        font-size: 1.55rem;
+        font-weight: bold;
+    }
+}
