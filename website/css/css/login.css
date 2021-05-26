@@ -1,0 +1,41 @@
+.img {
+    /* Immagine */
+    margin: auto;
+    display: block;
+    height: 270pt;
+}
+
+.containerIntestazione {
+    /* Container */
+    display: block;
+    background-color: rgb(194, 193, 191);
+    text-align: center;
+    width: 320pt;
+    /*height: 300pt;*/
+    margin: auto;
+    border-radius: 1%;
+    padding: 10px;
+}
+
+#testo {
+    /* Accedi */
+    color: whitesmoke;
+    text-align: center;
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+    font-size: 230%;
+    font-weight: bold;
+    margin: auto;
+}
+
+.col-md-12 {
+    /* Login */
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+    font-size: 120%;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+
+/*.testoInf {
+    color: rgb(145, 16, 16);
+}*/
