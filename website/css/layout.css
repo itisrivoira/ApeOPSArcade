@@ -55,6 +55,7 @@ h6 {
     border-radius: 10%;
     border-color: red;
     padding: 0.5em;
+    text-align: center;
 }
 
 .display-4 {
@@ -183,6 +184,13 @@ h6 {
     }
 }
 
+@media (max-width: 520px) {
+    .main-header-logo {
+        font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+        font-size: 1.75rem;
+    }
+}
+
 
 /* Paginazione |non utilizzata| */
 
@@ -211,6 +219,10 @@ h6 {
 .container-post-meta {
     margin-bottom: 1.25rem;
     color: #999;
+}
+
+.container {
+    padding-left: 0.25rem;
 }
 
 

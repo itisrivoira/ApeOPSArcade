@@ -42,9 +42,15 @@
                 </div>
                 <div class="col-4 d-flex justify-content-end align-items-center">
                     <?php if (isset($_SESSION['nickname'])): ?>
-                        <p style="padding-right: 0.5em; text-align:right;">Benvenuto <strong><a href="riepilogoUtente.php?change=1" style="text-decoration: none; color: black;"><?php echo $_SESSION['nickname']; ?></a></strong></p>
-			            <p class="logoutButton"> <a href="index.php?logout='1'" style="color: red; text-decoration: none;">LOGOUT</a> </p></div>
-		            <?php endif ?>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p style="text-align:center; margin-bottom: 0.35rem;">Benvenuto <strong><a href="riepilogoUtente.php?change=1" style="text-decoration: none; color: black;"><?php echo $_SESSION['nickname']; ?></a></strong></p>
+			                </div>
+                            <div class="col-md-6">
+                                <p class="logoutButton"> <a href="download.php?logout='1'" style="color: red; text-decoration: none;">LOGOUT</a> </p></div>
+                            </div>
+                        </div>
+                    <?php endif ?>
                 </div>
             </div>
         </header>
@@ -95,35 +101,36 @@
                 </div>
         </div>
 
-        <footer class="bottom-footer">
-            <div class="row">
+    <footer class="bottom-footer">
+        <div class="row">
 
-                <div class="col-md-3">
-                    <h2 class="nomiSviluppatori">Sviluppatori: </h2>
-                    Riccardo Cherchi<br><p>Miretti Lorenzo<br>Francolino Simone<br>Kevin Kadiasi<br>Stefano Pagliuzzi</p>
-                </div>
-
-                <div class="col-md-6">
-                    <h2 class="nomiSviluppatori">Il progetto: </h2>
-                    <p>Il progetto è nato a seguito della richiesta di una storia che fosse diversa dalle altre,una storia che doveva colpire dritto il cuore del giocatore.La storia doveva poi essere rappresentata sotto forma di gioco interattivo adatto a tutte le età e che avesse come premessa una natura semplice e divertente.</p>
-                </div>
-
-
-                <div class="col-md-3">
-                    <h4 class="font-italic nomiSviluppatori">Informazioni Aggiuntive</h4>
-                    <ol class="list-unstyled">
-                        <li>Visita la pagina di <a href="html/faq.html">faq</a></li>
-                        <li>e la pagina <a href="html/contatti.html">contatti</a></li>
-                    </ol>
-
-                    <h4 class="font-italic nomiSviluppatori">Altrove</h4>
-                    <ol class="list-unstyled">
-                        <li><a href="https://github.com/itisrivoira/ApeOPSArcade">GitHub</a></li>
-                        <li><a href="http://dvgdib2zuodi32qidzh4yb3lu2ohp4z245ns5gmlzroamzcwa4za.b32.i2p/">I2P</a></li>
-                    </ol>
-                </div>
+            <div class="col-md-3">
+                <h2 class="nomiSviluppatori">Sviluppatori: </h2>
+                Riccardo Cherchi<br>
+                <p>Lorenzo Miretti<br>Simone Francolino<br>Kevin Kadiasi<br>Stefano Pagliuzzi</p>
             </div>
-        </footer>
+
+            <div class="col-md-6">
+                <h2 class="nomiSviluppatori">Il progetto: </h2>
+                <p>Il progetto è nato a seguito della richiesta di una storia che fosse diversa dalle altre,una storia che doveva colpire dritto il cuore del giocatore.La storia doveva poi essere rappresentata sotto forma di gioco interattivo adatto a tutte
+                    le età e che avesse come premessa una natura semplice e divertente.</p>
+            </div>
+
+            <div class="col-md-3">
+                <h4 class="font-italic nomiSviluppatori">Informazioni Aggiuntive</h4>
+                <ol class="list-unstyled">
+                    <li>Visita la pagina di <a href="faq.html">faq</a></li>
+                    <li>e la pagina <a href="contatti.html">contatti</a></li>
+                </ol>
+
+                <h4 class="font-italic nomiSviluppatori">Altrove</h4>
+                <ol class="list-unstyled">
+                    <li><a href="https://github.com/itisrivoira/ApeOPSArcade" target="_blank">GitHub</a></li>
+                    <li><a href="http://dvgdib2zuodi32qidzh4yb3lu2ohp4z245ns5gmlzroamzcwa4za.b32.i2p/">I2P</a></li>
+                </ol>
+            </div>
+        </div>
+    </footer>
 
 
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

@@ -51,49 +51,42 @@
             </nav>
         </div>
 
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12" style="margin-left: 1rem;margin-right: 1rem;">
+                    <img src="../img/ape_logo.png" class="img-fluid mx-auto d-block">
 
-        <img src="../img/ape_logo.png" class="img">
-
-        <div class="containerIntestazione">
-            <div class="row">
-                <div id="testo">
-                    <p>Accedi</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <?php include("../server/errors.php");?>
-                    <form action="login.php" method="POST">
-                        <input type="text" name="nickname" placeholder="nickname">
-                        <input type="password" name="password" placeholder="password">
+                    <div class="containerIntestazione">
+                        <div class="row">
+                            <div id="testo">
+                                <p>Accedi</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <?php include("../server/errors.php");?>
+                                <form action="login.php" method="POST">
+                                    <input type="text" name="nickname" placeholder="nickname"><br>
+                                    <input type="password" name="password" placeholder="password">
+                                    <br>
+                                    <input type="submit" name="login_user" value="login">
+                                </form>
+                            </div>
+                        </div>
                         <br>
-                        <input type="submit" name="login_user" value="login">
-                    </form>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p>Sei nuovo su APE OPS Arcade?</p>
+                                <br>
+                                <!-- creazione bottone link per file registrazione-->
+                                <input type="submit" value="Registrati" onclick="document.location.href='registrazione.php'">
+                            </div>
+                        </div>
+                        <br>
+                    </div>
                 </div>
             </div>
-            <br>
-            <div class="row">
-                <div class="col-md-12">
-                    <p>Sei nuovo su APE OPS Arcade?</p>
-                    <br>
-                    <!-- creazione bottone link per file registrazione-->
-                    <input type="submit" value="Registrati" onclick="document.location.href='registrazione.php'">
-                </div>
-            </div>
-            <br>
         </div>
-
-        <!-- 
-            <div class="row">
-            <div class="testoInf">
-                <p>Per maggiori informazioni visita la pagina di
-                    <a href="https://www.google.it/ ">supporto</a> <br> oppure contatta i developers tramite la pagina
-                    <a href="../html/contatti.html ">contatti</a>
-                </p>
-            </div>
-        </div>
-
-        -->
     </div>
 
     <footer class="bottom-footer">
@@ -101,25 +94,26 @@
 
             <div class="col-md-3">
                 <h2 class="nomiSviluppatori">Sviluppatori: </h2>
-                Riccardo Cherchi<br><p>Miretti Lorenzo<br>Francolino Simone<br>Kevin Kadiasi<br>Stefano Pagliuzzi</p>
+                Riccardo Cherchi<br>
+                <p>Lorenzo Miretti<br>Simone Francolino<br>Kevin Kadiasi<br>Stefano Pagliuzzi</p>
             </div>
 
             <div class="col-md-6">
                 <h2 class="nomiSviluppatori">Il progetto: </h2>
-                <p>Il progetto è nato a seguito della richiesta di una storia che fosse diversa dalle altre,una storia che doveva colpire dritto il cuore del giocatore.La storia doveva poi essere rappresentata sotto forma di gioco interattivo adatto a tutte le età e che avesse come premessa una natura semplice e divertente.</p>
+                <p>Il progetto è nato a seguito della richiesta di una storia che fosse diversa dalle altre,una storia che doveva colpire dritto il cuore del giocatore.La storia doveva poi essere rappresentata sotto forma di gioco interattivo adatto a tutte
+                    le età e che avesse come premessa una natura semplice e divertente.</p>
             </div>
-
 
             <div class="col-md-3">
                 <h4 class="font-italic nomiSviluppatori">Informazioni Aggiuntive</h4>
                 <ol class="list-unstyled">
-                    <li>Visita la pagina di <a href="html/faq.html">faq</a></li>
-                    <li>e la pagina <a href="html/contatti.html">contatti</a></li>
+                    <li>Visita la pagina di <a href="faq.html">faq</a></li>
+                    <li>e la pagina <a href="contatti.html">contatti</a></li>
                 </ol>
 
                 <h4 class="font-italic nomiSviluppatori">Altrove</h4>
                 <ol class="list-unstyled">
-                    <li><a href="https://github.com/itisrivoira/ApeOPSArcade">GitHub</a></li>
+                    <li><a href="https://github.com/itisrivoira/ApeOPSArcade" target="_blank">GitHub</a></li>
                     <li><a href="http://dvgdib2zuodi32qidzh4yb3lu2ohp4z245ns5gmlzroamzcwa4za.b32.i2p/">I2P</a></li>
                 </ol>
             </div>

@@ -6,6 +6,7 @@
     /*height: 20%;*/
     border-radius: 1%;
     padding: 10px;
+    align-items: center;
 }
 
 .formatCarattare {
@@ -15,31 +16,27 @@
     font-weight: bold;
 }
 
-.img {
-    /* Immagine */
-    margin: auto;
-    display: block;
-    height: 300pt;
-    width: 300pt;
-    text-align: center;
-}
-
 #testo {
-    /* Accedi */
     color: black;
     font-family: "Playfair Display", Georgia, "Times New Roman", serif;
     font-size: 230%;
     font-weight: bold;
     margin: auto;
-    display: block;
 }
 
-.col-md-1 {
-    /* Login */
-    margin-left: 1%;
-    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
-    font-size: 120%;
-    margin-top: 20px;
-    font-weight: bold;
-    float: left;
+@media (max-width: 520px) {
+    .formatCarattare {
+        font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+        color: black;
+        font-size: 120%;
+        font-weight: bold;
+        text-align: center;
+    }
+    #testo {
+        color: black;
+        font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+        font-size: 190%;
+        font-weight: bold;
+        margin: auto;
+    }
 }

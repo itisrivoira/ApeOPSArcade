@@ -1,25 +1,17 @@
-.img {
-    /* Immagine */
-    margin: auto;
-    display: block;
-    height: 270pt;
+.containerIntestazione {
+    background-color: rgb(212, 211, 211);
+    text-align: center;
+    width: 100%;
+    padding-bottom: 0.50rem;
+    border-radius: 1%;
 }
 
-.containerIntestazione {
-    /* Container */
-    display: block;
-    background-color: rgb(194, 193, 191);
-    text-align: center;
-    width: 320pt;
-    /*height: 300pt;*/
-    margin: auto;
-    border-radius: 1%;
-    padding: 10px;
+.img-fluid {
+    width: 60%;
 }
 
 #testo {
     /* Accedi */
-    color: whitesmoke;
     text-align: center;
     font-family: "Playfair Display", Georgia, "Times New Roman", serif;
     font-size: 230%;
@@ -35,7 +27,14 @@
     font-weight: bold;
 }
 
+@media (min-width: 992px) {
+    .img-fluid {
+        width: 440px;
+    }
+}
 
-/*.testoInf {
-    color: rgb(145, 16, 16);
-}*/
+@media (max-width: 520px) {
+    .img-fluid {
+        width: 80%;
+    }
+}

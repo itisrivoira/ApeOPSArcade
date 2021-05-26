@@ -52,7 +52,7 @@
         </div>
 
         <div class="containerIntestazione">
-            <div class="row">
+            <div class="row justify-content-center">
                 <div id="testo">
                     <p>Creare un Account</p>
                 </div>
@@ -82,13 +82,15 @@
                         <div class="formatCarattare">Password: <br><input type="password" name="password_1"></div>
                         <div class="formatCarattare">Conferma⠀Password: <br><input type="password" name="password_2"></div>
                         <br>
-                        <input type="submit" name="reg_user" value="Conferma">
+                        <div class="formatCarattare">
+                            <input type="submit" name="reg_user" value="Conferma">
+                        </div>
                     </form>
                 </div>
 
 
                 <div class="col-md-8">
-                    <img src="../img/ape.png" class="img" alt="Responsive image">
+                    <img src="../img/ape.png" class="img-fluid mx-auto d-block" alt="Responsive image">
                 </div>
 
             </div>
@@ -102,25 +104,26 @@
 
             <div class="col-md-3">
                 <h2 class="nomiSviluppatori">Sviluppatori: </h2>
-                Riccardo Cherchi<br><p>Miretti Lorenzo<br>Francolino Simone<br>Kevin Kadiasi<br>Stefano Pagliuzzi</p>
+                Riccardo Cherchi<br>
+                <p>Lorenzo Miretti<br>Simone Francolino<br>Kevin Kadiasi<br>Stefano Pagliuzzi</p>
             </div>
 
             <div class="col-md-6">
                 <h2 class="nomiSviluppatori">Il progetto: </h2>
-                <p>Il progetto è nato a seguito della richiesta di una storia che fosse diversa dalle altre,una storia che doveva colpire dritto il cuore del giocatore.La storia doveva poi essere rappresentata sotto forma di gioco interattivo adatto a tutte le età e che avesse come premessa una natura semplice e divertente.</p>
+                <p>Il progetto è nato a seguito della richiesta di una storia che fosse diversa dalle altre,una storia che doveva colpire dritto il cuore del giocatore.La storia doveva poi essere rappresentata sotto forma di gioco interattivo adatto a tutte
+                    le età e che avesse come premessa una natura semplice e divertente.</p>
             </div>
-
 
             <div class="col-md-3">
                 <h4 class="font-italic nomiSviluppatori">Informazioni Aggiuntive</h4>
                 <ol class="list-unstyled">
-                    <li>Visita la pagina di <a href="html/faq.html">faq</a></li>
-                    <li>e la pagina <a href="html/contatti.html">contatti</a></li>
+                    <li>Visita la pagina di <a href="faq.html">faq</a></li>
+                    <li>e la pagina <a href="contatti.html">contatti</a></li>
                 </ol>
 
                 <h4 class="font-italic nomiSviluppatori">Altrove</h4>
                 <ol class="list-unstyled">
-                    <li><a href="https://github.com/itisrivoira/ApeOPSArcade">GitHub</a></li>
+                    <li><a href="https://github.com/itisrivoira/ApeOPSArcade" target="_blank">GitHub</a></li>
                     <li><a href="http://dvgdib2zuodi32qidzh4yb3lu2ohp4z245ns5gmlzroamzcwa4za.b32.i2p/">I2P</a></li>
                 </ol>
             </div>

@@ -39,7 +39,7 @@
                     <p></p>
                     <!--Colonna per riempire spazio vuoto-->
                 </div>
-                <div class="col-4 text-center">
+                <div class="col-4 text-center" id = "mohamed">
                     <a class="main-header-logo text-dark" href="#">APE OPS Arcade</a>
                 </div>
                 <div class="col-4 d-flex justify-content-end align-items-center">
@@ -50,9 +50,15 @@
                             </a>
                         </div>
                     <?php else:?>
-                        <p style="padding-right: 0.5em; text-align:right;">Benvenuto <strong><a href="html/riepilogoUtente.php?change=1" style="text-decoration: none; color: black;"><?php echo $_SESSION['nickname']; ?></a></strong></p>
-			            <p class="logoutButton"> <a href="index.php?logout='1'" style="color: red; text-decoration: none;">LOGOUT</a> </p></div>
-		            <?php endif ?>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p style="text-align:center; margin-bottom: 0.35rem;">Benvenuto <strong><a href="html/riepilogoUtente.php?change=1" style="text-decoration: none; color: black;"><?php echo $_SESSION['nickname']; ?></a></strong></p>
+                            </div>
+                            <div class="col-md-6">
+			                    <p class="logoutButton"> <a href="index.php?logout='1'" style="color: red; text-decoration: none;">LOGOUT</a> </p></div>
+                            </div>
+                        </div>
+                    <?php endif ?>
                 </div>
             </div>
         </header>
@@ -69,7 +75,7 @@
 
         <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
             <div class="row">
-                <div class="col-md-6 px-0">
+                <div class="col-md-6 px-0" style="padding: 10px!important;">
                     <h1 class="display-4 font-italic">APE OPS ARCADE</h1>
                     <p class="lead my-3">Ape OPS Arcade è un gioco single-player action-driven 2D dove il tuo compito sarà sconfiggere il Gorilla Stellare utilizzando ogni arma ed oggetto a tua disposizione. Il tempo a tua disposizione non è molto, su muoviti
                         ed uccidi quella scimmietta da quattro soldi prima che sia lei ad uccidere te…</p>
@@ -102,7 +108,7 @@
                     <div class="card-body d-flex flex-column align-items-start">
                         <strong class="d-inline-block mb-2 text-success">AGGIORNAMENTO</strong>
                         <h3 class="mb-0">
-                            <a class="text-dark" href="#aggiornamento">Aggiornamento 0.8</a>
+                            <a class="text-dark" href="#aggiornamento">Aggiornamento 1.1</a>
                         </h3>
                         <div class="mb-1 text-muted">Mag 17</div>
                         <p class="card-text mb-auto">Modifiche al website e versione quasi completa rilasciata!</p>
@@ -159,7 +165,7 @@
                 <hr id="aggiornamento">
                 <!-- Inizio post -->
                 <div class="container-post">
-                    <h2 class="container-post-title">Aggiornamento 0.8</h2>
+                    <h2 class="container-post-title">Aggiornamento 1.1</h2>
                     <p class="container-post-meta">17 Maggio 2021</p>
 
                     <p>Questo aggiornamento ha portato la correzione di molti bug, con annesse nuove funzionalità quali la gestione migliorata della pagina del gioco ed un contatore di giocate.</p>
@@ -206,12 +212,14 @@
 
             <div class="col-md-3">
                 <h2 class="nomiSviluppatori">Sviluppatori: </h2>
-                Riccardo Cherchi<br><p>Miretti Lorenzo<br>Francolino Simone<br>Kevin Kadiasi<br>Stefano Pagliuzzi</p>
+                Riccardo Cherchi<br>
+                <p>Lorenzo Miretti<br>Simone Francolino<br>Kevin Kadiasi<br>Stefano Pagliuzzi</p>
             </div>
 
             <div class="col-md-6">
                 <h2 class="nomiSviluppatori">Il progetto: </h2>
-                <p>Il progetto è nato a seguito della richiesta di una storia che fosse diversa dalle altre,una storia che doveva colpire dritto il cuore del giocatore.La storia doveva poi essere rappresentata sotto forma di gioco interattivo adatto a tutte le età e che avesse come premessa una natura semplice e divertente.</p>
+                <p>Il progetto è nato a seguito della richiesta di una storia che fosse diversa dalle altre,una storia che doveva colpire dritto il cuore del giocatore.La storia doveva poi essere rappresentata sotto forma di gioco interattivo adatto a tutte
+                    le età e che avesse come premessa una natura semplice e divertente.</p>
             </div>
 
             <div class="col-md-3">
@@ -223,7 +231,7 @@
 
                 <h4 class="font-italic nomiSviluppatori">Altrove</h4>
                 <ol class="list-unstyled">
-                    <li><a href="https://github.com/itisrivoira/ApeOPSArcade">GitHub</a></li>
+                    <li><a href="https://github.com/itisrivoira/ApeOPSArcade" target="_blank">GitHub</a></li>
                     <li><a href="http://dvgdib2zuodi32qidzh4yb3lu2ohp4z245ns5gmlzroamzcwa4za.b32.i2p/">I2P</a></li>
                 </ol>
             </div>

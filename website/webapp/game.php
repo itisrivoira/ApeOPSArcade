@@ -124,7 +124,7 @@
                             </div>
                             <div id="istructions">
                                 <h4 style="font-family: 'Montserrat', sans-serif;">Come si gioca a APE OPS Arcade - Sconfiggi il gorilla</h4>
-                                <img id="game-img-little" class="img-fluid" data-src="holder.js/180x106?theme=thumb" alt="immagineRandom">
+                                <img id="game-img-little" class="img-fluid" src="../img/e.png" style="height: 180px; width: 230px;" alt="immagineRandom">
                                 <p>
                                     In APE OPS Arcade assumerai il ruolo di uno scienziato i cui esperimenti non sono andati molto bene, il tuo compito è eliminare un gorilla geneticamente mutato che vuole distruggere la Terra.<br> Inoltre incontrerai
                                     durante l'avanzamento nella storia molte creature malevoli che dovrai annientare con ogni attrezzo disponibile per andare avanti nei vari stage.<br><br>Alla fine di ogni stage per avanzare a quello successivo verrai a confronto con un "brigadiere" che ti affronterà in battaglia per fermarti. Ritirarsi dalla battaglia non è contemplato
@@ -160,8 +160,8 @@
             <div class="col-md-3">
                 <h4 class="font-italic nomiSviluppatori">Informazioni Aggiuntive</h4>
                 <ol class="list-unstyled">
-                    <li>Visita la pagina di <a href="html/faq.html">faq</a></li>
-                    <li>e la pagina <a href="html/contatti.html">contatti</a></li>
+                    <li>Visita la pagina di <a href="../html/faq.html">faq</a></li>
+                    <li>e la pagina <a href="../html/contatti.html">contatti</a></li>
                 </ol>
 
                 <h4 class="font-italic nomiSviluppatori">Altrove</h4>

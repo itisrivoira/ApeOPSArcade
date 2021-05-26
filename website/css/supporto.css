@@ -1,9 +1,8 @@
 .contenitorePrincipale {
     background-color: rgb(212, 211, 211);
-    display: block;
-    margin-left: 28%;
-    height: 500pt;
-    width: 45%;
+    text-align: center;
+    width: 100%;
+    padding-bottom: 0.50rem;
 }
 
 #titolo {
@@ -27,14 +26,9 @@
     height: 100pt;
 }
 
-.immagineSinistra {
-    height: 37%;
-    width: 25%;
-    float: left;
-}
-
-.immagineDestra {
-    height: 35%;
-    width: 27%;
-    float: right;
+@media (max-width: 520px) {
+    #titolo {
+        font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+        font-size: 150%;
+    }
 }
