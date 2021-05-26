@@ -18,7 +18,7 @@
         // $email indica la mail del mittente
         $email = $_POST['email'];
         //  $testo indica il testo all'interno della mail del mittente
-        $testo = $_POST['comment'];
+        $testo = $_POST['testo'];
 
         // $subject indica il titolo della mail
         $subject = 'Recapito supporto tecnico';
