@@ -272,7 +272,7 @@ export class LVL2Scene extends Phaser.Scene {
             fontSize: "32px",
             fill: "#000000"
         });
-        this.add.text(this.game.renderer.width - 465, 8, "BRIGADIERE MATTARELLA", {
+        this.add.text(this.game.renderer.width - 465, 8, "BRIGADIERE MATTARELLO", {
             fontFamily: "Droid Sans",
             fontSize: "32px",
             fill: "#000000"
@@ -301,7 +301,7 @@ export class LVL2Scene extends Phaser.Scene {
                         console.log("Brigadiere attacca con: INCENDIO");
                         this.checkAction = false;
 
-                        text = this.add.text(this.game.renderer.width - 790, 50, "MATTARELLA USA INCENDIO", {
+                        text = this.add.text(this.game.renderer.width - 790, 50, "MATTARELLO USA INCENDIO", {
                             fontFamily: "Droid Sans",
                             fontSize: "24px",
                             fill: "#000000"
@@ -343,7 +343,7 @@ export class LVL2Scene extends Phaser.Scene {
                         console.log("Brigadiere attacca con: Calcio");
                         this.checkAction = false;
 
-                        text = this.add.text(this.game.renderer.width - 760, 50, "MATTARELLA USA KICK", {
+                        text = this.add.text(this.game.renderer.width - 760, 50, "MATTARELLO USA KICK", {
                             fontFamily: "Droid Sans",
                             fontSize: "24px",
                             fill: "#000000"
@@ -397,7 +397,7 @@ export class LVL2Scene extends Phaser.Scene {
                         console.log("Brigadiere schiva");
                         this.checkAction = false;
 
-                        text = this.add.text(this.game.renderer.width - 760, 50, "MATTARELLA SCHIVA", {
+                        text = this.add.text(this.game.renderer.width - 760, 50, "MATTARELLO SCHIVA", {
                             fontFamily: "Droid Sans",
                             fontSize: "24px",
                             fill: "#000000"
@@ -417,7 +417,7 @@ export class LVL2Scene extends Phaser.Scene {
                         console.log("Brigadiere blocca");
                         this.checkAction = false;
 
-                        text = this.add.text(this.game.renderer.width - 760, 50, "MATTARELLA BLOCCA", {
+                        text = this.add.text(this.game.renderer.width - 760, 50, "MATTARELLO BLOCCA", {
                             fontFamily: "Droid Sans",
                             fontSize: "24px",
                             fill: "#000000"
