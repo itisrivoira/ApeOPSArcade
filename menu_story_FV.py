@@ -864,13 +864,13 @@ def event_Fire():
         else:
             if dodgeCheck_EN == True:
                 blockCheck_EN = False
-                message_to_screen("MATTARELLA USES DODGE", BLACK, 450, 60) 
+                message_to_screen("MATTARELLO USES DODGE", BLACK, 450, 60) 
                 message_to_screen("LEGASOV USES FIREOUT", BLACK, 485, 90)
                 win.blit(pg_fire, (210, 70))
         
             elif blockCheck_EN == True:
                 dodgeCheck_EN = False
-                message_to_screen("MATTARELLA USES BLOCK", BLACK, 450, 60) 
+                message_to_screen("MATTARELLO USES BLOCK", BLACK, 450, 60) 
                 message_to_screen("LEGASOV USES FIREOUT", BLACK, 485, 90)
                 win.blit(enemy2_hit, (900, 110))
                 win.blit(pg_fire, (210, 70))
@@ -892,7 +892,7 @@ def event_Fire():
             pg_image = pygame.image.load("images/hornyProtag.png")
             win.blit(pg_image, (100, 85))        
             win.blit(enemy2_fire, (250, 110))
-            message_to_screen("MATTARELLA USES INCENDIO", BLACK, 450, 60)    
+            message_to_screen("MATTARELLO USES INCENDIO", BLACK, 450, 60)    
             
             for i in range(len(hp_bar_pg)):
                 if i == (len(hp_bar_pg) - 1):
@@ -912,13 +912,13 @@ def event_Fire():
             if dodgeCheck_PG == True:
                 blockCheck_PG = False
                 message_to_screen("LEGASOV USES DODGE", BLACK, 460, 60)
-                message_to_screen("MATTARELLA USES INCENDIO", BLACK, 450, 90)
+                message_to_screen("MATTARELLO USES INCENDIO", BLACK, 450, 90)
                 win.blit(enemy2_fire, (250, 110))
         
             elif blockCheck_PG == True:
                 dodgeCheck_PG = False
                 message_to_screen("LEGASOV USES BLOCK", BLACK, 460, 60)
-                message_to_screen("MATTARELLA USES INCENDIO", BLACK, 450, 90)
+                message_to_screen("MATTARELLO USES INCENDIO", BLACK, 450, 90)
                 win.blit(pg_image, (100, 85)) 
                 win.blit(enemy2_fire, (250, 110))
                 
@@ -987,14 +987,14 @@ def event_Kick2():
             if dodgeCheck_EN == True:
                 #DODGED -- SCHIVATO
                 blockCheck_EN = False
-                message_to_screen("MATTARELLA USES DODGE", BLACK, 450, 60) 
+                message_to_screen("MATTARELLO USES DODGE", BLACK, 450, 60) 
                 message_to_screen("LEGASOV USES KICK", BLACK, 470, 90)
                 win.blit(pg_kick, (770, 110))
         
             elif blockCheck_EN == True:
                 #BLOCKED -- BLOCCATO
                 dodgeCheck_EN = False
-                message_to_screen("MATTARELLA USES BLOCK", BLACK, 450, 60) 
+                message_to_screen("MATTARELLO USES BLOCK", BLACK, 450, 60) 
                 message_to_screen("LEGASOV USES KICK", BLACK, 470, 90)
                 win.blit(enemy2_hit, (900, 110))
                 win.blit(pg_kick, (770, 110))
@@ -1017,7 +1017,7 @@ def event_Kick2():
             pg_image = pygame.image.load("images/hornyProtag.png")
             win.blit(pg_image, (100, 85))        
             win.blit(enemy2_hit, (180, 110))
-            message_to_screen("MATTARELLA USES KICK", BLACK, 450, 60)    
+            message_to_screen("MATTARELLO USES KICK", BLACK, 450, 60)    
             
             for i in range(len(hp_bar_pg)):
                 if i == (len(hp_bar_pg) - 1):
@@ -1038,14 +1038,14 @@ def event_Kick2():
                 #DODGED -- SCHIVATO
                 blockCheck_PG = False
                 message_to_screen("LEGASOV USES DODGE", BLACK, 460, 60)
-                message_to_screen("MATTARELLA USES KICK", BLACK, 450, 90)
+                message_to_screen("MATTARELLO USES KICK", BLACK, 450, 90)
                 win.blit(enemy2_hit, (200, 110))
         
             elif blockCheck_PG == True:
                 #BLOCKED -- BLOCCATO
                 dodgeCheck_PG = False
                 message_to_screen("LEGASOV USES BLOCK", BLACK, 460, 60)
-                message_to_screen("MATTARELLA USES KICK", BLACK, 450, 90)
+                message_to_screen("MATTARELLO USES KICK", BLACK, 450, 90)
                 win.blit(pg_image, (100, 85)) 
                 win.blit(enemy2_hit, (200, 110))
                 
@@ -1095,20 +1095,20 @@ def event_Enemy2():
     
     move = random.randint(0, 3)
     if move == 0:
-        print("MATTARELLA PUNCH")
+        print("MATTARELLO PUNCH")
         event_Fire()
     
     if move == 1:
-        print("MATTARELLA KICK")
+        print("MATTARELLO KICK")
         event_Kick2()
     
     if move == 2:
-        print("MATTARELLA DODGE")
+        print("MATTARELLO DODGE")
         event_Dodge2()
         dodgeCheck_EN = True
     
     if move == 3:
-        print("MATTARELLA BLOCK")
+        print("MATTARELLO BLOCK")
         event_Block2()
         blockCheck_EN = True
 
@@ -1326,14 +1326,14 @@ def event_Slash():
                 #DODGED -- SCHIVATO
                 blockCheck_PG = False
                 message_to_screen("LEGASOV USES DODGE", BLACK, 460, 60)
-                message_to_screen("MATTARELLA USES KICK", BLACK, 450, 90)
+                message_to_screen("MATTARELLO USES KICK", BLACK, 450, 90)
                 win.blit(enemy3_slash, (200, 110))
         
             elif blockCheck_PG == True:
                 #BLOCKED -- BLOCCATO
                 dodgeCheck_PG = False
                 message_to_screen("LEGASOV USES BLOCK", BLACK, 460, 60)
-                message_to_screen("MATTARELLA USES KICK", BLACK, 450, 90)
+                message_to_screen("MATTARELLO USES KICK", BLACK, 450, 90)
                 win.blit(pg_image, (100, 85)) 
                 win.blit(enemy3_slash, (200, 110))
                 
@@ -1493,7 +1493,7 @@ def game_layout2():
     en_HP()
     message_to_screen("KOWALSKI LEGASOV", BLACK, 85, 10)
     message_to_screen("LIVELLO 2", BLACK, 525, 10)
-    message_to_screen("BRIGADIERE MATTARELLA", BLACK, 765, 10)
+    message_to_screen("BRIGADIERE MATTARELLO", BLACK, 765, 10)
     pygame.display.update()
 
 
@@ -1730,8 +1730,8 @@ check_posx_chef2 = 0
 check_pos_spaceship = 0
 
 
-n_image = 71 #salto scena
-n_livello = 4 #salto livello
+n_image = 0 #salto scena
+n_livello = 1 #salto livello
 runGame = False
 
 def SALVINI_FIGHT():
@@ -3137,7 +3137,7 @@ while True:
                     if (check_posx_salvini1 == 0):
                         if n_image == 6:
                             if (player_location2[0] >= 490):
-                                print("I can't go hear...")
+                                print("I can't go here...")
                             else:
                                 player_location2[0] += 3
                                 player_locx = player_location2[0]
@@ -3149,7 +3149,7 @@ while True:
                 if moving_left == True:
                     if n_image == 6:
                         if (player_location2[0] <= 328):
-                            print("I can't go hear...")
+                            print("I can't go here...")
                             check_posx_salvini1 = 1
                         else:
                             player_location2[0] -= 3
@@ -3169,12 +3169,12 @@ while True:
                             if (player_location2[0] >= 328 and player_location2[0] <= 412) and (player_location2[1] >= 148 and player_location2[1] <= 196):
                                 n_image = 7
                     else:
-                        print("I can't go hear...")
+                        print("I can't go here...")
 
                 if moving_down == True:
 
                     if (player_location2[0] >= 328) and (player_location2[1] >= 390 and player_location2[1] >= 550):
-                        print("I can't go hear...")
+                        print("I can't go here...")
                     else:
                         player_location2[1] += 3
                         player_locy = player_location2[1]
@@ -3225,19 +3225,19 @@ while True:
                         player_locx = player_location3[0]
                         print("---x--- " + str(player_locx) + "\t" + "---y--- " + str(player_locy))
                 else:
-                    print("I can't go hear...")
+                    print("I can't go here...")
 
             if moving_left == True:
                 if check_posx_chef1 == 2:
                     if player_location3[0] == 264:
-                        print("I can't go hear...")
+                        print("I can't go here...")
                         check_posx_chef1 = 3
                     else:
                         player_location3[0] -= 4
                         player_locx = player_location3[0]
                         print("---x--- " + str(player_locx) + "\t" + "---y--- " + str(player_locy))
                 else:
-                    print("I can't go hear...")
+                    print("I can't go here...")
 
             if moving_up == True:
                 if check_posx_chef1 == 0:
@@ -3248,27 +3248,27 @@ while True:
                         check_posx_chef1 = 2
                 elif check_posx_chef1 == 3:
                     if player_location3[1] <= 90:
-                        print("I can't go hear...")
+                        print("I can't go here...")
                         check_posx_chef1 = 4
                     else:
                         player_location3[1] -= 4
                         player_locy = player_location3[1]
                         print("---x--- " + str(player_locx) + "\t" + "---y--- " + str(player_locy))
                 else:
-                    print("I can't go hear...")
+                    print("I can't go here...")
 
         elif n_image == 26:
                 if moving_left == True:
                     if check_posx_chef1 == 5:
                         if player_location3[0] <= 264:
-                            print("I can't go hear...")
+                            print("I can't go here...")
                             check_posx_chef1 = 6
                         else:
                             player_location3[0] -= 3
                             player_locx = player_location3[0]
                             print("---x--- " + str(player_locx) + "\t" + "---y--- " + str(player_locy))
                     else:
-                        print("I can't go hear...")
+                        print("I can't go here...")
 
                 if moving_up == True:
                     if check_posx_chef1 == 6:
@@ -3280,13 +3280,13 @@ while True:
                             n_image = 27
 
                     else:
-                        print("I can't go hear...")
+                        print("I can't go here...")
 
         elif n_image == 27:
             if moving_right == True:
                 if check_posx_chef1 == 8:
                     if player_location4[0] >= 202:
-                        print("I can't go hear...")
+                        print("I can't go here...")
                         check_posx_chef1 = 9
                     else:
                         player_location4[0] += 3
@@ -3297,7 +3297,7 @@ while True:
             if moving_left == True:
                 if check_posx_chef1 == 11:
                     if player_location4[0] == 190:
-                        print("I can't go hear...")
+                        print("I can't go here...")
                         check_posx_chef1 =12
                     else:
                         player_location4[0] -= 3
@@ -3308,7 +3308,7 @@ while True:
             if moving_up == True:
                 if check_posx_chef1 == 7:
                     if player_location4[1] <=394:
-                        print("I can't go hear...")
+                        print("I can't go here...")
                     else:
                         player_location4[1] -= 3
                         player_locy = player_location4[1]
@@ -3332,7 +3332,7 @@ while True:
 
                 elif check_posx_chef1 == 9:
                     if player_location4[1] <=342:
-                        print("I can't go hear...")
+                        print("I can't go here...")
                     else:
                         player_location4[1] -= 3
                         player_locy = player_location4[1]
@@ -3346,13 +3346,13 @@ while True:
                                 check_posx_chef1 = 10
 
                 else:
-                    print("I can't go hear...")
+                    print("I can't go here...")
 
 
             if moving_down == True:
                 if check_posx_chef1 == 10:
                     if player_location4[1] == 431:
-                        print("I can't go hear...")
+                        print("I can't go here...")
                         check_posx_chef1 = 11
                     else:
                         player_location4[1] += 3
@@ -3360,7 +3360,7 @@ while True:
                         print("---x--- " + str(player_locx) + "\t" + "---y--- " + str(player_locy))
                 elif check_posx_chef1 == 12:
                     if player_location4[1] == 500:
-                        print("I can't go hear...")
+                        print("I can't go here...")
                         n_image = 28
                         check_posx_chef1 = 13
                     else:
@@ -3372,7 +3372,7 @@ while True:
             if moving_down == True:
                 if check_posx_chef1 == 13:
                     if player_location5[1] >= 267:
-                        print("I can't go hear...")
+                        print("I can't go here...")
                         check_posx_chef1 = 14
                     else:
                         player_location5[1] += 3
@@ -3381,7 +3381,7 @@ while True:
             if moving_left == True:
                 if check_posx_chef1 == 14:
                     if player_location5[0] <= 0:
-                        print("I can't go hear...")
+                        print("I can't go here...")
                         check_posx_chef1 =15
                         n_image = 29
                     else:
@@ -3403,7 +3403,7 @@ while True:
             if moving_left == True:
                 if check_posx_chef1 == 15:
                     if player_location6[0] <= 305:
-                        print("I can't go hear...")
+                        print("I can't go here...")
                         if n_apple3 == 0:
                             show_apple3 = "none"
                             check_apple_sound = "yes"
@@ -3420,7 +3420,7 @@ while True:
             if moving_down == True:
                 if check_posx_chef1 == 17:
                     if player_location6[1] >= 430:
-                        print("I can't go hear...")
+                        print("I can't go here...")
                     else:
                         player_location6[1] += 3
                         player_locy = player_location6[1]
@@ -3436,7 +3436,7 @@ while True:
                 if check_posx_chef1 == 18:
                     if player_location6[1] <= 218:
                         check_posx_chef1 = 19
-                        print("I can't go hear...")
+                        print("I can't go here...")
                     else:
                         player_location6[1] -= 3
                         player_locy = player_location6[1]
@@ -3447,7 +3447,7 @@ while True:
                     if player_location6[0] >= 550:
                         check_posx_chef1 = 20
                         n_image = 41
-                        print("I can't go hear...")
+                        print("I can't go here...")
                     else:
                         player_location6[0] += 3
                         player_locy = player_location6[0]
@@ -3458,7 +3458,7 @@ while True:
                 if check_posx_chef1 == 20:
                     if player_location7[0] >= 264:
                         check_posx_chef1 = 21
-                        print("I can't go hear...")
+                        print("I can't go here...")
                     else:
                         player_location7[0] += 3
                         player_locy = player_location7[0]
@@ -3468,7 +3468,7 @@ while True:
                 if check_posx_chef1 == 21:
                     if player_location7[1] <= 87:
                         check_posx_chef1 = 22
-                        print("I can't go hear...")
+                        print("I can't go here...")
                     else:
                         player_location7[1] -= 3
                         player_locy = player_location7[1]
@@ -3490,7 +3490,7 @@ while True:
             if moving_up == True:
                 if player_location8[1] <= 148:
                     n_image = 73
-                    print("I can't go hear...")
+                    print("I can't go here...")
                 else:
                     player_location8[1] -= 3
                     player_locy = player_location8[1]
@@ -3500,7 +3500,7 @@ while True:
             if moving_left == True:
                 if player_location8[0] <= 414:
                     n_image = 74
-                    print("I can't go hear...")
+                    print("I can't go here...")
                 else:
                     player_location8[0] -= 3
                     player_locx = player_location8[0]
@@ -3510,7 +3510,7 @@ while True:
             if moving_up == True:
                 if player_location8[1] <= 105:
                     n_image = 75
-                    print("I can't go hear...")
+                    print("I can't go here...")
                 else:
                     player_location8[1] -= 3
                     player_locy = player_location8[1]

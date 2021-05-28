@@ -863,13 +863,13 @@ def event_Fire():
         else:
             if dodgeCheck_EN == True:
                 blockCheck_EN = False
-                message_to_screen("MATTARELLA USES DODGE", BLACK, 450, 60) 
+                message_to_screen("MATTARELLO USES DODGE", BLACK, 450, 60) 
                 message_to_screen("LEGASOV USES FIREOUT", BLACK, 485, 90)
                 win.blit(pg_fire, (210, 70))
         
             elif blockCheck_EN == True:
                 dodgeCheck_EN = False
-                message_to_screen("MATTARELLA USES BLOCK", BLACK, 450, 60) 
+                message_to_screen("MATTARELLO USES BLOCK", BLACK, 450, 60) 
                 message_to_screen("LEGASOV USES FIREOUT", BLACK, 485, 90)
                 win.blit(enemy2_hit, (900, 110))
                 win.blit(pg_fire, (210, 70))
@@ -891,7 +891,7 @@ def event_Fire():
             pg_image = pygame.image.load("images/hornyProtag.png")
             win.blit(pg_image, (100, 85))        
             win.blit(enemy2_fire, (250, 110))
-            message_to_screen("MATTARELLA USES INCENDIO", BLACK, 450, 60)    
+            message_to_screen("MATTARELLO USES INCENDIO", BLACK, 450, 60)    
             
             for i in range(len(hp_bar_pg)):
                 if i == (len(hp_bar_pg) - 1):
@@ -911,13 +911,13 @@ def event_Fire():
             if dodgeCheck_PG == True:
                 blockCheck_PG = False
                 message_to_screen("LEGASOV USES DODGE", BLACK, 460, 60)
-                message_to_screen("MATTARELLA USES INCENDIO", BLACK, 450, 90)
+                message_to_screen("MATTARELLO USES INCENDIO", BLACK, 450, 90)
                 win.blit(enemy2_fire, (250, 110))
         
             elif blockCheck_PG == True:
                 dodgeCheck_PG = False
                 message_to_screen("LEGASOV USES BLOCK", BLACK, 460, 60)
-                message_to_screen("MATTARELLA USES INCENDIO", BLACK, 450, 90)
+                message_to_screen("MATTARELLO USES INCENDIO", BLACK, 450, 90)
                 win.blit(pg_image, (100, 85)) 
                 win.blit(enemy2_fire, (250, 110))
                 
@@ -986,14 +986,14 @@ def event_Kick2():
             if dodgeCheck_EN == True:
                 #DODGED -- SCHIVATO
                 blockCheck_EN = False
-                message_to_screen("MATTARELLA USES DODGE", BLACK, 450, 60) 
+                message_to_screen("MATTARELLO USES DODGE", BLACK, 450, 60) 
                 message_to_screen("LEGASOV USES KICK", BLACK, 470, 90)
                 win.blit(pg_kick, (770, 110))
         
             elif blockCheck_EN == True:
                 #BLOCKED -- BLOCCATO
                 dodgeCheck_EN = False
-                message_to_screen("MATTARELLA USES BLOCK", BLACK, 450, 60) 
+                message_to_screen("MATTARELLO USES BLOCK", BLACK, 450, 60) 
                 message_to_screen("LEGASOV USES KICK", BLACK, 470, 90)
                 win.blit(enemy2_hit, (900, 110))
                 win.blit(pg_kick, (770, 110))
@@ -1016,7 +1016,7 @@ def event_Kick2():
             pg_image = pygame.image.load("images/hornyProtag.png")
             win.blit(pg_image, (100, 85))        
             win.blit(enemy2_hit, (180, 110))
-            message_to_screen("MATTARELLA USES KICK", BLACK, 450, 60)    
+            message_to_screen("MATTARELLO USES KICK", BLACK, 450, 60)    
             
             for i in range(len(hp_bar_pg)):
                 if i == (len(hp_bar_pg) - 1):
@@ -1037,14 +1037,14 @@ def event_Kick2():
                 #DODGED -- SCHIVATO
                 blockCheck_PG = False
                 message_to_screen("LEGASOV USES DODGE", BLACK, 460, 60)
-                message_to_screen("MATTARELLA USES KICK", BLACK, 450, 90)
+                message_to_screen("MATTARELLO USES KICK", BLACK, 450, 90)
                 win.blit(enemy2_hit, (200, 110))
         
             elif blockCheck_PG == True:
                 #BLOCKED -- BLOCCATO
                 dodgeCheck_PG = False
                 message_to_screen("LEGASOV USES BLOCK", BLACK, 460, 60)
-                message_to_screen("MATTARELLA USES KICK", BLACK, 450, 90)
+                message_to_screen("MATTARELLO USES KICK", BLACK, 450, 90)
                 win.blit(pg_image, (100, 85)) 
                 win.blit(enemy2_hit, (200, 110))
                 
@@ -1094,20 +1094,20 @@ def event_Enemy2():
     
     move = random.randint(0, 3)
     if move == 0:
-        print("MATTARELLA PUNCH")
+        print("MATTARELLO PUNCH")
         event_Fire()
     
     if move == 1:
-        print("MATTARELLA KICK")
+        print("MATTARELLO KICK")
         event_Kick2()
     
     if move == 2:
-        print("MATTARELLA DODGE")
+        print("MATTARELLO DODGE")
         event_Dodge2()
         dodgeCheck_EN = True
     
     if move == 3:
-        print("MATTARELLA BLOCK")
+        print("MATTARELLO BLOCK")
         event_Block2()
         blockCheck_EN = True
 
@@ -1325,14 +1325,14 @@ def event_Slash():
                 #DODGED -- SCHIVATO
                 blockCheck_PG = False
                 message_to_screen("LEGASOV USES DODGE", BLACK, 460, 60)
-                message_to_screen("MATTARELLA USES KICK", BLACK, 450, 90)
+                message_to_screen("MATTARELLO USES KICK", BLACK, 450, 90)
                 win.blit(enemy3_slash, (200, 110))
         
             elif blockCheck_PG == True:
                 #BLOCKED -- BLOCCATO
                 dodgeCheck_PG = False
                 message_to_screen("LEGASOV USES BLOCK", BLACK, 460, 60)
-                message_to_screen("MATTARELLA USES KICK", BLACK, 450, 90)
+                message_to_screen("MATTARELLO USES KICK", BLACK, 450, 90)
                 win.blit(pg_image, (100, 85)) 
                 win.blit(enemy3_slash, (200, 110))
                 
@@ -1492,7 +1492,7 @@ def game_layout2():
     en_HP()
     message_to_screen("KOWALSKI LEGASOV", BLACK, 85, 10)
     message_to_screen("LIVELLO 2", BLACK, 525, 10)
-    message_to_screen("BRIGADIERE MATTARELLA", BLACK, 765, 10)
+    message_to_screen("BRIGADIERE MATTARELLO", BLACK, 765, 10)
     pygame.display.update()
 
 
